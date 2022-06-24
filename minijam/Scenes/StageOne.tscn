@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/00.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/background.png" type="Texture" id=3]
+[ext_resource path="res://Assets/pictureLightMask2_thumb-1000464370.png" type="Texture" id=4]
 
 [sub_resource type="ImageTexture" id=2]
 
@@ -10,6 +11,11 @@
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( -15, -26 )
+
+[node name="Light2D" type="Light2D" parent="Player"]
+scale = Vector2( 0.592105, 0.592105 )
+texture = ExtResource( 4 )
+color = Color( 0.905882, 0.882353, 0.713726, 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.564706, 0.0745098, 0.0745098, 1 )
