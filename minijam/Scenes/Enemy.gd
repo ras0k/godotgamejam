@@ -8,7 +8,7 @@ var velocity = Vector2()
 # var a = 2
 # var b = "text"
 
-
+var direction = 1
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -16,8 +16,15 @@ func _ready():
 
 
 func _physics_process(delta):
-	velocity.x = speed
+	velocity.x = speed * direction
+	if direction == 1:
+		$CollisionShape2D/AnimatedSprite.flip_h = false
+	else:
+		$CollisionShape2D/AnimatedSprite.flip_h = true
 	$CollisionShape2D/AnimatedSprite.play("walk")
 	velocity.y += gravity
 	velocity = move_and_slide(velocity, FLOOR)
+	if is_on_wall():
+		direction = direction * -1
+		
 #end
