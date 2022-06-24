@@ -27,3 +27,11 @@ shape = SubResource( 1 )
 frames = SubResource( 2 )
 animation = "walk"
 frame = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2( 7, 0 )
+enabled = true
+cast_to = Vector2( 0, 9 )
+__meta__ = {
+"_edit_group_": true
+}

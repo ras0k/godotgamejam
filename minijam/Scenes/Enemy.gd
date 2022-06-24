@@ -24,7 +24,13 @@ func _physics_process(delta):
 	$CollisionShape2D/AnimatedSprite.play("walk")
 	velocity.y += gravity
 	velocity = move_and_slide(velocity, FLOOR)
+	
 	if is_on_wall():
 		direction = direction * -1
+		$RayCast2D.position.x *= -1
+		
+	if $RayCast2D.is_colliding() == false:
+		direction = direction * -1
+		$RayCast2D.position.x *= -1
 		
 #end
