@@ -1,0 +1,24 @@
+Here is the narrative overiew
+
+This game jam comes with a limitation of 'Health is a tool' 
+The description provided for this limitation is
+
+This limitation is very much open to interpretation. 
+Consider health as a resource that can be used in more that just the one standard way.
+This doesn't just have to be Hit Points, you can get creative with it, anything that can pass as health will work. 
+Physical and mental health are both valid starting points. On top of this, the word 'tool' has a few different definitions itself, 
+more than just a device used to perform or facilitate manual or mechanical work. 
+Also note that this is not specifically the health of the player character, but health in general!
+
+The decided narative theme will be around mental health, and the struggle to overcome the struggles that come with it.
+
+The premise of the game will be the player starts their journey in a cave, a dark cave, and will be fighting through the stuggle
+to exit the cave and return to the light. 
+
+The player will also face an additional challenge; their health will be constantly decreasing throughout their journey.
+The rate at which they lose their health will depend on the journey itself.
+
+The darker the cave, the quicker they will lose health  the lighter the cave, the less health they lose. 
+This enables a sense of pressure, to help the player connect and feel the struggle of their avatar.
+
+The win condition will be making it to the end of the cave and escaping into the light.
