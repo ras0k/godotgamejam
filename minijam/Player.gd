@@ -12,14 +12,21 @@ var attacking = false
 
 func _physics_process(delta):
 
-	if Input.is_action_pressed("right") && !attacking:
-		$AnimatedSprite.flip_h = true
-		$AnimatedSprite.play("run")
-		velocity.x = speed
-	elif Input.is_action_pressed("left") && !attacking:
-		$AnimatedSprite.flip_h = false
-		$AnimatedSprite.play("run")
-		velocity.x = -speed
+	var up_pressed = Input.is_action_pressed("up")
+	var right_pressed = Input.is_action_pressed("right")
+	var left_pressed = Input.is_action_pressed("left")
+	if !attacking && (up_pressed || right_pressed || left_pressed):
+		if right_pressed:
+			$AnimatedSprite.flip_h = true
+			$AnimatedSprite.play("run")
+			velocity.x = speed
+		elif left_pressed:
+			$AnimatedSprite.flip_h = false
+			$AnimatedSprite.play("run")
+			velocity.x = -speed
+		if on_ground && up_pressed:
+			velocity.y = jump_power
+			on_ground = false
 	elif Input.is_action_just_pressed("attack"):
 		attacking = true;
 		print_debug("space was pressed")
@@ -30,11 +37,6 @@ func _physics_process(delta):
 		if on_ground == true:
 			if attacking == false:
 				$AnimatedSprite.play("idle")
-		
-	if Input.is_action_pressed("up"):
-		if on_ground == true:
-			velocity.y = jump_power
-			on_ground = false
 			
 
 	if Input.is_action_pressed("reset"):
