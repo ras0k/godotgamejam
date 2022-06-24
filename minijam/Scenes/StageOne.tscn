@@ -27,3 +27,6 @@ modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
 show_behind_parent = true
 position = Vector2( 17, 29 )
 texture = ExtResource( 3 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.443137, 0.317647, 0.317647, 1 )
