@@ -16,6 +16,7 @@ position = Vector2( -15, -26 )
 scale = Vector2( 0.592105, 0.592105 )
 texture = ExtResource( 4 )
 color = Color( 0.905882, 0.882353, 0.713726, 1 )
+shadow_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.564706, 0.0745098, 0.0745098, 1 )
