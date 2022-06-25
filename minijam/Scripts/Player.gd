@@ -7,11 +7,12 @@ const gravity = 5
 const FLOOR = Vector2(0, -1)
 #vars
 var velocity = Vector2()
-var health : int = 100
+var health = 100
 var colliding_with_enemy = false
 var enemy_health
 var on_ground = false
 var attacking = false
+var in_dark = true
 #signals
 signal damage(value)
 
@@ -62,16 +63,36 @@ func _physics_process(delta):
 		var collision = get_slide_collision(index)
 		if collision.collider.name.begins_with("Enemy"):
 			colliding_with_enemy = true
+		elif collision.collider.name.begins_with("Torch"):
+			in_dark = false
 		else:
 			pass
 			
 	if colliding_with_enemy && attacking:
 		damage()
- 
+		
+	if in_dark:
+		decrease_health()
+	else:
+		heal()
+		
+
+
 func damage():
 	print(enemy_health)
 	emit_signal("damage",1)
-
+	
+func decrease_health():
+		if health > 0:
+			health = health - 0.05
+			print(health)
 func _on_AnimatedSprite_animation_finished():
 	attacking=false
-
+func heal():
+		if health < 100:
+			health = health + 0.05
+			print(health)
+func _on_Torch_area_entered(area):
+	in_dark=false
+func _on_Torch_area_exited(area):
+	in_dark = true
