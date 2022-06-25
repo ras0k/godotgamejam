@@ -1,23 +1,38 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/00.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/background.png" type="Texture" id=3]
 [ext_resource path="res://Assets/pictureLightMask2_thumb-1000464370.jpg" type="Texture" id=4]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Assets/torch.png" type="Texture" id=6]
+[ext_resource path="res://Assets/walltorchs.png" type="Texture" id=6]
 [ext_resource path="res://Assets/healthbar-over.png" type="Texture" id=7]
 [ext_resource path="res://Assets/healthbar-progress.png" type="Texture" id=8]
 [ext_resource path="res://Assets/healthbar-under.png" type="Texture" id=9]
 
 [sub_resource type="ImageTexture" id=2]
 
+[sub_resource type="AtlasTexture" id=4]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 0, 0, 10, 16 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 10, 0, 10, 16 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 4
+atlas = ExtResource( 6 )
+region = Rect2( 20, 0, 10, 16 )
+
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "default",
-"speed": 5.0
+"speed": 12.0
 } ]
 
 [node name="StageOne" type="Node2D"]
@@ -77,33 +92,45 @@ position = Vector2( 392, 165 )
 position = Vector2( 237, 51 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( -27, -7 )
-scale = Vector2( 0.0643204, 0.0643204 )
+position = Vector2( -28, -1 )
+scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
+frame = 2
+playing = true
 
 [node name="Light2D" type="Light2D" parent="AnimatedSprite"]
-scale = Vector2( 14.1533, 14.1533 )
+position = Vector2( 2.14555, -4.12516 )
+scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
-color = Color( 0.956863, 0.627451, 0.447059, 1 )
+texture_scale = 0.01
+color = Color( 0.888672, 0.40133, 0.134453, 1 )
 
 [node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
 position = Vector2( 203, 67 )
-scale = Vector2( 0.0643204, 0.0643204 )
+scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
+frame = 1
+playing = true
 flip_h = true
 
 [node name="Light2D" type="Light2D" parent="AnimatedSprite2"]
-scale = Vector2( 14.1533, 14.1533 )
+position = Vector2( 2.14555, -4.12516 )
+scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
-color = Color( 0.956863, 0.627451, 0.447059, 1 )
+texture_scale = 0.01
+color = Color( 0.888672, 0.40133, 0.134453, 1 )
 
 [node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
 position = Vector2( 555, 150 )
-scale = Vector2( 0.0643204, 0.0643204 )
+scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
+frame = 1
+playing = true
 flip_h = true
 
 [node name="Light2D" type="Light2D" parent="AnimatedSprite3"]
-scale = Vector2( 14.1533, 14.1533 )
+position = Vector2( 2.14555, -4.12516 )
+scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
-color = Color( 0.956863, 0.627451, 0.447059, 1 )
+texture_scale = 0.01
+color = Color( 0.888672, 0.40133, 0.134453, 1 )
