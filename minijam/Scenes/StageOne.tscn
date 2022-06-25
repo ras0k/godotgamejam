@@ -35,17 +35,14 @@ func _ready():
 radius = 50.04
 
 [sub_resource type="AtlasTexture" id=4]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 0, 0, 10, 16 )
 
 [sub_resource type="AtlasTexture" id=5]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 10, 0, 10, 16 )
 
 [sub_resource type="AtlasTexture" id=6]
-flags = 4
 atlas = ExtResource( 6 )
 region = Rect2( 20, 0, 10, 16 )
 
@@ -124,7 +121,6 @@ shape = SubResource( 9 )
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="Torch/sprite"]
