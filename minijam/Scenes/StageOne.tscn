@@ -99,6 +99,7 @@ position = Vector2( 237, 51 )
 position = Vector2( -28, -1 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="torch"]
@@ -112,7 +113,6 @@ color = Color( 0.888672, 0.40133, 0.134453, 1 )
 position = Vector2( 203, 67 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 flip_h = true
 
@@ -127,7 +127,6 @@ color = Color( 0.888672, 0.40133, 0.134453, 1 )
 position = Vector2( 555, 150 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 flip_h = true
 

@@ -18,6 +18,8 @@ func dead():
 	is_dead = true
 	velocity = Vector2(0, 0)
 	$CollisionShape2D/AnimatedSprite.play("dead")
+	$CollisionShape2D.disabled = true
+	$Timer.start()
 	
 func _physics_process(delta):
 	if is_dead == false:
@@ -50,3 +52,7 @@ func _on_Player_damage(value):
 	health -= health
 	if health <= 0:
 		dead()
+
+
+func _on_Timer_timeout():
+	queue_free()
