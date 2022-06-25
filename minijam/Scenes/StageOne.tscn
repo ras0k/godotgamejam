@@ -44,6 +44,11 @@ texture_under = ExtResource( 9 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
 
+[node name="Light2D" type="Light2D" parent="Player/TextureProgress"]
+position = Vector2( 350, 14 )
+texture = ExtResource( 8 )
+energy = 0.88
+
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.564706, 0.0745098, 0.0745098, 1 )
 texture = SubResource( 2 )
