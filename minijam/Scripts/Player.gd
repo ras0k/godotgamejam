@@ -73,10 +73,10 @@ func _physics_process(delta):
 		
 	if in_dark:
 		decrease_health()
-		$HealthBar.value = float(health)
+		$HealthBar.value = health
 	else:
 		heal()
-		$HealthBar.value = float(health)
+		$HealthBar.value = health
 		
 
 
@@ -87,13 +87,11 @@ func damage():
 func decrease_health():
 		if health > 0:
 			health = health - 0.05
-			print(health)
 func _on_AnimatedSprite_animation_finished():
 	attacking=false
 func heal():
 		if health < 100:
 			health = health + 0.02
-			print(health)
 func _on_Torch_area_entered(area):
 	in_dark=false
 func _on_Torch_area_exited(area):
