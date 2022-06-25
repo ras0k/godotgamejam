@@ -7,7 +7,7 @@ const gravity = 5
 const FLOOR = Vector2(0, -1)
 #vars
 var velocity = Vector2()
-var health = 100
+var health = 100.0
 var colliding_with_enemy = false
 var enemy_health
 var on_ground = false
@@ -73,8 +73,10 @@ func _physics_process(delta):
 		
 	if in_dark:
 		decrease_health()
+		$HealthBar.value = float(health)
 	else:
 		heal()
+		$HealthBar.value = float(health)
 		
 
 
@@ -90,7 +92,7 @@ func _on_AnimatedSprite_animation_finished():
 	attacking=false
 func heal():
 		if health < 100:
-			health = health + 0.05
+			health = health + 0.02
 			print(health)
 func _on_Torch_area_entered(area):
 	in_dark=false

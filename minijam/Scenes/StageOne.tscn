@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/00.tres" type="TileSet" id=2]
@@ -9,6 +9,25 @@
 [ext_resource path="res://Assets/healthbar-over.png" type="Texture" id=7]
 [ext_resource path="res://Assets/healthbar-progress.png" type="Texture" id=8]
 [ext_resource path="res://Assets/healthbar-under.png" type="Texture" id=9]
+
+[sub_resource type="GDScript" id=10]
+script/source = "extends TextureProgress
+
+
+
+# Declare member variables here. Examples:
+# var a = 2
+# var b = \"text\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta):
+#	pass
+"
 
 [sub_resource type="ImageTexture" id=2]
 
@@ -51,7 +70,7 @@ color = Color( 0.905882, 0.882353, 0.713726, 1 )
 energy = 0.6
 shadow_enabled = true
 
-[node name="TextureProgress" type="TextureProgress" parent="Player"]
+[node name="HealthBar" type="TextureProgress" parent="Player"]
 margin_left = -148.0
 margin_top = -79.0
 margin_right = 40.0
@@ -61,8 +80,9 @@ value = 80.0
 texture_under = ExtResource( 9 )
 texture_over = ExtResource( 7 )
 texture_progress = ExtResource( 8 )
+script = SubResource( 10 )
 
-[node name="Light2D" type="Light2D" parent="Player/TextureProgress"]
+[node name="Light2D" type="Light2D" parent="Player/HealthBar"]
 position = Vector2( 350, 14 )
 texture = ExtResource( 8 )
 energy = 0.88
@@ -118,3 +138,5 @@ color = Color( 0.888672, 0.40133, 0.134453, 1 )
 [connection signal="damage" from="Player" to="Enemy" method="_on_Player_damage"]
 [connection signal="area_entered" from="Torch" to="Player" method="_on_Torch_area_entered"]
 [connection signal="area_exited" from="Torch" to="Player" method="_on_Torch_area_exited"]
+
+[editable path="Player"]
