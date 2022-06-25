@@ -6,6 +6,7 @@ const gravity = 5
 const FLOOR = Vector2(0, -1)
 var velocity = Vector2()
 var health : int = 100
+var colliding_with_enemy = false
 
 var on_ground = false
 var attacking = false
@@ -31,7 +32,6 @@ func _physics_process(delta):
 			on_ground = false
 	elif Input.is_action_just_pressed("attack"):
 		attacking = true;
-		print_debug("space was pressed")
 	elif attacking == true:
 		$AnimatedSprite.play("attack")
 	else:
@@ -53,7 +53,23 @@ func _physics_process(delta):
 			$AnimatedSprite.play("land")
 
 	velocity = move_and_slide(velocity, FLOOR)
+	
+			
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		if collision.collider.name.begins_with("Enemy"):
+			colliding_with_enemy = true
+		else:
+			pass
+			
+	if colliding_with_enemy && attacking:
+		damage()
+		
+		
  
+func damage():
+	pass
+
 func _on_AnimatedSprite_animation_finished():
 	attacking=false
-	print_debug("end of attack")
+

@@ -22,7 +22,6 @@ func _physics_process(delta):
 		velocity.x = -speed
 	elif Input.is_action_just_pressed("attack"):
 		attacking = true;
-		print_debug("space was pressed")
 	elif attacking == true:
 		$AnimatedSprite.play("attack")
 	else:
@@ -51,7 +50,12 @@ func _physics_process(delta):
 				$AnimatedSprite.play("land")
 					
 	velocity = move_and_slide(velocity, FLOOR)
+		
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		if collision.collider.begins_with("Enemy"):
+			print("collided with", collision.collider.name)
+		pass
  
 func _on_AnimatedSprite_animation_finished():
 	attacking=false
-	print_debug("end of attack")

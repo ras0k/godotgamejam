@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/00.tres" type="TileSet" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Assets/healthbar-over.png" type="Texture" id=7]
 [ext_resource path="res://Assets/healthbar-progress.png" type="Texture" id=8]
 [ext_resource path="res://Assets/healthbar-under.png" type="Texture" id=9]
+[ext_resource path="res://Assets/torch.png" type="Texture" id=10]
 
 [sub_resource type="ImageTexture" id=2]
 
@@ -34,6 +35,9 @@ animations = [ {
 "name": "default",
 "speed": 12.0
 } ]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 5, 5 )
 
 [node name="StageOne" type="Node2D"]
 
@@ -95,6 +99,7 @@ position = Vector2( 237, 51 )
 position = Vector2( -28, -1 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="torch"]
@@ -108,7 +113,6 @@ color = Color( 0.888672, 0.40133, 0.134453, 1 )
 position = Vector2( 203, 67 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 flip_h = true
 
@@ -123,7 +127,6 @@ color = Color( 0.888672, 0.40133, 0.134453, 1 )
 position = Vector2( 555, 150 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 2
 playing = true
 flip_h = true
 
@@ -133,3 +136,15 @@ scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
 texture_scale = 0.01
 color = Color( 0.888672, 0.40133, 0.134453, 1 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+position = Vector2( 0, 6 )
+
+[node name="Sprite" type="Sprite" parent="KinematicBody2D"]
+position = Vector2( 50, 5 )
+scale = Vector2( 0.0400004, 0.0285015 )
+texture = ExtResource( 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 50, 5 )
+shape = SubResource( 7 )

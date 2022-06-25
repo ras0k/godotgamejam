@@ -13,11 +13,13 @@ func _ready():
 	pass # Replace with function body.
 
 func dead():
+	print_debug("dead")
 	is_dead = true
 	velocity = Vector2(0, 0)
 	$CollisionShape2D/AnimatedSprite.play("dead")
 
 func take_damage():
+	print_debug("enemy is taking damage")
 	health -= health
 	if health <= 0:
 		dead()
@@ -40,10 +42,6 @@ func _physics_process(delta):
 	if $RayCast2D.is_colliding() == false:
 		direction = direction * -1
 		$RayCast2D.position.x *= -1
-		
-#end
+			
 
 
-func _on_Area2D_body_entered(body):
-	if "Player" in body.name:
-		body.take_damage() 
