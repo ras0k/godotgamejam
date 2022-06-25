@@ -1,12 +1,21 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/00.tres" type="TileSet" id=2]
 [ext_resource path="res://Assets/background.png" type="Texture" id=3]
 [ext_resource path="res://Assets/pictureLightMask2_thumb-1000464370.jpg" type="Texture" id=4]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/torch.png" type="Texture" id=6]
 
 [sub_resource type="ImageTexture" id=2]
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [node name="StageOne" type="Node2D"]
 
@@ -16,7 +25,9 @@ position = Vector2( -15, -26 )
 [node name="Light2D" type="Light2D" parent="Player"]
 scale = Vector2( 0.592105, 0.592105 )
 texture = ExtResource( 4 )
+texture_scale = 0.8
 color = Color( 0.905882, 0.882353, 0.713726, 1 )
+energy = 0.6
 shadow_enabled = true
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -37,10 +48,42 @@ position = Vector2( 17, 29 )
 texture = ExtResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color( 0.443137, 0.317647, 0.317647, 1 )
+color = Color( 0.203922, 0.141176, 0.141176, 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
 position = Vector2( 392, 165 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 237, 51 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( -27, -7 )
+scale = Vector2( 0.0643204, 0.0643204 )
+frames = SubResource( 3 )
+
+[node name="Light2D" type="Light2D" parent="AnimatedSprite"]
+scale = Vector2( 14.1533, 14.1533 )
+texture = ExtResource( 4 )
+color = Color( 0.956863, 0.627451, 0.447059, 1 )
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
+position = Vector2( 203, 67 )
+scale = Vector2( 0.0643204, 0.0643204 )
+frames = SubResource( 3 )
+flip_h = true
+
+[node name="Light2D" type="Light2D" parent="AnimatedSprite2"]
+scale = Vector2( 14.1533, 14.1533 )
+texture = ExtResource( 4 )
+color = Color( 0.956863, 0.627451, 0.447059, 1 )
+
+[node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
+position = Vector2( 555, 150 )
+scale = Vector2( 0.0643204, 0.0643204 )
+frames = SubResource( 3 )
+flip_h = true
+
+[node name="Light2D" type="Light2D" parent="AnimatedSprite3"]
+scale = Vector2( 14.1533, 14.1533 )
+texture = ExtResource( 4 )
+color = Color( 0.956863, 0.627451, 0.447059, 1 )
