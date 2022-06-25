@@ -85,7 +85,7 @@ script = SubResource( 10 )
 [node name="Light2D" type="Light2D" parent="Player/HealthBar"]
 position = Vector2( 350, 14 )
 texture = ExtResource( 8 )
-energy = 0.88
+energy = 0.65
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0.564706, 0.0745098, 0.0745098, 1 )
@@ -124,7 +124,7 @@ shape = SubResource( 9 )
 position = Vector2( -13, -14 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 1
+frame = 2
 playing = true
 flip_h = true
 
