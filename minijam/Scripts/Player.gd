@@ -5,6 +5,7 @@ const jump_power = -115
 const gravity = 5
 const FLOOR = Vector2(0, -1)
 var velocity = Vector2()
+var health : int = 100
 
 var on_ground = false
 var attacking = false
