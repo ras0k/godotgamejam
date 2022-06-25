@@ -91,44 +91,43 @@ position = Vector2( 392, 165 )
 [node name="Enemy2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 237, 51 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="torch" type="AnimatedSprite" parent="."]
 position = Vector2( -28, -1 )
+scale = Vector2( 0.93216, 0.96966 )
+frames = SubResource( 3 )
+playing = true
+
+[node name="Light2D" type="Light2D" parent="torch"]
+position = Vector2( 2.14555, -4.12516 )
+scale = Vector2( 73.9846, 73.9846 )
+texture = ExtResource( 4 )
+texture_scale = 0.01
+color = Color( 0.888672, 0.40133, 0.134453, 1 )
+
+[node name="Torch2" type="AnimatedSprite" parent="."]
+position = Vector2( 203, 67 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
 frame = 2
 playing = true
-
-[node name="Light2D" type="Light2D" parent="AnimatedSprite"]
-position = Vector2( 2.14555, -4.12516 )
-scale = Vector2( 73.9846, 73.9846 )
-texture = ExtResource( 4 )
-texture_scale = 0.01
-color = Color( 0.888672, 0.40133, 0.134453, 1 )
-
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="."]
-position = Vector2( 203, 67 )
-scale = Vector2( 0.93216, 0.96966 )
-frames = SubResource( 3 )
-frame = 1
-playing = true
 flip_h = true
 
-[node name="Light2D" type="Light2D" parent="AnimatedSprite2"]
+[node name="Light2D" type="Light2D" parent="Torch2"]
 position = Vector2( 2.14555, -4.12516 )
 scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
 texture_scale = 0.01
 color = Color( 0.888672, 0.40133, 0.134453, 1 )
 
-[node name="AnimatedSprite3" type="AnimatedSprite" parent="."]
+[node name="Torch" type="AnimatedSprite" parent="."]
 position = Vector2( 555, 150 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 1
+frame = 2
 playing = true
 flip_h = true
 
-[node name="Light2D" type="Light2D" parent="AnimatedSprite3"]
+[node name="Light2D" type="Light2D" parent="Torch"]
 position = Vector2( 2.14555, -4.12516 )
 scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
