@@ -1,16 +1,19 @@
 extends KinematicBody2D
 
+#consts
 const speed = 60
 const jump_power = -115
 const gravity = 5
 const FLOOR = Vector2(0, -1)
+#vars
 var velocity = Vector2()
 var health : int = 100
 var colliding_with_enemy = false
-
+var enemy_health
 var on_ground = false
 var attacking = false
-
+#signals
+signal damage(value)
 
 func _physics_process(delta):
 
@@ -64,11 +67,10 @@ func _physics_process(delta):
 			
 	if colliding_with_enemy && attacking:
 		damage()
-		
-		
  
 func damage():
-	pass
+	print(enemy_health)
+	emit_signal("damage",1)
 
 func _on_AnimatedSprite_animation_finished():
 	attacking=false

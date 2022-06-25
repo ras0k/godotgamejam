@@ -6,6 +6,7 @@ const FLOOR = Vector2(0, -1)
 var velocity = Vector2()
 var is_dead = false
 var health = 3
+var colliding_with_player = false
 
 var direction = 1
 # Called when the node enters the scene tree for the first time.
@@ -17,12 +18,6 @@ func dead():
 	is_dead = true
 	velocity = Vector2(0, 0)
 	$CollisionShape2D/AnimatedSprite.play("dead")
-
-func take_damage():
-	print_debug("enemy is taking damage")
-	health -= health
-	if health <= 0:
-		dead()
 	
 func _physics_process(delta):
 	if is_dead == false:
@@ -34,7 +29,14 @@ func _physics_process(delta):
 		$CollisionShape2D/AnimatedSprite.play("walk")
 		velocity.y += gravity
 		velocity = move_and_slide(velocity, FLOOR)
-	
+		
+		for index in get_slide_count():
+			var collision = get_slide_collision(index)
+			if collision.collider.name.begins_with("Player"):
+				colliding_with_player = true
+			else:
+				pass
+		
 	if is_on_wall():
 		direction = direction * -1
 		$RayCast2D.position.x *= -1
@@ -44,4 +46,7 @@ func _physics_process(delta):
 		$RayCast2D.position.x *= -1
 			
 
-
+func _on_Player_damage(value):
+	health -= health
+	if health <= 0:
+		dead()
