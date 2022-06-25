@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/pictureLightMask2_thumb-1000464370.png-f37fcca57aef1704cdf11f3d5954d95a.stex"
+path="res://.import/pictureLightMask2_thumb-1000464370.jpg-36636f928f09a524858d29c4624c2d7d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/pictureLightMask2_thumb-1000464370.png"
-dest_files=[ "res://.import/pictureLightMask2_thumb-1000464370.png-f37fcca57aef1704cdf11f3d5954d95a.stex" ]
+source_file="res://Assets/pictureLightMask2_thumb-1000464370.jpg"
+dest_files=[ "res://.import/pictureLightMask2_thumb-1000464370.jpg-36636f928f09a524858d29c4624c2d7d.stex" ]
 
 [params]
 
