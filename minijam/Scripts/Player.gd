@@ -52,8 +52,8 @@ func _physics_process(delta):
 			# at the same time the sprite direction will remain the same as it was
 			# before the press
 			$AnimatedSprite.flip_h = \
-				!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) || \
-				pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h
+				pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) || \
+				!pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h
 			velocity.x = speed * int(pressed["right"]) - speed * int(pressed["left"])
 			$AnimatedSprite.play("idle" if pressed["right"] && pressed["left"] else "run")
 		else:
