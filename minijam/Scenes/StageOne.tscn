@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Tilesets/00.tres" type="TileSet" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Assets/walltorchs.png" type="Texture" id=6]
 [ext_resource path="res://healthbar/big.png" type="Texture" id=7]
+[ext_resource path="res://Tilesets/1212.tres" type="TileSet" id=8]
 [ext_resource path="res://healthbar/hbfillbig.png" type="Texture" id=9]
 
 [sub_resource type="GDScript" id=10]
@@ -124,7 +125,7 @@ shape = SubResource( 9 )
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Light2D" type="Light2D" parent="Torch/sprite"]
@@ -133,6 +134,12 @@ scale = Vector2( 73.9846, 73.9846 )
 texture = ExtResource( 4 )
 texture_scale = 0.01
 color = Color( 0.888672, 0.40133, 0.134453, 1 )
+
+[node name="TileMap2" type="TileMap" parent="."]
+tile_set = ExtResource( 8 )
+cell_size = Vector2( 16, 16 )
+format = 1
+tile_data = PoolIntArray( -196608, 1, 0, -131069, 2, 0 )
 
 [connection signal="damage" from="Player" to="Enemy" method="_on_Player_damage"]
 [connection signal="area_entered" from="Torch" to="Player" method="_on_Torch_area_entered"]

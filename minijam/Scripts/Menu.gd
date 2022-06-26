@@ -8,3 +8,7 @@ func _on_Start_pressed():
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+
+func _on_About_pressed():
+	get_tree().change_scene("res://Scenes/About.tscn")
