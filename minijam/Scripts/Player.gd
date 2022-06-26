@@ -44,8 +44,7 @@ func _ready():
 	InputMap.action_add_event("party", ev)
 
 func _physics_process(delta):
-	if !is_dead:
-		healthChecker()
+	if !is_dead && !healthChecker():
 		if Input.is_action_pressed("reset"):
 			get_tree().reload_current_scene()
 
@@ -109,6 +108,7 @@ func _physics_process(delta):
 func healthChecker():
 	if health <= 0:
 		death()
+	return is_dead
 		
 func death():
 	is_dead = true
