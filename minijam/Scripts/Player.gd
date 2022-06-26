@@ -113,9 +113,9 @@ func healthChecker():
 	return is_dead
 		
 func death():
+	$AnimatedSprite.play("dead")
 	is_dead = true
 	velocity = Vector2(0, 0)
-	$AnimatedSprite.play("dead")
 	$CollisionShape2D.disabled = true
 	$Timer.start()
 

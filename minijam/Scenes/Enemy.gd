@@ -14,7 +14,6 @@ func _ready():
 	pass # Replace with function body.
 
 func dead():
-	print_debug("dead")
 	is_dead = true
 	velocity = Vector2(0, 0)
 	$CollisionShape2D/AnimatedSprite.play("dead")
