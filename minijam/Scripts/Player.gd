@@ -15,6 +15,7 @@ var attacking = false
 var in_dark = true
 var is_dead = false
 var party_hard = false
+var winning = false
 
 #signals
 signal damage(value)
@@ -140,6 +141,13 @@ func _on_Torch_area_entered(area):
 
 func _on_Torch_area_exited(area):
 	status["in_dark"] = true
+	
+func _on_Portal2_area_entered(area):
+	winning = true
+	print("Victory")
+	get_victory_scene()
+func get_victory_scene():
+	get_tree().change_scene("res://Scenes/Victory.tscn")
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://Scenes/TitleScreen.tscn")

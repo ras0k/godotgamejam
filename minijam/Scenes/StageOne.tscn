@@ -9,6 +9,7 @@
 [ext_resource path="res://healthbar/big.png" type="Texture" id=7]
 [ext_resource path="res://Tilesets/1212.tres" type="TileSet" id=8]
 [ext_resource path="res://healthbar/hbfillbig.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=10]
 
 [sub_resource type="GDScript" id=10]
 script/source = "extends TextureProgress
@@ -28,8 +29,6 @@ func _ready():
 #func _process(delta):
 #	pass
 "
-
-[sub_resource type="ImageTexture" id=2]
 
 [sub_resource type="CircleShape2D" id=9]
 radius = 50.04
@@ -88,10 +87,6 @@ scale = Vector2( 1.33141, 3.37526 )
 texture = ExtResource( 9 )
 energy = 0.65
 
-[node name="Sprite" type="Sprite" parent="."]
-modulate = Color( 0.564706, 0.0745098, 0.0745098, 1 )
-texture = SubResource( 2 )
-
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 16, 16 )
@@ -99,7 +94,7 @@ show_collision = true
 format = 1
 tile_data = PoolIntArray( -131074, 0, 0, -131073, 1, 0, -196608, 1, 0, -196607, 1, 0, -196606, 1, 0, -196605, 1, 0, -196604, 1, 0, -65539, 4, 0, -3, 4, 0, 65533, 4, 0, 131070, 1, 0, 131071, 1, 0, 65536, 1, 0, 65537, 1, 0, 65538, 1, 0, 65539, 1, 0, 65540, 1, 0, 131077, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0, 131093, 1, 0, 131107, 4, 0, 196614, 1, 0, 196643, 4, 0, 262151, 1, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262179, 4, 0, 327688, 1, 0, 327715, 4, 0, 393225, 1, 0, 393251, 4, 0, 458762, 1, 0, 458763, 1, 0, 458764, 1, 0, 458765, 1, 0, 458766, 1, 0, 458767, 1, 0, 458768, 1, 0, 458769, 1, 0, 458787, 4, 0, 524306, 1, 0, 524323, 4, 0, 589843, 1, 0, 589859, 4, 0, 655380, 1, 0, 655395, 4, 0, 720917, 1, 0, 720918, 1, 0, 720919, 1, 0, 720920, 1, 0, 720921, 1, 0, 720922, 1, 0, 720923, 1, 0, 720924, 1, 0, 720925, 1, 0, 720926, 1, 0, 720927, 1, 0, 720928, 1, 0, 720929, 1, 0, 720930, 1, 0 )
 
-[node name="Sprite2" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
 show_behind_parent = true
 position = Vector2( 22, 30 )
@@ -125,7 +120,7 @@ shape = SubResource( 9 )
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="Torch/sprite"]
@@ -141,8 +136,14 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( -196608, 1, 0, -131069, 2, 0 )
 
+[node name="Portal" type="Node" parent="."]
+
+[node name="Portal2" parent="Portal" instance=ExtResource( 10 )]
+position = Vector2( 496, 161 )
+
 [connection signal="damage" from="Player" to="Enemy" method="_on_Player_damage"]
 [connection signal="area_entered" from="Torch" to="Player" method="_on_Torch_area_entered"]
 [connection signal="area_exited" from="Torch" to="Player" method="_on_Torch_area_exited"]
+[connection signal="area_entered" from="Portal/Portal2" to="Player" method="_on_Portal2_area_entered"]
 
 [editable path="Player"]
