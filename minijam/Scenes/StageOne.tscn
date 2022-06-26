@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/16x16_Tile_pack_no_background.png" type="Texture" id=2]
@@ -12,7 +12,8 @@
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Tilesets/WALLS.tres" type="TileSet" id=11]
 [ext_resource path="res://Tilesets/CORNERTILES.tres" type="TileSet" id=12]
-[ext_resource path="res://Tilesets/FIXED_TILES1.tres" type="TileSet" id=13]
+[ext_resource path="res://LAMP/torchpost.png" type="Texture" id=13]
+[ext_resource path="res://Tilesets/THIS.tres" type="TileSet" id=14]
 
 [sub_resource type="GDScript" id=10]
 script/source = "extends TextureProgress
@@ -274,21 +275,26 @@ tile_data = PoolIntArray( 131077, 1, 0, 131090, 1, 0, 131091, 1, 0, 131092, 1, 0
 [node name="Background" type="Sprite" parent="."]
 modulate = Color( 0.313726, 0.313726, 0.313726, 1 )
 show_behind_parent = true
-position = Vector2( 22, 30 )
+position = Vector2( 326, 5 )
 z_index = -20
 texture = ExtResource( 3 )
+
+[node name="Torchpost" type="Sprite" parent="Background"]
+position = Vector2( -333, -5 )
+texture = ExtResource( 13 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 16
 color = Color( 0.443137, 0.203922, 0.203922, 1 )
 
 [node name="Enemy" parent="." instance=ExtResource( 5 )]
-position = Vector2( 392, 165 )
+position = Vector2( 355, -116 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 237, 51 )
+position = Vector2( 369, 124 )
 
 [node name="Torch" type="Area2D" parent="."]
+position = Vector2( 27, 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Torch"]
 position = Vector2( -14, -13 )
@@ -298,7 +304,6 @@ shape = SubResource( 9 )
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 3 )
-frame = 1
 playing = true
 
 [node name="Light2D" type="Light2D" parent="Torch/sprite"]
@@ -316,7 +321,7 @@ format = 1
 [node name="Portal" type="Node" parent="."]
 
 [node name="Portal2" parent="Portal" instance=ExtResource( 10 )]
-position = Vector2( 496, 161 )
+position = Vector2( 154, 15 )
 
 [node name="Walls" type="TileMap" parent="."]
 tile_set = ExtResource( 11 )
@@ -329,11 +334,11 @@ cell_size = Vector2( 16, 16 )
 format = 1
 
 [node name="TILESET" type="TileMap" parent="."]
-tile_set = ExtResource( 13 )
-cell_size = Vector2( 32, 32 )
+tile_set = ExtResource( 14 )
+cell_size = Vector2( 16, 16 )
 show_collision = true
 format = 1
-tile_data = PoolIntArray( 131067, 5, 0, 131068, 5, 0, 131069, 5, 0, 131070, 5, 0, 131071, 5, 0, 65536, 5, 0, 65537, 5, 0, 65538, 5, 0, 65539, 5, 0, 65540, 5, 0, 65541, 5, 0 )
+tile_data = PoolIntArray( -393195, 1, 0, -393194, 1, 0, -393193, 1, 0, -393192, 1, 0, -393191, 1, 0, -393190, 1, 0, -393189, 1, 0, -393188, 1, 0, -327660, 1, 0, -262125, 1, 0, -196590, 1, 0, -131056, 1, 0, -131055, 1, 0, -65523, 1, 0, -65522, 1, 0, 131070, 0, 0, 131071, 16, 0, 65536, 16, 0, 65537, 16, 0, 65538, 1, 0, 65540, 1, 0, 65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65547, 1, 0, 65548, 1, 0, 196621, 1, 0, 196622, 1, 0, 262160, 1, 0, 262161, 1, 0, 327698, 1, 0, 393235, 1, 0, 458772, 1, 0, 524309, 1, 0, 589846, 1, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589852, 1, 0, 589853, 1, 0 )
 
 [connection signal="damage" from="Player" to="Enemy" method="_on_Player_damage"]
 [connection signal="area_entered" from="Torch" to="Player" method="_on_Torch_area_entered"]

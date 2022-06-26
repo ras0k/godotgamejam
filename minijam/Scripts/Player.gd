@@ -46,7 +46,8 @@ func _ready():
 	InputMap.action_add_event("party", ev)
 
 func _physics_process(delta):
-	if !is_dead && !healthChecker():
+	if !is_dead:
+		healthChecker()
 		if Input.is_action_pressed("reset"):
 			get_tree().reload_current_scene()
 
@@ -64,6 +65,7 @@ func _physics_process(delta):
 			status["attacking"] = true;
 			velocity.x = 0
 			$AnimatedSprite.play("attack")
+			SfxController.play_hit()
 		if !status["attacking"]:
 			if status["on_ground"] && pressed["up"]:
 				status["on_ground"] = false
@@ -76,11 +78,13 @@ func _physics_process(delta):
 				velocity.x = 0
 				if status["on_ground"]:
 					$AnimatedSprite.play("idle")
-
+					SfxController.stop_hit()
+					
 		velocity.y += gravity
 		if !status["on_ground"]:
 			if velocity.y < 0:
 				$AnimatedSprite.play("jump")
+				##$JumpSOund.play()
 			else:
 				$AnimatedSprite.play("land")
 
@@ -100,6 +104,7 @@ func _physics_process(delta):
 		if status["colliding_with_enemy"] && status["attacking"] && !status["done_damage"]:
 			status["done_damage"] = true
 			damage()
+				
 			
 		if status["in_dark"]:
 			decrease_health()
@@ -107,7 +112,22 @@ func _physics_process(delta):
 		else:
 			heal()
 			$HealthBar.value = health
+		checkifwalking()
 
+func checkifwalking():
+			if velocity.x != 0 and !is_dead:
+					SfxController.play_walking()
+					print("walking")
+			else:
+				print("not walking")
+				SfxController.stop_walking()
+				
+			if velocity.y < 0:
+				SfxController.play_jumping()
+			else:
+				SfxController.stop_jumping()
+
+	
 func healthChecker():
 	if health <= 0:
 		death()
@@ -118,6 +138,7 @@ func death():
 	is_dead = true
 	velocity = Vector2(0, 0)
 	$CollisionShape2D.disabled = true
+	SfxController.play_dead()
 	$Timer.start()
 
 func damage():

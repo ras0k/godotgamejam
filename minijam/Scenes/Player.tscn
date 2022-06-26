@@ -1,7 +1,9 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/Player/character-Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=2]
+[ext_resource path="res://SFX/Footsteps.ogg" type="AudioStream" id=3]
+[ext_resource path="res://SFX/Jump.ogg" type="AudioStream" id=4]
 
 [sub_resource type="AtlasTexture" id=22]
 atlas = ExtResource( 1 )
@@ -47,18 +49,6 @@ region = Rect2( 32, 64, 16, 16 )
 atlas = ExtResource( 1 )
 region = Rect2( 48, 64, 16, 16 )
 
-[sub_resource type="AtlasTexture" id=23]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 16, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 32, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=31]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 32, 16, 16 )
-
 [sub_resource type="AtlasTexture" id=32]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 16, 16 )
@@ -79,6 +69,18 @@ region = Rect2( 48, 0, 16, 16 )
 atlas = ExtResource( 1 )
 region = Rect2( 64, 0, 16, 16 )
 
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 1 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=23]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 16, 16, 16 )
+
 [sub_resource type="SpriteFrames" id=19]
 animations = [ {
 "frames": [ SubResource( 22 ) ],
@@ -96,20 +98,20 @@ animations = [ {
 "name": "attack",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 23 ) ],
-"loop": false,
-"name": "jump",
-"speed": 0.0
+"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
+"loop": true,
+"name": "run",
+"speed": 10.0
 }, {
 "frames": [ SubResource( 30 ), SubResource( 31 ) ],
 "loop": false,
 "name": "land",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 32 ), SubResource( 33 ), SubResource( 34 ), SubResource( 35 ), SubResource( 36 ) ],
-"loop": true,
-"name": "run",
-"speed": 10.0
+"frames": [ SubResource( 23 ) ],
+"loop": false,
+"name": "jump",
+"speed": 0.0
 } ]
 
 [sub_resource type="CapsuleShape2D" id=41]
@@ -140,6 +142,15 @@ position = Vector2( 3, 13 )
 shape = SubResource( 41 )
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.115
 one_shot = true
+
+[node name="WalkingSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 3 )
+volume_db = -11.077
+
+[node name="JumpSOund" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 4 )
+volume_db = -11.077
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

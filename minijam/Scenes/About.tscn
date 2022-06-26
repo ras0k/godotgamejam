@@ -55,41 +55,41 @@ margin_right = 32.0
 margin_bottom = 44.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 54.0
+margin_right = 62.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 20 )
 text = "Made by:"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 margin_top = 18.0
-margin_right = 54.0
+margin_right = 62.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 20 )
-text = "Name"
+text = "Andi - dev"
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 margin_top = 36.0
-margin_right = 54.0
+margin_right = 62.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 20 )
 text = "Name"
 
 [node name="Label4" type="Label" parent="VBoxContainer"]
 margin_top = 54.0
-margin_right = 54.0
+margin_right = 62.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 20 )
 text = "Name"
 
 [node name="Label5" type="Label" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 54.0
+margin_right = 62.0
 margin_bottom = 86.0
 custom_fonts/font = SubResource( 20 )
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 margin_top = 90.0
-margin_right = 54.0
+margin_right = 62.0
 margin_bottom = 110.0
 custom_fonts/font = SubResource( 19 )
 text = "Exit"
@@ -126,7 +126,7 @@ visible = false
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 17 )
-frame = 2
+frame = 1
 playing = true
 
 [connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
