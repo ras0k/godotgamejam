@@ -13,6 +13,9 @@ var enemy_health
 var on_ground = false
 var attacking = false
 var in_dark = true
+
+var party_hard = false
+
 #signals
 signal damage(value)
 
@@ -23,14 +26,30 @@ var status = {
 	"in_dark": true
 }
 
+func get_flip(pressed):
+	# This formula basically assures that if both right and left are pressed at the same time
+	# the sprite direction will remain the same as it was before the press
+	if party_hard:
+		return !(pressed["right"] &&
+				($AnimatedSprite.flip_h || !pressed["left"] && !$AnimatedSprite.flip_h))
+	else:
+		return pressed["left"] && (!pressed["right"] || pressed["right"] && $AnimatedSprite.flip_h)
+
 func _ready():
 	$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished",
 							[$AnimatedSprite.animation])
+	InputMap.add_action("party")
+	var ev = InputEventKey.new()
+	ev.scancode = KEY_P
+	InputMap.action_add_event("party", ev)
 
 func _physics_process(delta):
 
 	if Input.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
+
+	if Input.is_action_just_pressed("party"):
+		party_hard = !party_hard
 
 	var pressed = {
 		"up": Input.is_action_pressed("up"),
@@ -48,12 +67,7 @@ func _physics_process(delta):
 			status["on_ground"] = false
 			velocity.y = jump_power
 		if pressed["right"] || pressed["left"]:
-			# This formula basically assures that if both right and left are pressed
-			# at the same time the sprite direction will remain the same as it was
-			# before the press
-			$AnimatedSprite.flip_h = \
-				!(!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) ||
-				  pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h)
+			$AnimatedSprite.flip_h = get_flip(pressed)
 			velocity.x = speed * int(pressed["right"]) - speed * int(pressed["left"])
 			$AnimatedSprite.play("idle" if pressed["right"] && pressed["left"] else "run")
 		else:
