@@ -59,6 +59,7 @@ margin_right = 41.0
 margin_bottom = 20.0
 custom_fonts/font = SubResource( 18 )
 text = "Start"
+flat = true
 
 [node name="Options" type="Button" parent="VBoxContainer"]
 visible = false
@@ -73,6 +74,7 @@ margin_right = 41.0
 margin_bottom = 44.0
 custom_fonts/font = SubResource( 19 )
 text = "Exit"
+flat = true
 
 [node name="Sprite" type="Sprite" parent="VBoxContainer"]
 show_behind_parent = true
@@ -105,6 +107,7 @@ visible = false
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 17 )
+frame = 1
 playing = true
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
