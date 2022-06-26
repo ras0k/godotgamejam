@@ -63,9 +63,6 @@ animations = [ {
 [node name="Player" parent="." instance=ExtResource( 1 )]
 position = Vector2( 9, -5 )
 
-[node name="AnimatedSprite" parent="Player" index="0"]
-frame = 5
-
 [node name="Light2D" type="Light2D" parent="Player"]
 scale = Vector2( 0.592105, 0.592105 )
 texture = ExtResource( 4 )
