@@ -25,9 +25,9 @@ func _physics_process(delta):
 	if is_dead == false:
 		velocity.x = speed * direction
 		if direction == 1:
-			$CollisionShape2D/AnimatedSprite.flip_h = false
-		else:
 			$CollisionShape2D/AnimatedSprite.flip_h = true
+		else:
+			$CollisionShape2D/AnimatedSprite.flip_h = false
 		$CollisionShape2D/AnimatedSprite.play("walk")
 		velocity.y += gravity
 		velocity = move_and_slide(velocity, FLOOR)
