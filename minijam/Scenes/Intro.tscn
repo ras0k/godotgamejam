@@ -1,9 +1,9 @@
 [gd_scene load_steps=14 format=2]
 
-[ext_resource path="res://Scripts/victory.gd" type="Script" id=1]
-[ext_resource path="res://Assets/unknown.png" type="Texture" id=2]
-[ext_resource path="res://Assets/walltorchs.png" type="Texture" id=3]
-[ext_resource path="res://Assets/pictureLightMask2_thumb-1000464370.jpg" type="Texture" id=4]
+[ext_resource path="res://Assets/walltorchs.png" type="Texture" id=1]
+[ext_resource path="res://Assets/pictureLightMask2_thumb-1000464370.jpg" type="Texture" id=2]
+[ext_resource path="res://Assets/unknown.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/intro.gd" type="Script" id=4]
 [ext_resource path="res://Font/ChiKareGo.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="DynamicFont" id=20]
@@ -16,19 +16,19 @@ font_data = ExtResource( 5 )
 radius = 50.04
 
 [sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 10, 16 )
 
 [sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 1 )
 region = Rect2( 10, 0, 10, 16 )
 
 [sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 1 )
 region = Rect2( 20, 0, 10, 16 )
 
 [sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 3 )
+atlas = ExtResource( 1 )
 region = Rect2( 20, 16, 10, 16 )
 
 [sub_resource type="SpriteFrames" id=17]
@@ -42,37 +42,44 @@ animations = [ {
 [node name="Control" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -45.0
-margin_top = -22.0
-margin_right = 57.0
-margin_bottom = 70.0
+margin_left = -131.0
+margin_top = -77.0
+margin_right = 134.0
+margin_bottom = 80.0
+alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 102.0
-margin_bottom = 14.0
+margin_right = 265.0
+margin_bottom = 133.0
 custom_fonts/font = SubResource( 20 )
-text = "victory text here"
+text = "We've all felt the depths of darkness deep within our minds.
+Plauged by the demons we hide inside.
+Here begins the journey of one such struggle.
+Will you succumb to the darkness forever? Can you find the light?
+Go now! And don't look back."
+autowrap = true
 
-[node name="Exit" type="Button" parent="VBoxContainer"]
-margin_top = 18.0
-margin_right = 102.0
-margin_bottom = 38.0
+[node name="BeginJourney" type="Button" parent="VBoxContainer"]
+margin_top = 137.0
+margin_right = 265.0
+margin_bottom = 157.0
+custom_colors/font_color_disabled = Color( 0.666667, 0.145098, 0.145098, 1 )
 custom_fonts/font = SubResource( 19 )
-text = "Exit"
+text = "Begin Your Journey"
 flat = true
 
 [node name="Sprite" type="Sprite" parent="."]
 show_behind_parent = true
 position = Vector2( 154, 90 )
 scale = Vector2( 0.327111, 0.323248 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 light_mask = 16
@@ -86,20 +93,20 @@ position = Vector2( -14, -13 )
 shape = SubResource( 16 )
 
 [node name="Light2D" type="Light2D" parent="Torch"]
-position = Vector2( -16, -10 )
+position = Vector2( -18, -12 )
 scale = Vector2( 68.9655, 71.7399 )
-texture = ExtResource( 4 )
-texture_scale = 0.01
+texture = ExtResource( 2 )
+texture_scale = 0.03
 color = Color( 0.890196, 0.4, 0.133333, 1 )
 energy = 1.42
-range_height = 676.4
+range_height = 1766.2
 
 [node name="sprite" type="AnimatedSprite" parent="Torch"]
 visible = false
 position = Vector2( -28, -13 )
 scale = Vector2( 0.93216, 0.96966 )
 frames = SubResource( 17 )
-frame = 2
+frame = 1
 playing = true
 
-[connection signal="pressed" from="VBoxContainer/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="VBoxContainer/BeginJourney" to="." method="_on_BeginJourney_pressed"]
