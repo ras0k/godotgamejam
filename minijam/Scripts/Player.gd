@@ -44,19 +44,18 @@ func _physics_process(delta):
 		velocity.x = 0
 		$AnimatedSprite.play("attack")
 	if !status["attacking"]:
-		if pressed["up"] || pressed["right"] || pressed["left"]:
-			if pressed["right"] || pressed["left"]:
-				# This formula basically assures that if both right and left are pressed
-				# at the same time the sprite direction will remain the same as it was
-				# before the press
-				$AnimatedSprite.flip_h = \
-					!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) || \
-					pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h
-				velocity.x = speed * int(pressed["right"]) - speed * int(pressed["left"])
-				$AnimatedSprite.play("idle" if pressed["right"] && pressed["left"] else "run")
-			if status["on_ground"] && pressed["up"]:
-				status["on_ground"] = false
-				velocity.y = jump_power
+		if status["on_ground"] && pressed["up"]:
+			status["on_ground"] = false
+			velocity.y = jump_power
+		if pressed["right"] || pressed["left"]:
+			# This formula basically assures that if both right and left are pressed
+			# at the same time the sprite direction will remain the same as it was
+			# before the press
+			$AnimatedSprite.flip_h = \
+				!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) || \
+				pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h
+			velocity.x = speed * int(pressed["right"]) - speed * int(pressed["left"])
+			$AnimatedSprite.play("idle" if pressed["right"] && pressed["left"] else "run")
 		else:
 			velocity.x = 0
 			if status["on_ground"]:
