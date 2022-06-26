@@ -52,8 +52,8 @@ func _physics_process(delta):
 			# at the same time the sprite direction will remain the same as it was
 			# before the press
 			$AnimatedSprite.flip_h = \
-				!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) || \
-				pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h
+				!(!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) ||
+				  pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h)
 			velocity.x = speed * int(pressed["right"]) - speed * int(pressed["left"])
 			$AnimatedSprite.play("idle" if pressed["right"] && pressed["left"] else "run")
 		else:
@@ -100,8 +100,7 @@ func decrease_health():
 		health = health - 0.05
 
 func _on_AnimatedSprite_animation_finished(name):
-	if name == "attack":
-		status["attacking"] = false
+	status["attacking"] = false
 
 func heal():
 	if health < 100:
