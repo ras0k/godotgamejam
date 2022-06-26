@@ -16,83 +16,100 @@ var in_dark = true
 #signals
 signal damage(value)
 
-func _physics_process(delta):
+var status = {
+	"colliding_with_enemy": false,
+	"on_ground": false,
+	"attacking": false,
+	"in_dark": false
+}
 
-	var up_pressed = Input.is_action_pressed("up")
-	var right_pressed = Input.is_action_pressed("right")
-	var left_pressed = Input.is_action_pressed("left")
-	if !attacking && (up_pressed || right_pressed || left_pressed):
-		if right_pressed || left_pressed:
-			# This formula basically assures that if both right and left are pressed
-			# at the same time the sprite direction will remain the same as it was
-			# before the press
-			$AnimatedSprite.flip_h = \
-				!left_pressed && (right_pressed || $AnimatedSprite.flip_h) || \
-				left_pressed && right_pressed && $AnimatedSprite.flip_h
-			velocity.x = speed * int(right_pressed) - speed * int(left_pressed)
-			$AnimatedSprite.play("idle" if right_pressed && left_pressed else "run")
-		if on_ground && up_pressed:
-			velocity.y = jump_power
-			on_ground = false
-	elif Input.is_action_just_pressed("attack"):
-		attacking = true;
-	elif attacking == true:
-		$AnimatedSprite.play("attack")
-	else:
-		velocity.x = 0
-		if on_ground && !attacking:
-			$AnimatedSprite.play("idle")
+func _ready():
+	$AnimatedSprite.connect("animation_finished", self, "_on_AnimatedSprite_animation_finished",
+							[$AnimatedSprite.animation])
+
+func _physics_process(delta):
 
 	if Input.is_action_pressed("reset"):
 		get_tree().reload_current_scene()
 
+	var pressed = {
+		"up": Input.is_action_pressed("up"),
+		"right": Input.is_action_pressed("right"),
+		"left": Input.is_action_pressed("left"),
+		"attack": Input.is_action_just_pressed("attack")
+	}
+
+	if pressed["attack"] && status["on_ground"]:
+		status["attacking"] = true;
+		velocity.x = 0
+		$AnimatedSprite.play("attack")
+	if !status["attacking"]:
+		if pressed["up"] || pressed["right"] || pressed["left"]:
+			if pressed["right"] || pressed["left"]:
+				# This formula basically assures that if both right and left are pressed
+				# at the same time the sprite direction will remain the same as it was
+				# before the press
+				$AnimatedSprite.flip_h = \
+					!pressed["left"] && (pressed["right"] || $AnimatedSprite.flip_h) || \
+					pressed["left"] && pressed["right"] && $AnimatedSprite.flip_h
+				velocity.x = speed * int(pressed["right"]) - speed * int(pressed["left"])
+				$AnimatedSprite.play("idle" if pressed["right"] && pressed["left"] else "run")
+			if status["on_ground"] && pressed["up"]:
+				status["on_ground"] = false
+				velocity.y = jump_power
+		else:
+			velocity.x = 0
+			if status["on_ground"]:
+				$AnimatedSprite.play("idle")
+
 	velocity.y += gravity
-	if is_on_floor():
-		on_ground = true
-	else:
-		on_ground = false
+	if !status["on_ground"]:
 		if velocity.y < 0:
 			$AnimatedSprite.play("jump")
 		else:
 			$AnimatedSprite.play("land")
 
 	velocity = move_and_slide(velocity, FLOOR)
-	
-			
+
+	status["on_ground"] = is_on_floor();
+
 	for index in get_slide_count():
 		var collision = get_slide_collision(index)
 		if collision.collider.name.begins_with("Enemy"):
-			colliding_with_enemy = true
+			status["colliding_with_enemy"] = true
 		elif collision.collider.name.begins_with("Torch"):
-			in_dark = false
+			status["in_dark"] = false
 		else:
 			pass
-			
-	if colliding_with_enemy && attacking:
+
+	if status["colliding_with_enemy"] && status["attacking"]:
 		damage()
 		
-	if in_dark:
+	if status["in_dark"]:
 		decrease_health()
 		$HealthBar.value = health
 	else:
 		heal()
 		$HealthBar.value = health
-		
-
 
 func damage():
 	print(enemy_health)
 	emit_signal("damage",1)
-	
+
 func decrease_health():
-		if health > 0:
-			health = health - 0.05
-func _on_AnimatedSprite_animation_finished():
-	attacking=false
+	if health > 0:
+		health = health - 0.05
+
+func _on_AnimatedSprite_animation_finished(name):
+	if name == "attack":
+		status["attacking"] = false
+
 func heal():
-		if health < 100:
-			health = health + 0.02
+	if health < 100:
+		health = health + 0.02
+
 func _on_Torch_area_entered(area):
-	in_dark=false
+	status["in_dark"] = false
+
 func _on_Torch_area_exited(area):
-	in_dark = true
+	status["in_dark"] = true
