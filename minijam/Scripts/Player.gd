@@ -20,7 +20,7 @@ var status = {
 	"colliding_with_enemy": false,
 	"on_ground": false,
 	"attacking": false,
-	"in_dark": false
+	"in_dark": true
 }
 
 func _ready():
