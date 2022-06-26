@@ -23,7 +23,8 @@ var status = {
 	"colliding_with_enemy": false,
 	"on_ground": false,
 	"attacking": false,
-	"in_dark": true
+	"in_dark": true,
+	"done_damage": false
 }
 
 func get_flip(pressed):
@@ -95,7 +96,8 @@ func _physics_process(delta):
 			else:
 				pass
 
-		if status["colliding_with_enemy"] && status["attacking"]:
+		if status["colliding_with_enemy"] && status["attacking"] && !status["done_damage"]:
+			status["done_damage"] = true
 			damage()
 			
 		if status["in_dark"]:
@@ -119,7 +121,7 @@ func death():
 
 func damage():
 	print(enemy_health)
-	emit_signal("damage",1)
+	emit_signal("damage", 1)
 
 func decrease_health():
 	if health > 0:
@@ -127,6 +129,7 @@ func decrease_health():
 
 func _on_AnimatedSprite_animation_finished(name):
 	status["attacking"] = false
+	status["done_damage"] = false
 
 func heal():
 	if health < 100:
