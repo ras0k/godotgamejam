@@ -49,51 +49,110 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -22.0
-margin_top = -48.0
-margin_right = 32.0
-margin_bottom = 44.0
+margin_left = -148.0
+margin_top = -88.0
+margin_right = 3.0
+margin_bottom = 94.0
 
 [node name="Label" type="Label" parent="VBoxContainer"]
-margin_right = 62.0
+margin_right = 151.0
 margin_bottom = 14.0
 custom_fonts/font = SubResource( 20 )
 text = "Made by:"
 
 [node name="Label2" type="Label" parent="VBoxContainer"]
 margin_top = 18.0
-margin_right = 62.0
+margin_right = 151.0
 margin_bottom = 32.0
 custom_fonts/font = SubResource( 20 )
-text = "Andi - dev"
+text = "Andi "
 
 [node name="Label3" type="Label" parent="VBoxContainer"]
 margin_top = 36.0
-margin_right = 62.0
+margin_right = 151.0
 margin_bottom = 50.0
 custom_fonts/font = SubResource( 20 )
-text = "Name"
+text = "Natalya Petrikova"
 
 [node name="Label4" type="Label" parent="VBoxContainer"]
 margin_top = 54.0
-margin_right = 62.0
+margin_right = 151.0
 margin_bottom = 68.0
 custom_fonts/font = SubResource( 20 )
-text = "Name"
+text = "dreanki | lizabet campbell"
 
 [node name="Label5" type="Label" parent="VBoxContainer"]
 margin_top = 72.0
-margin_right = 62.0
+margin_right = 151.0
 margin_bottom = 86.0
 custom_fonts/font = SubResource( 20 )
+text = "rasok"
+
+[node name="Label6" type="Label" parent="VBoxContainer"]
+margin_top = 90.0
+margin_right = 151.0
+margin_bottom = 104.0
+custom_fonts/font = SubResource( 20 )
+text = "Fogheart"
+
+[node name="Label7" type="Label" parent="VBoxContainer"]
+margin_top = 108.0
+margin_right = 151.0
+margin_bottom = 122.0
+custom_fonts/font = SubResource( 20 )
+text = "Ste"
+
+[node name="Label8" type="Label" parent="VBoxContainer"]
+margin_top = 126.0
+margin_right = 151.0
+margin_bottom = 140.0
+custom_fonts/font = SubResource( 20 )
+text = "Tommi"
+
+[node name="Label9" type="Label" parent="VBoxContainer"]
+margin_top = 144.0
+margin_right = 151.0
+margin_bottom = 158.0
+custom_fonts/font = SubResource( 20 )
+text = "X-ite_SDF"
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
-margin_top = 90.0
-margin_right = 62.0
-margin_bottom = 110.0
+margin_top = 162.0
+margin_right = 151.0
+margin_bottom = 182.0
 custom_fonts/font = SubResource( 19 )
 text = "Exit"
 flat = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 6.0
+margin_top = -82.0
+margin_right = 157.0
+margin_bottom = 76.0
+
+[node name="Label" type="Label" parent="VBoxContainer2"]
+margin_right = 151.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 20 )
+text = "09jesta08"
+
+[node name="Label2" type="Label" parent="VBoxContainer2"]
+margin_top = 18.0
+margin_right = 151.0
+margin_bottom = 32.0
+custom_fonts/font = SubResource( 20 )
+text = "Matcha255"
+
+[node name="Label3" type="Label" parent="VBoxContainer2"]
+margin_top = 36.0
+margin_right = 151.0
+margin_bottom = 50.0
+custom_fonts/font = SubResource( 20 )
+text = "Felipe Sato"
 
 [node name="Sprite" type="Sprite" parent="."]
 show_behind_parent = true
@@ -114,11 +173,11 @@ shape = SubResource( 16 )
 
 [node name="Light2D" type="Light2D" parent="Torch"]
 position = Vector2( -16, -10 )
-scale = Vector2( 68.9655, 71.7399 )
+scale = Vector2( 142.278, 104.78 )
 texture = ExtResource( 4 )
 texture_scale = 0.01
 color = Color( 0.890196, 0.4, 0.133333, 1 )
-energy = 1.42
+energy = 1.8
 range_height = 676.4
 
 [node name="sprite" type="AnimatedSprite" parent="Torch"]
