@@ -162,13 +162,16 @@ func _on_Torch_area_entered(area):
 
 func _on_Torch_area_exited(area):
 	status["in_dark"] = true
-	
-func _on_Portal2_area_entered(area):
-	winning = true
-	print("Victory")
-	get_victory_scene()
+
 func get_victory_scene():
-	get_tree().change_scene("res://Scenes/Victory.tscn")
+	if winning:
+		get_tree().change_scene("res://Scenes/Victory.tscn")
 
 func _on_Timer_timeout():
 	get_tree().change_scene("res://Scenes/TitleScreen.tscn")
+
+
+func _on_Portal_area_entered(area):
+	winning = true
+	print("Victory")
+	#get_victory_scene()
