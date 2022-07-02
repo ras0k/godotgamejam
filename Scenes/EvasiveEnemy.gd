@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-
-export var aggro_range = 200
+export var flee_range = 200
+export var aggro_range = 260
 #maximum range enemy will chase player from
 export var minimum_attack_range = 16
 export var speed = 110
@@ -23,14 +23,12 @@ func _ready():
 func _on_Timer_timeout():
 	var player_pos = player.position - position
 	#calculate position of player relative to enemey
-	if player_pos.length() <= minimum_attack_range:
-		#enemy turn to face when close
+	if player_pos.length() <= aggro_range and player_pos.length() >= flee_range:
 		direction = Vector2.ZERO
-		prev_direction = player_pos.normalized()
-		$AnimationPlayer.play("Chase")
-	elif player_pos.length() <= aggro_range and collisionCD == 0:
+		$AnimationPlayer.play("Attack")
+	elif player_pos.length() <= flee_range:
 		# If player is within range, move toward it
-		direction = player_pos.normalized()
+		direction = -player_pos.normalized()
 		$AnimationPlayer.play("Chase")
 	elif collisionCD == 0:
 		$AnimationPlayer.play("Idle")
