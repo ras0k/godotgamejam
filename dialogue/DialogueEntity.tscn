@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://icon.png" type="Texture" id=1]
+[ext_resource path="res://DialogueEntity.gd" type="Script" id=2]
+[ext_resource path="res://Answers.gd" type="Script" id=3]
+
+[node name="DialogueEntity" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="TextBox" type="Polygon2D" parent="."]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 600, 0, 384, 832, 384, 832, 600 )
+
+[node name="MainText" type="Label" parent="TextBox"]
+margin_left = 16.0
+margin_top = 432.0
+margin_right = 816.0
+margin_bottom = 472.0
+text = "Hey. You're finally awake"
+
+[node name="Speaker" type="Label" parent="TextBox"]
+margin_left = 16.0
+margin_top = 392.0
+margin_right = 104.0
+margin_bottom = 408.0
+rect_scale = Vector2( 2, 2 )
+text = "Wololo Wolo"
+
+[node name="Answers" type="ReferenceRect" parent="TextBox"]
+margin_left = 16.0
+margin_top = 488.0
+margin_right = 768.0
+margin_bottom = 576.0
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="TextBox"]
+position = Vector2( 928, 428 )
+scale = Vector2( 3, 5.375 )
+texture = ExtResource( 1 )
