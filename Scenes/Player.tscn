@@ -1,0 +1,176 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Assets/player.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/PlayerAnimationTree.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 13.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "Idle"
+length = 1.2
+loop = true
+step = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0, 3 ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 2 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "WalkDown"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "WalkSide"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 13, 14, 15 ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "WalkUp"
+length = 0.8
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
+
+[sub_resource type="AnimationNodeTransition" id=14]
+
+[sub_resource type="AnimationNodeAnimation" id=8]
+animation = "WalkDown"
+
+[sub_resource type="AnimationNodeAnimation" id=9]
+animation = "Idle"
+
+[sub_resource type="AnimationNodeTransition" id=10]
+input_count = 4
+input_0/name = "Idle"
+input_0/auto_advance = false
+input_1/name = "Side"
+input_1/auto_advance = false
+input_2/name = "Up"
+input_2/auto_advance = false
+input_3/name = "Down"
+input_3/auto_advance = false
+
+[sub_resource type="AnimationNodeAnimation" id=12]
+animation = "WalkSide"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "WalkUp"
+
+[sub_resource type="AnimationNodeBlendTree" id=13]
+graph_offset = Vector2( -316.56, 51.9675 )
+nodes/attack/node = SubResource( 14 )
+nodes/attack/position = Vector2( 340, 170 )
+nodes/down/node = SubResource( 8 )
+nodes/down/position = Vector2( -150, 460 )
+nodes/idle/node = SubResource( 9 )
+nodes/idle/position = Vector2( -150, 130 )
+nodes/movement/node = SubResource( 10 )
+nodes/movement/position = Vector2( 100, 110 )
+nodes/output/position = Vector2( 590, 110 )
+nodes/side/node = SubResource( 12 )
+nodes/side/position = Vector2( -150, 240 )
+nodes/up/node = SubResource( 11 )
+nodes/up/position = Vector2( -150, 350 )
+node_connections = [ "output", 0, "movement", "movement", 0, "idle", "movement", 1, "side", "movement", 2, "up", "movement", 3, "down" ]
+
+[node name="Player" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0, -19 )
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 4
+frame = 9
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Idle = SubResource( 3 )
+anims/RESET = SubResource( 4 )
+anims/WalkDown = SubResource( 5 )
+anims/WalkSide = SubResource( 6 )
+anims/WalkUp = SubResource( 7 )
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource( 13 )
+anim_player = NodePath("../AnimationPlayer")
+parameters/attack/current = 0
+parameters/movement/current = 0
+script = ExtResource( 3 )
