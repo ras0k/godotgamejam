@@ -44,7 +44,7 @@ extents = Vector2( 521.5, 14.5 )
 
 [node name="Main" type="Node2D"]
 
-[node name="UnserInterface" type="Control" parent="."]
+[node name="UserInterface" type="Control" parent="."]
 margin_right = 1024.0
 margin_bottom = 600.0
 __meta__ = {
@@ -96,6 +96,3 @@ position = Vector2( 500, 596 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testwall4"]
 position = Vector2( 2.5, 4.5 )
 shape = SubResource( 5 )
-
-[editable path="Player"]
-[editable path="Enemy"]

@@ -1,10 +1,4 @@
-extends KinematicBody2D
-
-# Movement speed in pixels per second.
-export var speed := 250
-
-onready var animation_tree := $AnimationTree
-
+extends Entity
 
 func _physics_process(_delta: float) -> void:
 	# Input.get_action_strength() to support analog movement.
@@ -19,28 +13,27 @@ func _physics_process(_delta: float) -> void:
 	if direction.length() > 1.0:
 		direction = direction.normalized()
 	move_and_slide(speed * direction)
-
 	_animate_player()
 
 
-func _animate_player():
+func _animate_player() -> void:
 	if Input.is_action_pressed("move_left"):
-		$Sprite.flip_h = true;
-		animation_tree.animate_movement(animation_tree.movement_states.SIDE)
+		animate_entity_movement(movement_states.LEFT)
 
 	elif Input.is_action_pressed("move_right"):
-		$Sprite.flip_h = false
-		animation_tree.animate_movement(animation_tree.movement_states.SIDE)
+		animate_entity_movement(movement_states.RIGHT)
 
 	elif Input.is_action_pressed("move_down"):
-		animation_tree.animate_movement(animation_tree.movement_states.DOWN)
+		animate_entity_movement(movement_states.DOWN)
 
 	elif Input.is_action_pressed("move_up"):
-		animation_tree.animate_movement(animation_tree.movement_states.UP)
+		animate_entity_movement(movement_states.UP)
 
 	else:
-		$Sprite.flip_h = false
-		animation_tree.animate_movement(animation_tree.movement_states.IDLE)
+		animate_entity_movement(movement_states.IDLE)
 
 
-
+func _on_HurtArea_hurt(damage: int) -> void:
+	health -= damage
+	if health <= 0:
+		queue_free()
