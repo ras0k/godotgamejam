@@ -149,6 +149,7 @@ nodes/up/position = Vector2( -150, 350 )
 node_connections = [ "output", 0, "movement", "movement", 0, "idle", "movement", 1, "side", "movement", 2, "up", "movement", 3, "down" ]
 
 [node name="Player" type="KinematicBody2D"]
+collision_layer = 2
 script = ExtResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
