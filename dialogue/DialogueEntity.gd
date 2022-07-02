@@ -9,6 +9,7 @@ signal item_changed(item_name, amount)
 
 func _ready():
 	$TextBox.hide()
+	#TODO(X-ite_SDF): JSON loading
 	_data = {
 		"start": 0,
 		"status": {
