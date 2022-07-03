@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Assets/TileMap.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -45,6 +45,34 @@ extents = Vector2( 20.5, 291 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 521.5, 14.5 )
 
+[sub_resource type="Curve" id=7]
+min_value = -360.0
+max_value = 360.0
+_data = [ Vector2( 0, 117.818 ), 0.0, 0.0, 0, 0, Vector2( 0.984848, -45.8182 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=8]
+curve = SubResource( 7 )
+
+[sub_resource type="Curve" id=9]
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.989899, 0.457955 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=10]
+curve = SubResource( 9 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.18
+emission_shape = 2
+emission_box_extents = Vector3( 200, 100, 1 )
+flag_disable_z = true
+gravity = Vector3( -60, 98, 0 )
+initial_velocity = 15.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = -124.2
+angle_curve = SubResource( 8 )
+scale_curve = SubResource( 10 )
+
 [node name="Main" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -52,9 +80,6 @@ extents = Vector2( 521.5, 14.5 )
 [node name="UserInterface" type="Control" parent="CanvasLayer"]
 margin_right = 1024.0
 margin_bottom = 600.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
 
@@ -125,3 +150,14 @@ limit_bottom = 650
 smoothing_enabled = true
 smoothing_speed = 2.0
 editor_draw_limits = true
+
+[node name="Particles2D" type="Particles2D" parent="."]
+modulate = Color( 0.0980392, 0.560784, 0.0823529, 1 )
+position = Vector2( 882, -35 )
+scale = Vector2( 5, 5 )
+emitting = false
+amount = 40
+lifetime = 4.0
+speed_scale = 0.5
+randomness = 0.67
+process_material = SubResource( 6 )
