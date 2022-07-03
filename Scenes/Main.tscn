@@ -57,7 +57,6 @@ __meta__ = {
 }
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
-visible = false
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -74,6 +73,9 @@ next_level = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 237, 161 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
 
 [node name="EvasiveEnemy" parent="." instance=ExtResource( 4 )]
 position = Vector2( 357, 430 )
@@ -111,3 +113,15 @@ position = Vector2( 500, 596 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testwall4"]
 position = Vector2( 2.5, 4.5 )
 shape = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 237, 161 )
+current = true
+zoom = Vector2( 0.8, 0.8 )
+limit_left = -100
+limit_top = -80
+limit_right = 1100
+limit_bottom = 650
+smoothing_enabled = true
+smoothing_speed = 2.0
+editor_draw_limits = true
