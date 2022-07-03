@@ -91,6 +91,9 @@ next_level = ExtResource( 6 )
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 486, 552 )
 
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+remote_path = NodePath("../../Camera2D")
+
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
 position = Vector2( 965, 483 )
 
@@ -127,5 +130,17 @@ position = Vector2( 500, 596 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testwall4"]
 position = Vector2( 2.5, 4.5 )
 shape = SubResource( 5 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2( 486, 552 )
+current = true
+zoom = Vector2( 0.8, 0.8 )
+limit_left = -100
+limit_top = -50
+limit_right = 1100
+limit_bottom = 650
+smoothing_enabled = true
+smoothing_speed = 2.0
+editor_draw_limits = true
 
 [editable path="Portal"]
