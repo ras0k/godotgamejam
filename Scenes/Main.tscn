@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Assets/TileMap.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/EvasiveEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/LevelTwo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://PauseMenu.tscn" type="PackedScene" id=7]
 
 [sub_resource type="TileSet" id=1]
 0/name = "TileMap.png 0"
@@ -54,6 +55,9 @@ margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource( 7 )]
+visible = false
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
