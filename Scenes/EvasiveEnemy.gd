@@ -42,7 +42,7 @@ func _on_Timer_timeout():
 		direction = -player_pos.normalized()
 		debug_info.log_text('State', 'flee')
 	elif player_pos.length() <= aggro_range and collision_cooldown == 0:
-		# If player is within range, 
+		# If player is within range, chase after it
 		direction = player_pos.normalized()
 		debug_info.log_text('State', 'chase')
 	elif collision_cooldown == 0:

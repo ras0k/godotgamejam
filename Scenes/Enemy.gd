@@ -10,6 +10,7 @@ var collision_cooldown := 0
 var rng := RandomNumberGenerator.new()
 var player = null
 
+
 func _ready():
 #	debug_info.log_radius('aggro_range', aggro_range)
 #	debug_info.log_radius('attack_range', minimum_attack_range)

@@ -157,6 +157,10 @@ anim_player = NodePath("../AnimationPlayer")
 parameters/attack/current = 0
 parameters/movement/current = 0
 
+[node name="AttackCooldownMelee" type="Timer" parent="."]
+wait_time = 0.6
+one_shot = true
+
 [node name="HitArea" type="Area2D" parent="."]
 position = Vector2( 0, -20 )
 collision_mask = 2
