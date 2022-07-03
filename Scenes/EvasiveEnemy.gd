@@ -17,6 +17,8 @@ func _ready():
 
 
 func _on_Timer_timeout():
+	if not is_instance_valid(player):
+		return
 	var player_pos = player.position - position
 	# calculate position of player relative to enemey
 	if player_pos.length() <= aggro_range and player_pos.length() >= flee_range:

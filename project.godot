@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node2D",
+"class": "DebugInfo",
+"language": "GDScript",
+"path": "res://Scenes/DebugInfo.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Entity",
 "language": "GDScript",
@@ -25,6 +30,7 @@ _global_script_classes=[ {
 "path": "res://Scenes/HurtArea.gd"
 } ]
 _global_script_class_icons={
+"DebugInfo": "",
 "Entity": "",
 "HitArea": "",
 "HurtArea": ""
@@ -35,6 +41,18 @@ _global_script_class_icons={
 config/name="godotgamejam"
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+HyperLog="*res://addons/hyperlog/hyperlog.tscn"
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/hyperlog/plugin.cfg" )
+
+[global]
+
+show_debug=true
 
 [importer_defaults]
 
