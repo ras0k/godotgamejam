@@ -44,7 +44,9 @@ extents = Vector2( 521.5, 14.5 )
 
 [node name="Main" type="Node2D"]
 
-[node name="UserInterface" type="Control" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UserInterface" type="Control" parent="CanvasLayer"]
 margin_right = 1024.0
 margin_bottom = 600.0
 __meta__ = {

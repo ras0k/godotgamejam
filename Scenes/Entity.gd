@@ -15,35 +15,29 @@ onready var sprite := $Sprite
 onready var animation_tree := $AnimationTree
 enum movement_states { IDLE, UP, DOWN, RIGHT, LEFT }
 
+var debug_info := preload('res://Scenes/DebugInfo.tscn').instance()
 
 func _ready() -> void:
-	var debug = preload('res://Scenes/DebugInfo.tscn').instance()
-	debug.name = 'DebugInfo'
-	add_child(debug)
-	assert(hit_area is Area2D, "A Child node of type and name 'HitArea' is required")
-	assert(hurt_area is Area2D, "A Child node of type and name 'HurtArea' is required")
-	assert(sprite is Sprite, "A Child node of type and name 'Sprite' is required")
-	assert(animation_tree is AnimationTree, "A Child node of type and name 'AnimationTree' is required")
-
+	init_debug()
 	animation_tree.active = true
 
 
 func _physics_process(delta: float) -> void:
 	if move_direction.length() < 0.1:
 		animate_entity_movement(movement_states.IDLE)
-		$DebugInfo.log_text('Move', 'idle')
+		debug_info.log_text('Move', 'idle')
 	elif move_direction.dot(Vector2.LEFT) > .6:
 		animate_entity_movement(movement_states.LEFT)
-		$DebugInfo.log_text('Move', 'left')
+		debug_info.log_text('Move', 'left')
 	elif move_direction.dot(Vector2.RIGHT) > .6:
 		animate_entity_movement(movement_states.RIGHT)
-		$DebugInfo.log_text('Move', 'right')
+		debug_info.log_text('Move', 'right')
 	elif move_direction.dot(Vector2.UP) > .5:
 		animate_entity_movement(movement_states.UP)
-		$DebugInfo.log_text('Move', 'up')
+		debug_info.log_text('Move', 'up')
 	elif move_direction.dot(Vector2.DOWN) > .5:
 		animate_entity_movement(movement_states.DOWN)
-		$DebugInfo.log_text('Move', 'down')
+		debug_info.log_text('Move', 'down')
 
 
 func animate_entity_movement(state: int):
@@ -54,5 +48,14 @@ func animate_entity_movement(state: int):
 		sprite.flip_h = false
 
 	animation_tree.set('parameters/movement/current', state)
+
+
+func init_debug():
+	assert(hit_area is Area2D, "A Child node of type and name 'HitArea' is required")
+	assert(hurt_area is Area2D, "A Child node of type and name 'HurtArea' is required")
+	assert(sprite is Sprite, "A Child node of type and name 'Sprite' is required")
+	assert(animation_tree is AnimationTree, "A Child node of type and name 'AnimationTree' is required")
+
+	debug_info.attach(self).offset(Vector2(0, -20)).log_text('Type', self.name)
 
 
