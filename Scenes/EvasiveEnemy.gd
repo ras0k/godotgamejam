@@ -16,7 +16,7 @@ func _ready():
 #	debug_info.log_radius('aggro_range', aggro_range)
 #	debug_info.log_radius('flee_range', flee_range)
 #	debug_info.log_radius('minimum_attack_range', minimum_attack_range)
-	player = get_tree().root.get_node("Main/Player")
+	_find_player_node()
 	rng.randomize()
 
 
@@ -42,7 +42,7 @@ func _on_Timer_timeout():
 		direction = -player_pos.normalized()
 		debug_info.log_text('State', 'flee')
 	elif player_pos.length() <= aggro_range and collision_cooldown == 0:
-		# If player is within range, move toward it
+		# If player is within range, 
 		direction = player_pos.normalized()
 		debug_info.log_text('State', 'chase')
 	elif collision_cooldown == 0:
@@ -58,6 +58,8 @@ func _on_Timer_timeout():
 	if collision_cooldown > 0:
 		collision_cooldown = collision_cooldown - 1
 
+func _find_player_node():
+	player = get_parent().find_node("Player")
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage

@@ -129,7 +129,7 @@ tangential_accel = 3.0
 damping = 10.0
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 2
+collision_layer = 10
 script = ExtResource( 2 )
 speed = 250
 max_health = 20

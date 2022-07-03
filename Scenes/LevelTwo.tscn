@@ -5,7 +5,7 @@
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/EvasiveEnemy.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Portal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes/LevelTwo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/LevelThree.tscn" type="PackedScene" id=6]
 
 [sub_resource type="TileSet" id=1]
 0/name = "TileMap.png 0"
@@ -44,7 +44,7 @@ extents = Vector2( 20.5, 291 )
 [sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 521.5, 14.5 )
 
-[node name="Main" type="Node2D"]
+[node name="LevelTwo" type="Node2D"]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -54,6 +54,23 @@ margin_bottom = 600.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -35.5
+margin_right = 35.5
+margin_bottom = 40.0
+rect_scale = Vector2( 0.993713, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/VBoxContainer"]
+margin_right = 71.0
+margin_bottom = 31.0
+text = "LEVEL TWO
+"
 
 [node name="Ground" type="TileMap" parent="."]
 tile_set = SubResource( 1 )
@@ -65,20 +82,20 @@ __meta__ = {
 }
 
 [node name="Portal" parent="." instance=ExtResource( 5 )]
-position = Vector2( 502, 55 )
+position = Vector2( 508, 45 )
 next_level = ExtResource( 6 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 237, 161 )
-
-[node name="EvasiveEnemy" parent="." instance=ExtResource( 4 )]
-position = Vector2( 357, 430 )
+position = Vector2( 506, 552 )
 
 [node name="Enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 617, 217 )
+position = Vector2( 122, 169 )
 
 [node name="Enemy2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 625, 284 )
+position = Vector2( 906, 170 )
+
+[node name="EvasiveEnemy" parent="." instance=ExtResource( 4 )]
+position = Vector2( 928, 273 )
 
 [node name="testwall1" type="StaticBody2D" parent="."]
 position = Vector2( 512, 18 )
@@ -107,3 +124,5 @@ position = Vector2( 500, 596 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="testwall4"]
 position = Vector2( 2.5, 4.5 )
 shape = SubResource( 5 )
+
+[editable path="Portal"]

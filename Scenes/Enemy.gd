@@ -3,7 +3,6 @@ extends Entity
 # maximum range enemy will chase player from
 export var aggro_range = 200
 export var minimum_attack_range = 30
-
 var direction : Vector2
 var prev_direction := Vector2(0, 0)
 # attempts to prevent enemies from trying to walk thru obstacles
@@ -11,19 +10,16 @@ var collision_cooldown := 0
 var rng := RandomNumberGenerator.new()
 var player = null
 
-
 func _ready():
 #	debug_info.log_radius('aggro_range', aggro_range)
 #	debug_info.log_radius('attack_range', minimum_attack_range)
-	player = get_tree().root.get_node("Main/Player")
+	_find_player_node()
 	rng.randomize()
 
 
 func _physics_process(delta):
-	._physics_process(delta)
 	move_direction = direction * speed * delta
 	var collision = move_and_collide(move_direction)
-
 	if collision != null and collision.collider.name != "Player":
 		direction = direction.rotated(rng.randf_range(PI/4, PI/2))
 		collision_cooldown = rng.randi_range(2, 5)
@@ -55,6 +51,9 @@ func _on_Timer_timeout():
 	# Update collision cooldown
 	if collision_cooldown > 0:
 		collision_cooldown = collision_cooldown - 1
+
+func _find_player_node():
+	player = get_parent().find_node("Player")
 
 
 func _on_HurtArea_hurt(damage: int) -> void:
