@@ -2,13 +2,13 @@ extends Entity
 
 
 func _set_spawn():
-	var spawn_point = PcSpawnSetter.player_spawn_point
+	health = Global.global_player_health
+	var spawn_point = Global.player_spawn_point
 	self.global_position = spawn_point
 
 func _ready() -> void:
 	_set_spawn()
 	$HitArea.enabled = false
-
 
 func _physics_process(_delta: float) -> void:
 	# Input.get_action_strength() to support analog movement.
@@ -48,6 +48,7 @@ func attack_melee() -> void:
 
 
 func _on_HurtArea_hurt(damage: int) -> void:
+	Global._update_player_health(damage)#see Global.gd
 	health -= damage
 	$ProgressBar.value = health
 	if health <= 0:

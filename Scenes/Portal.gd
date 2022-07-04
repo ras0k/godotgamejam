@@ -14,11 +14,10 @@ func _find_player_node():
 	player = get_parent().find_node("Player")
 	
 func _set_next_spawn():
-	PcSpawnSetter.player_spawn_point = next_level_spawn_point
+	Global.player_spawn_point = next_level_spawn_point
 
 func _ready():
 	_find_player_node()
-	
 
 func _on_Portal_body_entered(body):
 	_set_next_spawn()
