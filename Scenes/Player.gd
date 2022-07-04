@@ -44,5 +44,6 @@ func attack_melee() -> void:
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
+	$ProgressBar.value = health
 	if health <= 0:
 		queue_free()

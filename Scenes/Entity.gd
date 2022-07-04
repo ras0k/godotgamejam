@@ -6,7 +6,7 @@ class_name Entity
 export var speed := 100
 var move_direction := Vector2.ZERO
 
-export var max_health := 10
+export var max_health := 100
 var health := max_health
 
 onready var hit_area = $HitArea

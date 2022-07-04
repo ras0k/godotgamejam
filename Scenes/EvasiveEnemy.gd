@@ -63,5 +63,6 @@ func _find_player_node():
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
+	$ProgressBar.value = health
 	if health <= 0:
 		queue_free()

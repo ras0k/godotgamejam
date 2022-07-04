@@ -132,7 +132,6 @@ damping = 10.0
 collision_layer = 10
 script = ExtResource( 2 )
 speed = 250
-max_health = 20
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
@@ -195,6 +194,13 @@ randomness = 1.0
 local_coords = false
 process_material = SubResource( 17 )
 texture = ExtResource( 6 )
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+margin_left = -32.0
+margin_top = 20.0
+margin_right = 32.0
+margin_bottom = 34.0
+value = 100.0
 
 [connection signal="area_entered" from="HitArea" to="HitArea" method="_on_HitArea_area_entered"]
 [connection signal="hurt" from="HurtArea" to="." method="_on_HurtArea_hurt"]
