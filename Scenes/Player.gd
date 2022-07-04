@@ -11,6 +11,7 @@ func _ready() -> void:
 	$HitArea.enabled = false
 
 func _physics_process(_delta: float) -> void:
+	$ProgressBar.value = Global.global_player_health
 	# Input.get_action_strength() to support analog movement.
 	move_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -50,6 +51,5 @@ func attack_melee() -> void:
 func _on_HurtArea_hurt(damage: int) -> void:
 	Global._update_player_health(damage)#see Global.gd
 	health -= damage
-	$ProgressBar.value = health
 	if health <= 0:
 		queue_free()
