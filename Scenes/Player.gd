@@ -1,17 +1,13 @@
 extends Entity
 
 
-func _set_spawn():
-	health = Global.global_player_health
-	var spawn_point = Global.player_spawn_point
-	self.global_position = spawn_point
-
 func _ready() -> void:
 	_set_spawn()
 	$HitArea.enabled = false
+	$HealthBar.value = Global.global_player_health
+
 
 func _physics_process(_delta: float) -> void:
-	$ProgressBar.value = Global.global_player_health
 	# Input.get_action_strength() to support analog movement.
 	move_direction = Vector2(
 		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
@@ -35,6 +31,12 @@ func _input(event: InputEvent) -> void:
 		attack_melee()
 
 
+func _set_spawn():
+	health = Global.global_player_health
+	var spawn_point = Global.player_spawn_point
+	self.global_position = spawn_point
+
+
 func attack_melee() -> void:
 	if $AttackCooldownMelee.time_left > 0:
 		return
@@ -43,7 +45,7 @@ func attack_melee() -> void:
 	$HitArea.enabled = true
 	debug_info.log_text('Attacking', 'true')
 
-	yield(get_tree().create_timer(.3), 'timeout')
+	yield(get_tree().create_timer(.1), 'timeout')
 	$HitArea.enabled = false
 	debug_info.log_text('Attacking', 'false')
 
@@ -51,5 +53,6 @@ func attack_melee() -> void:
 func _on_HurtArea_hurt(damage: int) -> void:
 	Global._update_player_health(damage)#see Global.gd
 	health -= damage
+	$HealthBar.value = health
 	if health <= 0:
 		queue_free()

@@ -16,6 +16,7 @@ func _ready():
 #	debug_info.log_radius('attack_range', minimum_attack_range)
 	_find_player_node()
 	rng.randomize()
+	spawn(max_health)
 
 
 func _physics_process(delta):
@@ -59,6 +60,6 @@ func _find_player_node():
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
-	$ProgressBar.value = health
+	$HealthBar.value = health
 	if health <= 0:
 		queue_free()

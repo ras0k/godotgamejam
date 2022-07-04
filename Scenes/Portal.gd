@@ -12,7 +12,7 @@ var player = null
 
 func _find_player_node():
 	player = get_parent().find_node("Player")
-	
+
 func _set_next_spawn():
 	Global.player_spawn_point = next_level_spawn_point
 

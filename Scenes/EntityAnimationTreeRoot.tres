@@ -26,7 +26,7 @@ animation = "WalkSide"
 animation = "WalkUp"
 
 [resource]
-graph_offset = Vector2( -329.794, 109.02 )
+graph_offset = Vector2( -297.619, 72.7087 )
 nodes/attack/node = SubResource( 14 )
 nodes/attack/position = Vector2( 340, 170 )
 nodes/down/node = SubResource( 8 )
@@ -40,4 +40,4 @@ nodes/side/node = SubResource( 12 )
 nodes/side/position = Vector2( -150, 460 )
 nodes/up/node = SubResource( 11 )
 nodes/up/position = Vector2( -150, 240 )
-node_connections = [ "output", 0, "movement", "movement", 0, "idle", "movement", 1, "up", "movement", 2, "down", "movement", 3, "side" ]
+node_connections = [ "movement", 0, "idle", "movement", 1, "up", "movement", 2, "down", "movement", 3, "side", "output", 0, "movement" ]

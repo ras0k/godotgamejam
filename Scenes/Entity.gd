@@ -7,7 +7,7 @@ export var speed := 100
 var move_direction := Vector2.ZERO
 
 export var max_health := 100
-var health := max_health
+var health: int
 
 onready var hit_area = $HitArea
 onready var hurt_area = $HurtArea
@@ -20,6 +20,12 @@ var debug_info := preload('res://Scenes/DebugInfo.tscn').instance()
 func _ready() -> void:
 	init_debug()
 	animation_tree.active = true
+
+
+func spawn(current_health) -> void:
+	health = current_health
+	$HealthBar.max_value = max_health
+	$HealthBar.value = health
 
 
 func _physics_process(delta: float) -> void:

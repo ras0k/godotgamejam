@@ -117,6 +117,7 @@ extents = Vector2( 26, 14 )
 [node name="Enemy" type="KinematicBody2D"]
 script = ExtResource( 3 )
 speed = 120
+max_health = 30
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 16 )
@@ -166,12 +167,14 @@ script = ExtResource( 2 )
 position = Vector2( 1, -13 )
 shape = SubResource( 7 )
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="HealthBar" type="ProgressBar" parent="."]
 margin_left = -30.0
 margin_top = 39.0
 margin_right = 34.0
 margin_bottom = 53.0
-value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="HitArea" to="HitArea" method="_on_HitArea_area_entered"]

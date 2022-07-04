@@ -13,11 +13,13 @@ var player = null
 
 
 func _ready():
+	print(health)
 #	debug_info.log_radius('aggro_range', aggro_range)
 #	debug_info.log_radius('flee_range', flee_range)
 #	debug_info.log_radius('minimum_attack_range', minimum_attack_range)
 	_find_player_node()
 	rng.randomize()
+	spawn(max_health)
 
 
 func _physics_process(delta):
@@ -58,11 +60,13 @@ func _on_Timer_timeout():
 	if collision_cooldown > 0:
 		collision_cooldown = collision_cooldown - 1
 
+
 func _find_player_node():
 	player = get_parent().find_node("Player")
 
+
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
-	$ProgressBar.value = health
+	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
