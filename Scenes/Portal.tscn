@@ -31,3 +31,5 @@ texture = SubResource( 3 )
 centered = false
 region_enabled = true
 region_rect = Rect2( 26.4019, -0.332611, 47.1885, 23.0037 )
+
+[connection signal="body_entered" from="." to="." method="_on_Portal_body_entered"]

@@ -1,7 +1,12 @@
 extends Entity
 
 
+func _set_spawn():
+	var spawn_point = PcSpawnSetter.player_spawn_point
+	self.global_position = spawn_point
+
 func _ready() -> void:
+	_set_spawn()
 	$HitArea.enabled = false
 
 
