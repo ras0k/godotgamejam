@@ -3,7 +3,7 @@ extends Control
 func _ready():
 	$VBoxContainer/Start.grab_focus()
 	$AnimationPlayer.play("Opening_Scene")
-	yield(get_tree().create_timer(3),"timeout")
+	yield(get_tree().create_timer(2.9),"timeout")
 	$ColorRect.visible = false;
 
 func _on_Start_pressed():
