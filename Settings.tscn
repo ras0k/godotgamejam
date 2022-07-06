@@ -34,4 +34,15 @@ margin_top = -12.0
 margin_right = 178.0
 margin_bottom = 28.0
 
+[node name="Back" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 61.0
+margin_top = -73.0
+margin_right = 166.0
+margin_bottom = -53.0
+custom_colors/font_color_disabled = Color( 0, 0, 0, 1 )
+text = "Back"
+
 [connection signal="toggled" from="CenterContainer/VBoxContainer/Label/CheckButton" to="." method="_on_CheckButton_toggled"]
+[connection signal="pressed" from="Back" to="." method="_on_Back_pressed"]
