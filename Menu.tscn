@@ -1,37 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
-
-[sub_resource type="Animation" id=1]
-resource_name = "Opening_Scene"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 3 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-
-[sub_resource type="Animation" id=2]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/path = NodePath("ColorRect:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ) ]
-}
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -66,21 +35,6 @@ margin_right = 179.0
 margin_bottom = 68.0
 focus_neighbour_bottom = NodePath("../Start")
 text = "Exit"
-
-[node name="Sprite" type="Sprite" parent="."]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Opening_Scene = SubResource( 1 )
-anims/RESET = SubResource( 2 )
-
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -40.0
-margin_top = -46.0
-margin_right = 63.0
-margin_bottom = 59.0
-color = Color( 0, 0, 0, 1 )
 
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
 [connection signal="pressed" from="VBoxContainer/Options" to="." method="_on_Options_pressed"]
