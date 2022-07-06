@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://Assets/player.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Player.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Scenes/HitArea.gd" type="Script" id=4]
 [ext_resource path="res://Scenes/EntityAnimationTreeRoot.tres" type="AnimationNodeBlendTree" id=5]
 [ext_resource path="res://Assets/dust.png" type="Texture" id=6]
+[ext_resource path="res://Assets/aim.png" type="Texture" id=7]
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 13.0
@@ -187,6 +188,11 @@ damage = 5
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea"]
 position = Vector2( 34, 0 )
 shape = SubResource( 15 )
+
+[node name="Sprite" type="Sprite" parent="HitArea"]
+position = Vector2( -294, -33 )
+texture = ExtResource( 7 )
+offset = Vector2( 354, 33 )
 
 [node name="HurtArea" type="Area2D" parent="."]
 collision_mask = 2
