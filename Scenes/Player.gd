@@ -1,10 +1,14 @@
 extends Entity
 
+class_name Player
+
 
 func _ready() -> void:
-	_set_spawn()
 	$HitArea.enabled = false
-	$HealthBar.value = Global.global_player_health
+	if Global.player:
+		$HealthBar.value = Global.player.health
+	else:
+		spawn(max_health)
 
 
 func _physics_process(_delta: float) -> void:
@@ -31,12 +35,6 @@ func _input(event: InputEvent) -> void:
 		attack_melee()
 
 
-func _set_spawn():
-	health = Global.global_player_health
-	var spawn_point = Global.player_spawn_point
-	self.global_position = spawn_point
-
-
 func attack_melee() -> void:
 	if $AttackCooldownMelee.time_left > 0:
 		return
@@ -51,7 +49,6 @@ func attack_melee() -> void:
 
 
 func _on_HurtArea_hurt(damage: int) -> void:
-	Global._update_player_health(damage)#see Global.gd
 	health -= damage
 	$HealthBar.value = health
 	if health <= 0:

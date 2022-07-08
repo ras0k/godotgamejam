@@ -28,7 +28,7 @@ func spawn(current_health) -> void:
 	$HealthBar.value = health
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if move_direction.length() < 0.1:
 		animate_entity_movement(movement_states.IDLE)
 		debug_info.log_text('Move', 'idle')

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/EvasiveEnemy.tscn" type="PackedScene" id=3]
+
+[node name="DungeonRoom" instance=ExtResource( 2 )]
+
+[node name="EvasiveEnemy" parent="Enemies" index="0" instance=ExtResource( 3 )]
+position = Vector2( 471, 418 )
+
+[node name="EvasiveEnemy2" parent="Enemies" index="1" instance=ExtResource( 3 )]
+position = Vector2( 403, 513 )
+
+[node name="Enemy" parent="Enemies" index="2" instance=ExtResource( 1 )]
+position = Vector2( 226, 257 )
+
+[node name="Enemy2" parent="Enemies" index="3" instance=ExtResource( 1 )]
+position = Vector2( 973, 268 )
