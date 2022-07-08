@@ -8,13 +8,14 @@ var prev_direction := Vector2(0, 0)
 # attempts to prevent enemies from trying to walk thru obstacles
 var collision_cooldown := 0
 var rng := RandomNumberGenerator.new()
-var player = null
+
+
+signal enemy_dead
 
 
 func _ready():
 #	debug_info.log_radius('aggro_range', aggro_range)
 #	debug_info.log_radius('attack_range', minimum_attack_range)
-	_find_player_node()
 	rng.randomize()
 	spawn(max_health)
 
@@ -28,9 +29,9 @@ func _physics_process(delta):
 
 
 func _on_Timer_timeout():
-	if not is_instance_valid(player):
+	if not is_instance_valid(Global.player):
 		return
-	var player_pos = player.position - position
+	var player_pos = Global.player.position - position
 	#calculate position of player relative to enemey
 	if player_pos.length() <= minimum_attack_range:
 		# enemy turn to face when close
@@ -54,12 +55,10 @@ func _on_Timer_timeout():
 	if collision_cooldown > 0:
 		collision_cooldown = collision_cooldown - 1
 
-func _find_player_node():
-	player = get_parent().find_node("Player")
-
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
 	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
+		emit_signal('enemy_dead')

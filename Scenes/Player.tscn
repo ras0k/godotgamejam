@@ -149,6 +149,15 @@ collision_layer = 10
 script = ExtResource( 2 )
 speed = 250
 
+[node name="HealthBar" type="ProgressBar" parent="."]
+margin_left = -32.0
+margin_top = 20.0
+margin_right = 32.0
+margin_bottom = 34.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
@@ -190,7 +199,7 @@ position = Vector2( 34, 0 )
 shape = SubResource( 15 )
 
 [node name="Sprite" type="Sprite" parent="HitArea"]
-position = Vector2( -294, -33 )
+position = Vector2( -310, -33 )
 texture = ExtResource( 7 )
 offset = Vector2( 354, 33 )
 
@@ -216,15 +225,6 @@ randomness = 1.0
 local_coords = false
 process_material = SubResource( 17 )
 texture = ExtResource( 6 )
-
-[node name="HealthBar" type="ProgressBar" parent="."]
-margin_left = -32.0
-margin_top = 20.0
-margin_right = 32.0
-margin_bottom = 34.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [connection signal="area_entered" from="HitArea" to="HitArea" method="_on_HitArea_area_entered"]
 [connection signal="hurt" from="HurtArea" to="." method="_on_HurtArea_hurt"]
