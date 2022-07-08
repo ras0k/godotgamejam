@@ -108,6 +108,7 @@ smoothing_speed = 2.0
 editor_draw_limits = true
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
+speed = 180
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
 remote_path = NodePath("../../Camera2D")

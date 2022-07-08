@@ -116,7 +116,6 @@ extents = Vector2( 26, 14 )
 
 [node name="Enemy" type="KinematicBody2D" groups=["Enemy"]]
 script = ExtResource( 3 )
-speed = 120
 max_health = 30
 
 [node name="Collision" type="CollisionShape2D" parent="."]
