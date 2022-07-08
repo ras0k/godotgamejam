@@ -2,9 +2,9 @@ extends CanvasModulate
 
 const _Night_color = Color("122d30")
 const _Day_color = Color("ffffff")
-const _Time_scale = 0.01
+const _Time_scale = 0.0001
 
-var time = 0
+var time = 2
 
 func _process(delta:float) -> void:
 	self.time += delta * _Time_scale

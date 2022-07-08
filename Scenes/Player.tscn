@@ -146,8 +146,8 @@ anim_speed = 1.0
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 10
+collision_mask = 2
 script = ExtResource( 2 )
-speed = 250
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 margin_left = -32.0
