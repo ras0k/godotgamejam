@@ -81,6 +81,7 @@ visible = false
 [node name="RoomTransition" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -92,6 +93,7 @@ anims/RESET = SubResource( 12 )
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/RoomTransition"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
