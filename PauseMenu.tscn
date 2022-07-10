@@ -40,12 +40,14 @@ valign = 1
 margin_top = 18.0
 margin_right = 64.0
 margin_bottom = 38.0
+focus_neighbour_top = NodePath("../Exit")
 text = "Resume"
 
 [node name="Exit" type="Button" parent="CenterContainer/VBoxContainer"]
 margin_top = 42.0
 margin_right = 64.0
 margin_bottom = 62.0
+focus_neighbour_bottom = NodePath("../Resume")
 text = "Exit"
 
 [connection signal="pressed" from="CenterContainer/VBoxContainer/Resume" to="." method="_on_Resume_pressed"]

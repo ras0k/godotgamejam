@@ -1,8 +1,11 @@
 extends Entity
 
+onready var start_position = global_position
+
 export var flee_range = 180
 export var aggro_range = 300
 export var minimum_attack_range = 250
+export var wander_range = 180
 
 var direction : Vector2
 var prev_direction = Vector2(0, 0)
@@ -49,10 +52,13 @@ func _on_Timer_timeout():
 	elif collision_cooldown == 0:
 		debug_info.log_text('State', 'idle')
 		# psuedorandomly choose movement direction when not engaged with player
-		var random_number = rng.randf()
-		if random_number < 0.05:
+		var wander_pos = start_position - position
+		var direction_chooser = rng.randf()
+		if wander_pos.length() >= wander_range:
+			direction = wander_pos.normalized()
+		elif direction_chooser < 0.05:
 			direction = Vector2.ZERO
-		elif random_number < 0.1:
+		elif direction_chooser < 0.1:
 			direction = Vector2.DOWN.rotated(rng.randf() * 2 * PI)
 
 	# Update collision cooldown
