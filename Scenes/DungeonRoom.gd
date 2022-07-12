@@ -16,7 +16,7 @@ func _ready() -> void:
 		portal.is_enabled = true
 	for enemy in $Enemies.get_children():
 		enemy.connect('enemy_dead', self, 'is_room_cleared')
-
+		
 
 func is_room_cleared() -> bool:
 	yield(get_tree().create_timer(.1), 'timeout')
