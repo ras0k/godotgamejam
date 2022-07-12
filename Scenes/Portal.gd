@@ -11,6 +11,9 @@ func set_is_enabled(_is_enabled: bool) -> void:
 
 
 func set_is_open(_is_open: bool) -> void:
+	if not is_enabled:
+		return
+
 	is_open = _is_open
 	monitoring = is_open
 	if is_open:

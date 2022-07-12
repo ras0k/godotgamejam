@@ -2,18 +2,16 @@ extends Node2D
 
 class_name DungeonRoom
 
-var open_exit_directions: int = 0
-enum directions { NORTH = 1, SOUTH = 2, EAST = 4, WEST = 8 }
+enum directions { NORTH, SOUTH, EAST, WEST }
 
 var is_open := true setget set_is_open
-
+var is_cleared := false setget set_is_cleared
 
 signal exit_room(exit_direction)
+signal room_cleared
 
 
 func _ready() -> void:
-	for portal in $Portals.get_children():
-		portal.is_enabled = true
 	for enemy in $Enemies.get_children():
 		enemy.connect('enemy_dead', self, 'is_room_cleared')
 		
@@ -22,10 +20,19 @@ func is_room_cleared() -> bool:
 	yield(get_tree().create_timer(.1), 'timeout')
 	if get_tree().get_nodes_in_group('Enemy').empty():
 		self.is_open = true
+		self.is_cleared = true
+		emit_signal('room_cleared')
 		return true
 
 	self.is_open = false
 	return false
+
+
+func set_is_cleared(_is_cleared: bool) -> void:
+	is_cleared = _is_cleared
+	if is_cleared:
+		self.is_open = true
+		$Enemies.queue_free()
 
 
 func get_room_enter_position(direction: int) -> Vector2:
@@ -62,9 +69,17 @@ static func get_opposite_direction(direction: int) -> int:
 
 
 func set_is_open(_is_open: bool) -> void:
+	print('set open %s' % _is_open)
 	is_open = _is_open
 	for portal in $Portals.get_children():
 		portal.is_open = is_open
+
+
+func set_portal_directions(north: bool, south: bool, east: bool, west: bool) -> void:
+	$Portals/PortalNorth.is_enabled = north
+	$Portals/PortalSouth.is_enabled = south
+	$Portals/PortalEast.is_enabled = east
+	$Portals/PortalWest.is_enabled = west
 
 
 func _on_Portal_body_entered(body: Node, direction: int) -> void:
