@@ -1,7 +1,6 @@
 extends Node
 
 signal fps_displayed(value)
-signal fov_apdate(value)
 
 func toggle_fullscreen(value):
 	OS.window_fullscreen = value
@@ -29,8 +28,14 @@ func update_master_vol(vol):
 	SavingSettings._Game_Data.master_vol = vol
 	SavingSettings._save_data()
 	
+func update_music_vol(vol):
+	AudioServer.set_bus_volume_db(0, vol if vol > -50 else AudioServer.set_bus_mute(0, true))
+	SavingSettings._Game_Data.music_vol = vol
+	SavingSettings._save_data()
 	
-func update_fov(value):
-	emit_signal("fov_apdate", value)
+func update_sfx_volume(vol):
+	AudioServer.set_bus_volume_db(0, vol if vol > -50 else AudioServer.set_bus_mute(0, true))
+	SavingSettings._Game_Data.sfx_vol = vol
+	SavingSettings._save_data()
 	
-
+	

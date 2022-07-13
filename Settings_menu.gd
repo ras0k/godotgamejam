@@ -22,6 +22,8 @@ func _ready():
 	_Max_FPS_Slider.value = SavingSettings._Game_Data.max_fps
 	
 	_Master_Vol.value = SavingSettings._Game_Data.master_vol
+	_Music_Vol.value = SavingSettings._Game_Data.music_vol
+	_SFX_Vol.value = SavingSettings._Game_Data.sfx_vol
 	
 
 func _on_Display_Opyions_item_selected(index):
@@ -49,11 +51,11 @@ func _on_Master_Vol_Slider_value_changed(value):
 
 
 func _on_Music_Vol_Slider_value_changed(value):
-	pass # Replace with function body.
+	GlobalSettings.update_music_vol(value)
 
 
 func _on_SFX_Volume_Slider_value_changed(value):
-	pass # Replace with function body.
+	GlobalSettings.update_sfx_volume(value)
 
 
 
