@@ -3,7 +3,6 @@
 [ext_resource path="res://Settings_Menu.gd" type="Script" id=1]
 
 [node name="Settings_Menu" type="Popup"]
-visible = true
 margin_left = 65.0
 margin_top = 55.0
 margin_right = 955.0
@@ -106,7 +105,7 @@ margin_right = 29.0
 margin_bottom = 15.0
 text = "MAX"
 
-[node name="Max_fps_Val2" type="HSlider" parent="Settings_Tabs/Video/MarginContainer/Video_Settings/HBoxContainer"]
+[node name="Max_fps_Slider" type="HSlider" parent="Settings_Tabs/Video/MarginContainer/Video_Settings/HBoxContainer"]
 margin_left = 33.0
 margin_right = 433.0
 margin_bottom = 16.0
@@ -209,7 +208,7 @@ text = "Back"
 [connection signal="item_selected" from="Settings_Tabs/Video/MarginContainer/Video_Settings/Display_Opyions" to="." method="_on_Display_Opyions_item_selected"]
 [connection signal="toggled" from="Settings_Tabs/Video/MarginContainer/Video_Settings/Vsync_Btn" to="." method="_on_Vsync_Btn_toggled"]
 [connection signal="toggled" from="Settings_Tabs/Video/MarginContainer/Video_Settings/Dispaly_fps_Btn" to="." method="_on_Dispaly_fps_Btn_toggled"]
-[connection signal="value_changed" from="Settings_Tabs/Video/MarginContainer/Video_Settings/HBoxContainer/Max_fps_Val2" to="." method="_on_Max_fps_Slid_value_changed"]
+[connection signal="value_changed" from="Settings_Tabs/Video/MarginContainer/Video_Settings/HBoxContainer/Max_fps_Slider" to="." method="_on_Max_fps_Slid_value_changed"]
 [connection signal="value_changed" from="Settings_Tabs/Audio/MarginContainer/Audio_Settings/Master_Vol_Slider" to="." method="_on_Master_Vol_Slider_value_changed"]
 [connection signal="value_changed" from="Settings_Tabs/Audio/MarginContainer/Audio_Settings/Music_Vol_Slider" to="." method="_on_Music_Vol_Slider_value_changed"]
 [connection signal="value_changed" from="Settings_Tabs/Audio/MarginContainer/Audio_Settings/SFX_Volume_Slider" to="." method="_on_SFX_Volume_Slider_value_changed"]

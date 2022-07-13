@@ -1,14 +1,13 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Menu.gd" type="Script" id=1]
+[ext_resource path="res://Fps_counter.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Settings.tscn" type="PackedScene" id=3]
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -44,6 +43,11 @@ margin_right = 179.0
 margin_bottom = 92.0
 focus_neighbour_bottom = NodePath("../Start")
 text = "Exit"
+
+[node name="FpsLabel" parent="." instance=ExtResource( 2 )]
+visible = false
+
+[node name="Settings_Menu" parent="." instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="VBoxContainer/NewGame" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]

@@ -53,3 +53,4 @@ func _on_HurtArea_hurt(damage: int) -> void:
 	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
+		
