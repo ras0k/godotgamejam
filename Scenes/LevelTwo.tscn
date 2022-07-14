@@ -85,14 +85,10 @@ __meta__ = {
 
 [node name="Portal" parent="." instance=ExtResource( 5 )]
 position = Vector2( 508, 45 )
-next_level = "res://Scenes/LevelThree.tscn"
-next_level_spawn_point = Vector2( 515, 520 )
 
 [node name="Portal2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 511, 578 )
 rotation = 3.14159
-next_level = "res://Scenes/Main.tscn"
-next_level_spawn_point = Vector2( 515, 100 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 502, 321 )
