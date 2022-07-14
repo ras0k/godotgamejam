@@ -3,6 +3,7 @@ extends Control
 var is_paused = false setget set_is_paused
 
 
+
 func set_is_paused(value):
 	is_paused = value
 	get_tree().paused = is_paused
@@ -18,3 +19,11 @@ func _on_Resume_pressed():
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+
+func _on_Options_pressed():
+	$Settings_Menu.popup_centered()
+
+
+func _on_ExitToMenu_pressed() -> void:
+	get_tree().change_scene("res://Scenes/Menu.tscn")

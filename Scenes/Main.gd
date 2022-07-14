@@ -20,6 +20,13 @@ func _ready() -> void:
 	Global.player = find_node('Player')
 	walk_rooms_directory()
 
+	$MixingDeskMusic.init_song('MainTheme')
+	$MixingDeskMusic.play('MainTheme')
+	$MixingDeskMusic.mute('MainTheme', 'Layer3Synth')
+	$MixingDeskMusic.mute('MainTheme', 'PercussionBass')
+	$MixingDeskMusic.mute('MainTheme', 'PercussionMetals')
+	$MixingDeskMusic.mute('MainTheme', 'PercussionSlap')
+
 	# enter the first room fron the south
 	enter_room(DungeonRoom.directions.SOUTH)
 
@@ -57,7 +64,8 @@ func enter_room(enter_direction: int) -> void:
 #	current_room.is_cleared =
 	current_room = next_room
 	transition_player.play_backwards('FadeIn')
-
+	if not current_room.is_cleared:
+		start_battle_music()
 
 func load_room(coordinate: Vector2) -> DungeonRoom:
 	var room_path = 'res://Rooms/%s_%s.tscn' % [coordinate.x, coordinate.y]
@@ -92,6 +100,7 @@ func setup_room_portals(room_coordinate: Vector2, dungeon_room: DungeonRoom) -> 
 
 
 func mark_room_cleared() -> void:
+	stop_battle_music()
 	rooms[room_coordinate] = true
 
 
@@ -112,3 +121,15 @@ func walk_rooms_directory():
 		file_name = dir.get_next()
 
 
+func start_battle_music() -> void:
+	$MixingDeskMusic.fade_in('MainTheme', 'Layer3Synth')
+	$MixingDeskMusic.fade_in('MainTheme', 'PercussionBass')
+	$MixingDeskMusic.fade_in('MainTheme', 'PercussionMetals')
+	$MixingDeskMusic.fade_in('MainTheme', 'PercussionSlap')
+
+
+func stop_battle_music() -> void:
+	$MixingDeskMusic.fade_out('MainTheme', 'Layer3Synth')
+	$MixingDeskMusic.fade_out('MainTheme', 'PercussionBass')
+	$MixingDeskMusic.fade_out('MainTheme', 'PercussionMetals')
+	$MixingDeskMusic.fade_out('MainTheme', 'PercussionSlap')

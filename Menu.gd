@@ -3,11 +3,16 @@ extends Control
 
 onready var _Settings_Menu = $Settings_Menu
 
+
 func _ready():
 	$VBoxContainer/Start.grab_focus()
+	$MixingDeskMusic.init_song('MainTheme')
+	$MixingDeskMusic.play('MainTheme')
+
 
 func _on_Start_pressed():
 	get_tree().change_scene("res://Scenes/Main.tscn")
+
 
 func _on_Options_pressed():
 	_Settings_Menu.popup_centered()

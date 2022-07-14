@@ -31,7 +31,7 @@ func _update(beat):
 				_fade_to(i, 0)
 			else:
 				_fade_to(i, -65)
-				
+
 func init_volume():
 	param = target.get(target_property)
 	if !toggle:

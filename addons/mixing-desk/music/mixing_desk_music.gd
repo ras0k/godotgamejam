@@ -68,7 +68,7 @@ func _ready():
 	if AudioServer.get_bus_index("Music") == -1:
 		AudioServer.add_bus(AudioServer.bus_count)
 		AudioServer.set_bus_name(AudioServer.bus_count - 1, "Music")
-				
+
 #loads a song and gets ready to play
 func init_song(track):
 	if playing:
@@ -149,7 +149,7 @@ func _stop_overlays():
 #delete overlay on fade
 func _overlay_faded(object, key, overlay):
 	overlay.queue_free()
-		
+
 #initialise and play the song immediately
 func quickplay(song):
 	init_song(song)
@@ -166,7 +166,7 @@ func _trackname_to_int(song, ref):
 		return songs[song]._get_core().get_node(ref).get_index()
 	else:
 		return ref
-	
+
 #play a song
 func play(song):
 	song = _songname_to_int(song)
@@ -220,7 +220,7 @@ func _play_overlays(song):
 		if i.cont == "autolayer":
 			for o in i.get_children():
 				o.play()
-	
+
 	if bar_tran:
 		bar_tran = false
 	if beat_tran:
@@ -261,7 +261,7 @@ func fadeout_below_layer(song, layer):
 			fade_out(song, i)
 		if layer == 1:
 			fade_out(song, 0)
-			
+
 #mute all layers aside from specified layer
 func solo(song, layer):
 	song = _songname_to_int(song)
@@ -280,6 +280,8 @@ func mute(song, layer):
 	layer = _trackname_to_int(song, layer)
 	songs[song]._get_core().get_child(layer).volume_db = -65.0
 	var target = playing_tracks[layer]
+	if not is_instance_valid(target):
+		return
 	target.set_volume_db(-60.0)
 	var pos = songs[song].muted_tracks.find(layer)
 	if pos == null:
@@ -291,6 +293,8 @@ func unmute(song, layer):
 	layer = _trackname_to_int(song, layer)
 	songs[song]._get_core().get_child(layer).volume_db = 0
 	var target = playing_tracks[layer]
+	if not is_instance_valid(target):
+		return
 	target.set_volume_db(default_vol)
 	var pos = songs[song].muted_tracks.find(layer)
 	if pos != -1:
@@ -301,6 +305,8 @@ func toggle_mute(song, layer):
 	song = _songname_to_int(song)
 	layer = _trackname_to_int(song, layer)
 	var target = songs[song]._get_core().get_child(layer)
+	if not is_instance_valid(target):
+		return
 	if target.volume_db < 0:
 		unmute(song, layer)
 	else:
@@ -312,6 +318,8 @@ func fade_in(song, layer):
 	layer = _trackname_to_int(song, layer)
 	songs[song]._get_core().get_child(layer).volume_db = default_vol
 	var target = playing_tracks[layer]
+	if not is_instance_valid(target):
+		return
 	var tween = target.get_node("Tween")
 	var in_from = target.get_volume_db()
 	tween.interpolate_property(target, 'volume_db', in_from, default_vol, transition_beats, Tween.TRANS_QUAD, Tween.EASE_OUT)
@@ -326,6 +334,8 @@ func fade_out(song, layer):
 	layer = _trackname_to_int(song, layer)
 	songs[song]._get_core().get_child(layer).volume_db = -65.0
 	var target = playing_tracks[layer]
+	if not is_instance_valid(target):
+		return
 	var tween = target.get_node("Tween")
 	var in_from = target.get_volume_db()
 	tween.interpolate_property(target, 'volume_db', in_from, -65.0, transition_beats, Tween.TRANS_SINE, Tween.EASE_OUT)
@@ -348,7 +358,7 @@ func queue_bar_transition(song):
 	songs[old_song].fading_out = true
 	new_song = song
 	bar_tran = true
-	
+
 #change to the specified song at the next beat
 func queue_beat_transition(song):
 	song = _songname_to_int(song)
@@ -453,7 +463,7 @@ func _bar():
 				play(new_song)
 		yield(get_tree().create_timer(0.5), "timeout")
 		can_bar = true
-	
+
 #called every beat
 func _beat():
 	if beat_tran:

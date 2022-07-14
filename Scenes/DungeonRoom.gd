@@ -5,7 +5,7 @@ class_name DungeonRoom
 enum directions { NORTH, SOUTH, EAST, WEST }
 
 var is_open := true setget set_is_open
-var is_cleared := false setget set_is_cleared
+export var is_cleared := false setget set_is_cleared
 
 signal exit_room(exit_direction)
 signal room_cleared
@@ -14,7 +14,8 @@ signal room_cleared
 func _ready() -> void:
 	for enemy in $Enemies.get_children():
 		enemy.connect('enemy_dead', self, 'is_room_cleared')
-		
+	is_room_cleared()
+
 
 func is_room_cleared() -> bool:
 	yield(get_tree().create_timer(.1), 'timeout')
@@ -32,7 +33,9 @@ func set_is_cleared(_is_cleared: bool) -> void:
 	is_cleared = _is_cleared
 	if is_cleared:
 		self.is_open = true
-		$Enemies.queue_free()
+		var enemy_parent = get_node_or_null('Enemies')
+		if enemy_parent:
+			enemy_parent.queue_free()
 
 
 func get_room_enter_position(direction: int) -> Vector2:

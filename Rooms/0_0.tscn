@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=2 format=2]
 
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=3]
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
-
-[node name="Enemy" parent="Enemies" index="0" instance=ExtResource( 3 )]
-position = Vector2( 714, 553 )
+is_cleared = true

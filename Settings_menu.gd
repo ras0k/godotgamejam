@@ -20,11 +20,11 @@ func _ready():
 	_Vsync.pressed = SavingSettings._Game_Data.vsync_on
 	_Display_FPS.pressed = SavingSettings._Game_Data.display_fps
 	_Max_FPS_Slider.value = SavingSettings._Game_Data.max_fps
-	
+
 	_Master_Vol.value = SavingSettings._Game_Data.master_vol
 	_Music_Vol.value = SavingSettings._Game_Data.music_vol
 	_SFX_Vol.value = SavingSettings._Game_Data.sfx_vol
-	
+
 
 func _on_Display_Opyions_item_selected(index):
 	GlobalSettings.toggle_fullscreen(true if index == 1 else false)
@@ -41,11 +41,11 @@ func _on_Dispaly_fps_Btn_toggled(button_pressed):
 func _on_Max_fps_Slid_value_changed(value):
 	GlobalSettings.set_max_fps(value)
 	_Max_FPS_Value.text = str(value) if value < _Max_FPS_Slider.max_value else "MAX"
-	
-	
-	
+
+
+
 #Audio_Settings
-	
+
 func _on_Master_Vol_Slider_value_changed(value):
 	GlobalSettings.update_master_vol(value)
 
@@ -62,11 +62,5 @@ func _on_SFX_Volume_Slider_value_changed(value):
 #Exit Buttons
 func _on_Button_pressed():
 	get_tree().change_scene("res://Menu.tscn")
-	
-	
-func _physics_process(delta):
-	if Input.is_action_just_pressed("ui_cancel"):
-		get_tree().change_scene("res://Menu.tscn")
-		
-		
-		
+
+
