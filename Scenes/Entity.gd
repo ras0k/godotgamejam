@@ -35,15 +35,15 @@ func _physics_process(_delta: float) -> void:
 	elif move_direction.dot(Vector2.UP) > .5:
 		animate_entity_movement(movement_states.UP)
 		debug_info.log_text('Move', 'up')
+	elif move_direction.dot(Vector2.DOWN) > .5:
+		animate_entity_movement(movement_states.DOWN)
+		debug_info.log_text('Move', 'down')
 	elif move_direction.dot(Vector2.LEFT) > .6:
 		animate_entity_movement(movement_states.LEFT)
 		debug_info.log_text('Move', 'left')
 	elif move_direction.dot(Vector2.RIGHT) > .6:
 		animate_entity_movement(movement_states.RIGHT)
 		debug_info.log_text('Move', 'right')
-	elif move_direction.dot(Vector2.DOWN) > .5:
-		animate_entity_movement(movement_states.DOWN)
-		debug_info.log_text('Move', 'down')
 
 
 func animate_entity_movement(state: int):
