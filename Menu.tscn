@@ -57,6 +57,7 @@ visible = false
 [node name="Settings_Menu" parent="." instance=ExtResource( 3 )]
 
 [node name="MixingDeskMusic" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 6 )
 play_mode = 4
 

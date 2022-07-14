@@ -164,9 +164,9 @@ margin_right = 757.0
 margin_bottom = 16.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 10
-min_value = -50.0
-max_value = 0.0
-value = -10.0
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="Music_Vol_Label" type="Label" parent="Settings_Tabs/Audio/MarginContainer/Audio_Settings"]
 margin_top = 37.0
@@ -182,9 +182,9 @@ margin_right = 757.0
 margin_bottom = 53.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 10
-min_value = -50.0
-max_value = 0.0
-value = -10.0
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="SFX_Volume_Label" type="Label" parent="Settings_Tabs/Audio/MarginContainer/Audio_Settings"]
 margin_top = 74.0
@@ -200,9 +200,9 @@ margin_right = 757.0
 margin_bottom = 90.0
 rect_min_size = Vector2( 400, 0 )
 size_flags_horizontal = 10
-min_value = -50.0
-max_value = 0.0
-value = -10.0
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="Button" type="Button" parent="."]
 margin_left = 59.0

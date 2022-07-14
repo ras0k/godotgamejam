@@ -134,6 +134,7 @@ randomness = 0.67
 process_material = SubResource( 6 )
 
 [node name="MixingDeskMusic" type="Node" parent="."]
+pause_mode = 2
 script = ExtResource( 6 )
 play_mode = 4
 
@@ -142,29 +143,34 @@ script = ExtResource( 4 )
 tempo = 90
 bars = 16
 beats_in_bar = 4
-transition_beats = 3.0
+transition_beats = 6.0
 
 [node name="CoreContainer" type="Node" parent="MixingDeskMusic/MainTheme"]
 script = ExtResource( 8 )
 
 [node name="Layer1Mallets" type="AudioStreamPlayer" parent="MixingDeskMusic/MainTheme/CoreContainer"]
 stream = ExtResource( 3 )
+bus = "Music"
 
 [node name="Layer3Synth" type="AudioStreamPlayer" parent="MixingDeskMusic/MainTheme/CoreContainer"]
 stream = ExtResource( 11 )
 volume_db = -65.0
+bus = "Music"
 
 [node name="PercussionBass" type="AudioStreamPlayer" parent="MixingDeskMusic/MainTheme/CoreContainer"]
 stream = ExtResource( 13 )
 volume_db = -65.0
+bus = "Music"
 
 [node name="PercussionMetals" type="AudioStreamPlayer" parent="MixingDeskMusic/MainTheme/CoreContainer"]
 stream = ExtResource( 14 )
 volume_db = -65.0
+bus = "Music"
 
 [node name="PercussionSlap" type="AudioStreamPlayer" parent="MixingDeskMusic/MainTheme/CoreContainer"]
 stream = ExtResource( 12 )
 volume_db = -65.0
+bus = "Music"
 
 [node name="RandomContainer" type="Node" parent="MixingDeskMusic/MainTheme"]
 script = ExtResource( 10 )
@@ -172,3 +178,5 @@ random_chance = 0.7
 
 [node name="Layer2Strings" type="AudioStreamPlayer" parent="MixingDeskMusic/MainTheme/RandomContainer"]
 stream = ExtResource( 9 )
+volume_db = -10.0
+bus = "Music"
