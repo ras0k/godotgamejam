@@ -6,9 +6,11 @@ var parent_node: Node setget attach
 var _offset := Vector2()
 
 func _ready() -> void:
+	visible = false
 	if OS.is_debug_build():
-		if not ProjectSettings.get_setting("global/show_debug"):
-			visible = false
+		if ProjectSettings.get_setting("global/show_debug"):
+			visible = true
+		else:
 			print('Info: Project setting "global/show_debug" is disabled.')
 
 
