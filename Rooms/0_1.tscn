@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EvasiveEnemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Props/RuneRock.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Props/LargeTree.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Props/Weeds.tscn" type="PackedScene" id=6]
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
 
@@ -43,3 +44,9 @@ position = Vector2( 906, 600 )
 
 [node name="LargeTree7" parent="." index="14" instance=ExtResource( 5 )]
 position = Vector2( 1012, 535 )
+
+[node name="Weeds" parent="." index="15" instance=ExtResource( 6 )]
+position = Vector2( 777, 229 )
+
+[node name="Weeds2" parent="." index="16" instance=ExtResource( 6 )]
+position = Vector2( 653, 193 )
