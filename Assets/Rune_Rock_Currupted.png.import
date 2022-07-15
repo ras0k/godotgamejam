@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Currupted_Rune_Rock.png-8a39551b3d8c6288837fa098327f18cb.stex"
+path="res://.import/Rune_Rock_Currupted.png-6c76d701f612b23d525f4e285643b120.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Currupted_Rune_Rock.png"
-dest_files=[ "res://.import/Currupted_Rune_Rock.png-8a39551b3d8c6288837fa098327f18cb.stex" ]
+source_file="res://Assets/Rune_Rock_Currupted.png"
+dest_files=[ "res://.import/Rune_Rock_Currupted.png-6c76d701f612b23d525f4e285643b120.stex" ]
 
 [params]
 

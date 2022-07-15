@@ -1,19 +1,45 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/EvasiveEnemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Props/RuneRock.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Props/LargeTree.tscn" type="PackedScene" id=5]
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
 
-[node name="EvasiveEnemy" parent="Enemies" index="0" instance=ExtResource( 3 )]
+[node name="EvasiveEnemy" parent="." index="3" instance=ExtResource( 3 )]
 position = Vector2( 471, 418 )
 
-[node name="EvasiveEnemy2" parent="Enemies" index="1" instance=ExtResource( 3 )]
+[node name="EvasiveEnemy2" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( 403, 513 )
 
-[node name="Enemy" parent="Enemies" index="2" instance=ExtResource( 1 )]
+[node name="Enemy" parent="." index="5" instance=ExtResource( 1 )]
 position = Vector2( 226, 257 )
 
-[node name="Enemy2" parent="Enemies" index="3" instance=ExtResource( 1 )]
+[node name="Enemy2" parent="." index="6" instance=ExtResource( 1 )]
 position = Vector2( 973, 268 )
+
+[node name="LargeTree" parent="." index="7" instance=ExtResource( 5 )]
+position = Vector2( 77, 706 )
+
+[node name="LargeTree2" parent="." index="8" instance=ExtResource( 5 )]
+position = Vector2( 169, 721 )
+
+[node name="LargeTree3" parent="." index="9" instance=ExtResource( 5 )]
+position = Vector2( 54, 631 )
+
+[node name="LargeTree4" parent="." index="10" instance=ExtResource( 5 )]
+position = Vector2( 230, 651 )
+
+[node name="LargeTree5" parent="." index="11" instance=ExtResource( 5 )]
+position = Vector2( 138, 166 )
+
+[node name="RuneRock" parent="." index="12" instance=ExtResource( 4 )]
+position = Vector2( 589, 361 )
+
+[node name="LargeTree6" parent="." index="13" instance=ExtResource( 5 )]
+position = Vector2( 906, 600 )
+
+[node name="LargeTree7" parent="." index="14" instance=ExtResource( 5 )]
+position = Vector2( 1012, 535 )

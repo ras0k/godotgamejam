@@ -55,17 +55,20 @@ func enter_room(enter_direction: int) -> void:
 	next_room.visible = true
 	var enter_position = next_room.get_room_enter_position(enter_direction)
 
+	Global.player.get_parent().remove_child(Global.player)
 	yield(transition_player, 'animation_finished')
 	if current_room:
 		current_room.visible = false
 		current_room.queue_free()
 
+	next_room.add_child(Global.player)
 	Global.player.global_position = enter_position
 #	current_room.is_cleared =
 	current_room = next_room
 	transition_player.play_backwards('FadeIn')
 	if not current_room.is_cleared:
 		start_battle_music()
+
 
 func load_room(coordinate: Vector2) -> DungeonRoom:
 	var room_path = 'res://Rooms/%s_%s.tscn' % [coordinate.x, coordinate.y]
@@ -100,8 +103,12 @@ func setup_room_portals(room_coordinate: Vector2, dungeon_room: DungeonRoom) -> 
 
 
 func mark_room_cleared() -> void:
+	if rooms[room_coordinate] == true:
+		return
 	stop_battle_music()
 	rooms[room_coordinate] = true
+	if is_instance_valid(current_room):
+		current_room.heal_room()
 
 
 func walk_rooms_directory():
@@ -133,3 +140,4 @@ func stop_battle_music() -> void:
 	$MixingDeskMusic.fade_out('MainTheme', 'PercussionBass')
 	$MixingDeskMusic.fade_out('MainTheme', 'PercussionMetals')
 	$MixingDeskMusic.fade_out('MainTheme', 'PercussionSlap')
+

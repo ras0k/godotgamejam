@@ -26,4 +26,5 @@ func _on_Options_pressed():
 
 
 func _on_ExitToMenu_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Menu.tscn")
+	get_tree().paused = false
+	get_tree().change_scene("res://Menu.tscn")

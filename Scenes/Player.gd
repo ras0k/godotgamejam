@@ -5,7 +5,7 @@ class_name Player
 
 func _ready() -> void:
 	$HitArea.enabled = false
-	if Global.player:
+	if is_instance_valid(Global.player):
 		$HealthBar.value = Global.player.health
 	else:
 		spawn(max_health)
@@ -53,4 +53,4 @@ func _on_HurtArea_hurt(damage: int) -> void:
 	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
-		
+

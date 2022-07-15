@@ -1,12 +1,23 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Props/RuneRock.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Props/LargeTree.tscn" type="PackedScene" id=4]
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
 
-[node name="Enemy" parent="Enemies" index="0" instance=ExtResource( 1 )]
-position = Vector2( 985, 412 )
+[node name="Enemy" parent="." index="3" instance=ExtResource( 1 )]
+position = Vector2( 384, 430 )
 
-[node name="Enemy2" parent="Enemies" index="1" instance=ExtResource( 1 )]
-position = Vector2( 973, 268 )
+[node name="Enemy2" parent="." index="4" instance=ExtResource( 1 )]
+position = Vector2( 474, 260 )
+
+[node name="LargeTree" parent="." index="5" instance=ExtResource( 4 )]
+position = Vector2( 290, 236 )
+
+[node name="RuneRock" parent="." index="6" instance=ExtResource( 3 )]
+position = Vector2( 506, 554 )
+
+[node name="LargeTree2" parent="." index="7" instance=ExtResource( 4 )]
+position = Vector2( 690, 279 )
