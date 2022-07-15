@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Large_Currupted_Tree.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Large_Tree.png" type="Texture" id=4]
+[ext_resource path="res://Assets/Rune_Rock.png" type="Texture" id=5]
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
 
@@ -10,3 +13,96 @@ position = Vector2( 985, 412 )
 
 [node name="Enemy2" parent="Enemies" index="1" instance=ExtResource( 1 )]
 position = Vector2( 973, 268 )
+
+[node name="Design" type="Node2D" parent="." index="4"]
+
+[node name="LargeCurruptedTree" type="Sprite" parent="Design" index="0"]
+position = Vector2( 96, 545 )
+scale = Vector2( 1.6375, 1.6375 )
+texture = ExtResource( 3 )
+
+[node name="LargeTree" type="Sprite" parent="Design" index="1"]
+position = Vector2( 173.25, 202.75 )
+scale = Vector2( 3.0375, 3.0375 )
+texture = ExtResource( 4 )
+
+[node name="LargeTree2" type="Sprite" parent="Design" index="2"]
+position = Vector2( 296, 417 )
+scale = Vector2( 3.0375, 3.0375 )
+texture = ExtResource( 4 )
+
+[node name="RuneRock" type="Sprite" parent="." index="5"]
+position = Vector2( 536, 51 )
+texture = ExtResource( 5 )
+
+[node name="RuneRock" type="Sprite" parent="RuneRock" index="0"]
+position = Vector2( 161, 1 )
+texture = ExtResource( 5 )
+
+[node name="LargeTree" type="Sprite" parent="." index="6"]
+position = Vector2( 330, 130 )
+scale = Vector2( 2.51667, 2.51667 )
+texture = ExtResource( 4 )
+
+[node name="LargeTree2" type="Sprite" parent="." index="7"]
+position = Vector2( 473, 528 )
+scale = Vector2( 2.61667, 2.61667 )
+texture = ExtResource( 4 )
+
+[node name="LargeCurruptedTree" type="Sprite" parent="." index="8"]
+position = Vector2( 1092, 49 )
+scale = Vector2( 1.7, 1.7 )
+texture = ExtResource( 3 )
+
+[node name="LargeTree3" type="Sprite" parent="." index="9"]
+position = Vector2( 746, 558 )
+scale = Vector2( 2.85, 2.85 )
+texture = ExtResource( 4 )
+
+[node name="LargeTree4" type="Sprite" parent="." index="10"]
+position = Vector2( 478, 282 )
+scale = Vector2( 3.93333, 3.93333 )
+texture = ExtResource( 4 )
+
+[node name="LargeTree5" type="Sprite" parent="." index="11"]
+position = Vector2( 738, 242 )
+scale = Vector2( 3.48333, 3.48333 )
+texture = ExtResource( 4 )
+
+[node name="RuneRock2" type="Sprite" parent="." index="12"]
+position = Vector2( 573, 325 )
+scale = Vector2( 0.783333, 0.783333 )
+texture = ExtResource( 5 )
+
+[node name="RuneRock" type="Sprite" parent="RuneRock2" index="0"]
+position = Vector2( 79.149, 71.4893 )
+texture = ExtResource( 5 )
+
+[node name="RuneRock" type="Sprite" parent="RuneRock2/RuneRock" index="0"]
+position = Vector2( 30.6382, -79.1489 )
+texture = ExtResource( 5 )
+
+[node name="LargeTree6" type="Sprite" parent="." index="13"]
+position = Vector2( 882, 429 )
+scale = Vector2( 2.35, 2.35 )
+texture = ExtResource( 4 )
+
+[node name="LargeTree7" type="Sprite" parent="." index="14"]
+position = Vector2( 933, 167 )
+scale = Vector2( 2.5, 2.5 )
+texture = ExtResource( 4 )
+
+[node name="RuneRock3" type="Sprite" parent="." index="15"]
+position = Vector2( 537, 648 )
+scale = Vector2( 0.633333, 0.633333 )
+texture = ExtResource( 5 )
+
+[node name="RuneRock4" type="Sprite" parent="." index="16"]
+position = Vector2( 1172, 266 )
+scale = Vector2( 0.733333, 0.733333 )
+texture = ExtResource( 5 )
+
+[node name="LargeTree8" type="Sprite" parent="." index="17"]
+position = Vector2( 1080, 386 )
+scale = Vector2( 2.25833, 2.25833 )
+texture = ExtResource( 4 )

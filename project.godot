@@ -68,7 +68,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/mixing-desk/plugin.cfg" )
+enabled=PoolStringArray(  )
 
 [global]
 
