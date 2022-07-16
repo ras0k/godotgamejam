@@ -63,7 +63,7 @@ func enter_room(enter_direction: int) -> void:
 
 	next_room.add_child(Global.player)
 	Global.player.global_position = enter_position
-#	current_room.is_cleared =
+
 	current_room = next_room
 	transition_player.play_backwards('FadeIn')
 	if not current_room.is_cleared:

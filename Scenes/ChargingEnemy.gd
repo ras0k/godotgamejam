@@ -53,7 +53,6 @@ func _on_Timer_timeout():
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
 	if health <= 0:
-		print("Test Enemy Dead")
 		queue_free()
 		emit_signal('enemy_dead')
 

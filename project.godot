@@ -54,6 +54,10 @@ config/name="godotgamejam"
 run/main_scene="res://Menu.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+output_latency.web=60
+
 [autoload]
 
 Global="*res://Global.gd"

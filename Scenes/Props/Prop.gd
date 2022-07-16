@@ -14,7 +14,7 @@ func _ready() -> void:
 func heal() -> void:
 	if is_healed:
 		return
-	$Particles2D.emitting = true
+	$Particles2D.explode()
 	var tw := Tween.new()
 	add_child(tw)
 	$Healed.self_modulate = Color.transparent
