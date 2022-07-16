@@ -76,7 +76,7 @@ enabled=PoolStringArray( "res://addons/mixing-desk/plugin.cfg" )
 
 [global]
 
-show_debug=true
+show_debug=false
 
 [importer_defaults]
 
