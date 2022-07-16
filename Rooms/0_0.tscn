@@ -4,11 +4,8 @@
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Props/LargeTree.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Props/Weeds.tscn" type="PackedScene" id=4]
-<<<<<<< HEAD
 [ext_resource path="res://Scenes/Props/Grass.tscn" type="PackedScene" id=5]
-=======
 [ext_resource path="res://Scenes/Props/Deer.tscn" type="PackedScene" id=5]
->>>>>>> 5173bf459b887477607b68ce59a72d9327e52802
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
 is_cleared = true
@@ -81,7 +78,7 @@ scale = Vector2( 0.571074, -0.571074 )
 position = Vector2( 420, 424 )
 rotation = -3.14159
 scale = Vector2( 0.676339, -0.676339 )
-=======
+
 [node name="Deer" parent="." index="12" instance=ExtResource( 5 )]
 position = Vector2( 569, 369 )
->>>>>>> 5173bf459b887477607b68ce59a72d9327e52802
+
