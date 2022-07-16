@@ -1,5 +1,9 @@
 extends Entity
 
+# Evasive/Ranged enemy
+
+const projectile_scene = preload("res://Scenes/Projectile.tscn")
+
 onready var start_position = global_position
 
 export var flee_range = 180
@@ -12,12 +16,14 @@ var prev_direction = Vector2(0, 0)
 var collision_cooldown = 0
 # attempts to prevent enemies from trying to walk thru obstacles
 var rng = RandomNumberGenerator.new()
+var can_shoot
 
 func _ready():
 #	debug_info.log_radius('aggro_range', aggro_range)
 #	debug_info.log_radius('flee_range', flee_range)
 #	debug_info.log_radius('minimum_attack_range', minimum_attack_range)
 	rng.randomize()
+	can_shoot = true
 	spawn(max_health)
 
 
@@ -25,6 +31,7 @@ signal enemy_dead
 
 
 func _physics_process(delta):
+	$RayCast2D.cast_to = Global.player.global_position - global_position
 	move_direction = direction * speed * delta
 	var collision = move_and_collide(move_direction)
 
@@ -41,6 +48,8 @@ func _on_Timer_timeout():
 	if player_pos.length() <= minimum_attack_range and player_pos.length() >= flee_range:
 		direction = Vector2.ZERO
 		debug_info.log_text('State', 'attack')
+		if can_shoot == true:
+			shoot()
 	elif player_pos.length() <= flee_range:
 		# If player is within range, move away
 		direction = -player_pos.normalized()
@@ -65,6 +74,14 @@ func _on_Timer_timeout():
 	if collision_cooldown > 0:
 		collision_cooldown = collision_cooldown - 1
 
+func shoot():
+	direction = Vector2.ZERO
+	can_shoot = false
+	var projectile = projectile_scene.instance()
+	owner.add_child(projectile)
+	projectile.transform = $HitArea.global_transform
+	$AttackTimer.start(1)
+	debug_info.log_text('State', 'attack')
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
@@ -72,3 +89,7 @@ func _on_HurtArea_hurt(damage: int) -> void:
 	if health <= 0:
 		queue_free()
 		emit_signal('enemy_dead')
+
+
+func _on_AttackTimer_timeout():
+	can_shoot = true

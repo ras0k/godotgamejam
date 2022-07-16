@@ -1,5 +1,8 @@
 extends Entity
 
+# Base Enemy:
+# attack animation will enable and disable attack HitArea. NYI
+
 onready var start_position = global_position
 # maximum range enemy will chase player from
 export var aggro_range = 200
@@ -24,6 +27,7 @@ func _ready():
 
 
 func _physics_process(delta):
+	$HealthBar.value = health
 	move_direction = direction * speed * delta
 	var collision = move_and_collide(move_direction)
 	if collision != null and collision.collider.name != "Player":
@@ -34,7 +38,7 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	if not is_instance_valid(Global.player):
 		return
-	var player_pos = Global.player.position - position
+	var player_pos = Global.player.global_position - global_position
 	#calculate position of player relative to enemey
 	if player_pos.length() <= minimum_attack_range:
 		# enemy turn to face when close
@@ -49,7 +53,7 @@ func _on_Timer_timeout():
 	elif collision_cooldown == 0:
 		debug_info.log_text('State', 'wander')
 		# pseudorandomly choose movement direction when not engaged with player
-		var wander_pos = start_position - position
+		var wander_pos = start_position - global_position
 		var direction_chooser = rng.randf()
 		if wander_pos.length() >= wander_range:
 			direction = wander_pos.normalized()
@@ -65,7 +69,8 @@ func _on_Timer_timeout():
 
 func _on_HurtArea_hurt(damage: int) -> void:
 	health -= damage
-	$HealthBar.value = health
 	if health <= 0:
 		queue_free()
 		emit_signal('enemy_dead')
+
+
