@@ -9,7 +9,7 @@ animation = "WalkDown"
 animation = "Idle"
 
 [sub_resource type="AnimationNodeAnimation" id=15]
-animation = "WalkLeft"
+animation = "WalkSide"
 
 [sub_resource type="AnimationNodeTransition" id=10]
 input_count = 5
@@ -25,13 +25,13 @@ input_4/name = "Left"
 input_4/auto_advance = false
 
 [sub_resource type="AnimationNodeAnimation" id=12]
-animation = "WalkRight"
+animation = "WalkSide"
 
 [sub_resource type="AnimationNodeAnimation" id=11]
 animation = "WalkUp"
 
 [resource]
-graph_offset = Vector2( -850.832, 123.75 )
+graph_offset = Vector2( -380, 439.333 )
 nodes/attack/node = SubResource( 14 )
 nodes/attack/position = Vector2( 340, 170 )
 nodes/down/node = SubResource( 8 )
