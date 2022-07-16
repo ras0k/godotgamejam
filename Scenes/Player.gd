@@ -26,7 +26,8 @@ func _physics_process(_delta: float) -> void:
 		attack_melee()
 		
 	if Input.is_action_pressed('dash'):
-		dash()
+		if move_direction.length() > 0.1:
+			dash()
 	
 	if $DashDuration.time_left == 0:
 		debug_info.log_text('Dashing', 'false')
