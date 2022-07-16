@@ -24,17 +24,7 @@ func _physics_process(_delta: float) -> void:
 
 	if Input.is_action_pressed('attack'):
 		attack_melee()
-		
-	if Input.is_action_pressed('dash'):
-		dash()
-	
-	if $DashDuration.time_left == 0:
-		debug_info.log_text('Dashing', 'false')
-		$Sprite.self_modulate = Color(1,1,1,1)
-		speed = 100
-		
-	if speed > 200:
-		$Sprite.self_modulate = Color(2.85,1.99,2.42,0.47)		
+
 
 func _process(delta: float) -> void:
 	$Dust.emitting = move_direction.length() > .1
@@ -64,12 +54,3 @@ func _on_HurtArea_hurt(damage: int) -> void:
 	if health <= 0:
 		queue_free()
 
-func dash() -> void:
-	if $DashCooldown.time_left > 0:
-		return
-	
-	else:
-		$DashDuration.start()
-		$DashCooldown.start()
-		speed = 250
-		debug_info.log_text('Dashing', 'true') 

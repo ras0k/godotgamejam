@@ -32,10 +32,10 @@ func _physics_process(_delta: float) -> void:
 	if move_direction.length() < 0.1:
 		animate_entity_movement(movement_states.IDLE)
 		debug_info.log_text('Move', 'idle')
-	elif move_direction.dot(Vector2.UP) > .6:
+	elif move_direction.dot(Vector2.UP) > .5:
 		animate_entity_movement(movement_states.UP)
 		debug_info.log_text('Move', 'up')
-	elif move_direction.dot(Vector2.DOWN) > .6:
+	elif move_direction.dot(Vector2.DOWN) > .5:
 		animate_entity_movement(movement_states.DOWN)
 		debug_info.log_text('Move', 'down')
 	elif move_direction.dot(Vector2.LEFT) > .6:
@@ -47,12 +47,6 @@ func _physics_process(_delta: float) -> void:
 
 
 func animate_entity_movement(state: int):
-	if state == movement_states.LEFT: # moving left is just moving right, but flipped
-		sprite.flip_h = true;
-		state = movement_states.RIGHT
-	else:
-		sprite.flip_h = false
-
 	animation_tree.set('parameters/movement/current', state)
 
 

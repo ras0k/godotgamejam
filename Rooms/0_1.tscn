@@ -15,7 +15,7 @@ position = Vector2( 471, 418 )
 [node name="EvasiveEnemy2" parent="." index="4" instance=ExtResource( 3 )]
 position = Vector2( 403, 513 )
 
-[node name="Beetle" parent="." index="5" instance=ExtResource( 1 )]
+[node name="Enemy" parent="." index="5" instance=ExtResource( 1 )]
 position = Vector2( 226, 257 )
 
 [node name="Enemy2" parent="." index="6" instance=ExtResource( 1 )]
