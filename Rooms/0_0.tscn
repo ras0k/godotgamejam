@@ -46,4 +46,4 @@ position = Vector2( 1020, 564 )
 is_healed = true
 
 [node name="Deer" parent="." index="12" instance=ExtResource( 5 )]
-position = Vector2( 559, 363 )
+position = Vector2( 569, 369 )
