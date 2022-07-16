@@ -8,8 +8,10 @@ scale = Vector2( 2, 2 )
 script = ExtResource( 4 )
 
 [node name="Healed" type="Sprite" parent="."]
+flip_h = true
 
 [node name="Corrupted" type="Sprite" parent="."]
+position = Vector2( -34.5, -32.5 )
 
 [node name="Particles2D" parent="." instance=ExtResource( 3 )]
 emitting = false
