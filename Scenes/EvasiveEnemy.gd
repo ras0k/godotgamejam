@@ -17,6 +17,7 @@ var collision_cooldown = 0
 # attempts to prevent enemies from trying to walk thru obstacles
 var rng = RandomNumberGenerator.new()
 var can_shoot
+var player_pos
 
 func _ready():
 #	debug_info.log_radius('aggro_range', aggro_range)
@@ -31,7 +32,6 @@ signal enemy_dead
 
 
 func _physics_process(delta):
-	$RayCast2D.cast_to = Global.player.global_position - global_position
 	move_direction = direction * speed * delta
 	var collision = move_and_collide(move_direction)
 
@@ -43,7 +43,7 @@ func _physics_process(delta):
 func _on_Timer_timeout():
 	if not is_instance_valid(Global.player):
 		return
-	var player_pos = Global.player.position - position
+	player_pos = Global.player.position - position
 	# calculate position of player relative to enemey
 	if player_pos.length() <= minimum_attack_range and player_pos.length() >= flee_range:
 		direction = Vector2.ZERO
@@ -79,6 +79,7 @@ func shoot():
 	can_shoot = false
 	var projectile = projectile_scene.instance()
 	owner.add_child(projectile)
+	projectile.target = player_pos
 	projectile.transform = $HitArea.global_transform
 	$AttackTimer.start(1)
 	debug_info.log_text('State', 'attack')

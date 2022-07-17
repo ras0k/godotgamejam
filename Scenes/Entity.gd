@@ -47,11 +47,11 @@ func _physics_process(_delta: float) -> void:
 
 
 func animate_entity_movement(state: int):
-	if state == movement_states.LEFT: # moving left is just moving right, but flipped
-		sprite.flip_h = true;
-		state = movement_states.RIGHT
-	else:
-		sprite.flip_h = false
+#	if state == movement_states.LEFT: # moving left is just moving right, but flipped
+#		sprite.flip_h = true;
+#		state = movement_states.RIGHT
+#	else:
+#		sprite.flip_h = false
 
 	animation_tree.set('parameters/movement/current', state)
 
