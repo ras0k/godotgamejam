@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/DungeonRoom.tscn" type="PackedScene" id=2]
@@ -7,8 +7,12 @@
 [ext_resource path="res://Scenes/Props/LargeTree.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Props/Weeds.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Assets/Weeds.png" type="Texture" id=7]
+[ext_resource path="res://Assets/background-1.png" type="Texture" id=8]
 
 [node name="DungeonRoom" instance=ExtResource( 2 )]
+
+[node name="Ground" parent="." index="0"]
+z_index = -34
 
 [node name="EvasiveEnemy" parent="." index="3" instance=ExtResource( 3 )]
 position = Vector2( 471, 418 )
@@ -140,3 +144,16 @@ flip_h = true
 position = Vector2( 894.5, 227.5 )
 scale = Vector2( 0.609375, 0.609375 )
 texture = ExtResource( 7 )
+
+[node name="Sprite" type="StaticBody2D" parent="." index="37"]
+position = Vector2( 616, 362 )
+z_index = -7
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Sprite" index="0"]
+polygon = PoolVector2Array( -630, -49, -506, -51, -338, -210, -66, -68, -4, -102, 141, -67, 261, -137, 80, -186, -5, -271, 154, -295, 270, -228, 479, -214, 409, -66, 672, -69, 678, -434, -705, -419, -679, -57 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Sprite" index="1"]
+polygon = PoolVector2Array( -615, 60, -573, 59, -502, 147, -509, 241, -456, 251, -374, 188, -335, 217, -345, 278, -155, 317, -103, 361, -66, 349, -66, 508, 104, 505, 105, 344, 189, 275, 467, 252, 522, 224, 536, 106, 619, 46, 886, 46, 745, 598, -619, 582, -755, 224 )
+
+[node name="Sprite" type="Sprite" parent="Sprite" index="2"]
+texture = ExtResource( 8 )
