@@ -17,13 +17,13 @@ position = Vector2( 384, 430 )
 position = Vector2( 474, 260 )
 
 [node name="LargeTree" parent="." index="5" instance=ExtResource( 4 )]
-position = Vector2( 290, 236 )
+position = Vector2( 279, 251 )
 
 [node name="RuneRock" parent="." index="6" instance=ExtResource( 3 )]
 position = Vector2( 506, 554 )
 
 [node name="LargeTree2" parent="." index="7" instance=ExtResource( 4 )]
-position = Vector2( 442, 176 )
+position = Vector2( 456, 159 )
 
 [node name="Weeds" parent="." index="8" instance=ExtResource( 5 )]
 position = Vector2( 733, 499 )
@@ -50,11 +50,91 @@ scale = Vector2( 0.453125, 0.453125 )
 texture = ExtResource( 6 )
 
 [node name="WeedsCorrupted" type="Sprite" parent="." index="14"]
-position = Vector2( 404, 196 )
+position = Vector2( 412, 180 )
 scale = Vector2( 0.25, 0.25 )
 texture = ExtResource( 7 )
 
 [node name="Weeds7" type="Sprite" parent="." index="15"]
-position = Vector2( 491, 188 )
+position = Vector2( 500, 183 )
+scale = Vector2( 0.4375, 0.4375 )
+texture = ExtResource( 6 )
+
+[node name="Weeds8" parent="." index="16" instance=ExtResource( 5 )]
+position = Vector2( 45, 615 )
+scale = Vector2( 1.00176, 1.00176 )
+
+[node name="Weeds9" parent="." index="17" instance=ExtResource( 5 )]
+position = Vector2( 124, 677 )
+scale = Vector2( 1.06412, 1.06412 )
+
+[node name="Weeds10" parent="." index="18" instance=ExtResource( 5 )]
+position = Vector2( 47, 95 )
+scale = Vector2( 1.15999, 1.15999 )
+
+[node name="Weeds11" parent="." index="19" instance=ExtResource( 5 )]
+position = Vector2( 247, 484 )
+scale = Vector2( 1.02807, 1.02807 )
+
+[node name="RuneRock2" parent="." index="20" instance=ExtResource( 3 )]
+position = Vector2( 1052, 158 )
+
+[node name="LargeTree3" parent="." index="21" instance=ExtResource( 4 )]
+position = Vector2( 994, 147 )
+
+[node name="LargeTree4" parent="." index="22" instance=ExtResource( 4 )]
+position = Vector2( 841, 610 )
+
+[node name="LargeTree5" parent="." index="23" instance=ExtResource( 4 )]
+position = Vector2( 172, 581 )
+
+[node name="LargeTree6" parent="." index="24" instance=ExtResource( 4 )]
+position = Vector2( 744, 304 )
+
+[node name="Weeds12" parent="." index="25" instance=ExtResource( 5 )]
+position = Vector2( 1088, 197 )
+scale = Vector2( 0.904718, 0.904718 )
+
+[node name="Weeds13" parent="." index="26" instance=ExtResource( 5 )]
+position = Vector2( 930, 181 )
+scale = Vector2( 0.885464, 0.885464 )
+
+[node name="Weeds14" parent="." index="27" instance=ExtResource( 5 )]
+position = Vector2( 208, 287 )
+scale = Vector2( 1.00718, 1.00718 )
+
+[node name="Weeds15" parent="." index="28" instance=ExtResource( 5 )]
+position = Vector2( 695, 162 )
+scale = Vector2( 0.948872, 0.948872 )
+
+[node name="Weeds16" type="Sprite" parent="." index="29"]
+position = Vector2( 222.5, 604.5 )
+scale = Vector2( 0.546875, 0.546875 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="WeedsCorrupted2" type="Sprite" parent="." index="30"]
+position = Vector2( 82, 536 )
+scale = Vector2( 0.289063, 0.289063 )
+texture = ExtResource( 7 )
+
+[node name="Weeds17" type="Sprite" parent="." index="31"]
+position = Vector2( 147.875, 194.125 )
+scale = Vector2( 0.316407, 0.316407 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="Weeds18" type="Sprite" parent="." index="32"]
+position = Vector2( 792, 626 )
+scale = Vector2( 0.3125, 0.3125 )
+texture = ExtResource( 6 )
+flip_h = true
+
+[node name="Weeds19" type="Sprite" parent="." index="33"]
+position = Vector2( 601, 274 )
+scale = Vector2( 0.4375, 0.4375 )
+texture = ExtResource( 6 )
+
+[node name="Weeds20" type="Sprite" parent="." index="34"]
+position = Vector2( 700, 319 )
 scale = Vector2( 0.4375, 0.4375 )
 texture = ExtResource( 6 )
