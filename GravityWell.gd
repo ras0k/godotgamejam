@@ -2,7 +2,7 @@ extends Area2D
 
 onready var ship = get_parent().get_node("Ship")
 
-export var attraction_force = 1
+export var attraction_force = 0.02
 export(float) var debug_scale
 
 var affected_bodies = []

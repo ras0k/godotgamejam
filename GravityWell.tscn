@@ -3,6 +3,7 @@
 [ext_resource path="res://GravityWell.gd" type="Script" id=1]
 
 [sub_resource type="CircleShape2D" id=1]
+radius = 48.0
 
 [node name="GravityWell" type="Area2D"]
 script = ExtResource( 1 )

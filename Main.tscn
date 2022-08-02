@@ -6,19 +6,9 @@
 [node name="Main" type="Node2D"]
 
 [node name="Ship" parent="." instance=ExtResource( 2 )]
-position = Vector2( 1, 11 )
+position = Vector2( 19, 25 )
 z_index = 1
 
-[node name="GravityWell" parent="." instance=ExtResource( 3 )]
-position = Vector2( 13, 11 )
-attraction_force = 3
-debug_scale = 1.0
-
-[node name="GravityWell2" parent="." instance=ExtResource( 3 )]
-position = Vector2( 15, 48 )
-attraction_force = 2
-debug_scale = 1.0
-
 [node name="GravityWell3" parent="." instance=ExtResource( 3 )]
-position = Vector2( 47, 20 )
+position = Vector2( 32, 28 )
 debug_scale = 1.0
