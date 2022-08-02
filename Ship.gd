@@ -14,9 +14,9 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("forward"):
-		velocity.y = velocity.y - 1.0
-	if Input.is_action_just_pressed("break"):
-		velocity.y = velocity.y + 1.0
+		velocity += Vector2(cos(deg2rad(-shipAngle)),sin(deg2rad(-shipAngle)))
+	if Input.is_action_pressed("break"):
+		velocity *= 0.95
 	if Input.is_action_just_pressed("left"):
 		turn_ship(30)
 	if Input.is_action_just_pressed("right"):
