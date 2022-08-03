@@ -155,71 +155,55 @@ hframes = 16
 frame = 4
 
 [node name="FlameSprite" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 4, 61 )
+position = Vector2( 3.5, 61.5 )
 frames = SubResource( 11 )
 animation = "0"
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite2" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 6, 61 )
+position = Vector2( 5.5, 61.5 )
 frames = SubResource( 11 )
 animation = "0"
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite3" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 3, 60 )
+position = Vector2( 2.5, 60.5 )
 frames = SubResource( 11 )
 animation = "0"
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite4" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 3, 58 )
+position = Vector2( 2.5, 58.5 )
 frames = SubResource( 11 )
 animation = "0"
 frame = 5
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite5" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 4, 57 )
+position = Vector2( 3.5, 57.5 )
 frames = SubResource( 11 )
 animation = "0"
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite6" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 6, 57 )
+position = Vector2( 5.5, 57.5 )
 frames = SubResource( 11 )
 animation = "0"
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite7" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 7, 58 )
+position = Vector2( 6.5, 58.5 )
 frames = SubResource( 11 )
 animation = "0"
 frame = 5
 speed_scale = 2.5
-playing = true
 
 [node name="FlameSprite8" type="AnimatedSprite" parent="UI"]
-visible = false
-position = Vector2( 7, 60 )
+position = Vector2( 6.5, 60.5 )
 frames = SubResource( 11 )
 animation = "0"
 frame = 4
 speed_scale = 2.5
-playing = true
 
 [node name="SpeedMeter" type="TextureProgress" parent="UI"]
 margin_left = 38.0
