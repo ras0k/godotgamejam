@@ -4,7 +4,7 @@ extends RigidBody2D
 var maxFuel:float = 2000.0
 var fuel:float = 1200.0
 var velocity = Vector2()
-export var speed:int = 1
+export var speed:int = 2
 export var spin_thrust = 6
 var shipAngle:int = 0
 var rotation_dir = 0
