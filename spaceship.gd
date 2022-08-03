@@ -1,6 +1,8 @@
 extends RigidBody2D
 
 
+var maxFuel:float = 1000.0
+var fuel:float = 250
 var velocity = Vector2()
 var speed:int = 5
 var shipAngle:int = 0
@@ -10,14 +12,17 @@ func _ready():
 	pass # Replace with function body.
 
 func _physics_process(delta):
-	if Input.is_action_pressed("forward"):
+	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = speed * Vector2(cos(deg2rad(-shipAngle)),sin(deg2rad(-shipAngle)))
+		fuel = fuel - 1.0
 	else:
 		velocity = Vector2()
-	if Input.is_action_pressed("left"):
+	if Input.is_action_pressed("left") and fuel > 0.0:
 		turn_ship(3)
-	if Input.is_action_pressed("right"):
+		fuel = fuel - 0.5
+	if Input.is_action_pressed("right") and fuel > 0.0:
 		turn_ship(-3)
+		fuel = fuel - 0.5
 	
 	applied_force = velocity
 

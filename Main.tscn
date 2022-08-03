@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://spaceship.gd" type="Script" id=1]
 [ext_resource path="res://sol.png" type="Texture" id=2]
 [ext_resource path="res://background.png" type="Texture" id=3]
 [ext_resource path="res://spaceship.png" type="Texture" id=4]
+[ext_resource path="res://FuelBar.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 1 )
@@ -54,3 +55,15 @@ texture = ExtResource( 2 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 visible = false
 shape = SubResource( 1 )
+
+[node name="FuelBar" type="ProgressBar" parent="."]
+margin_left = 18.0
+margin_top = 61.0
+margin_right = 298.0
+margin_bottom = 75.0
+rect_scale = Vector2( 0.1, 0.1 )
+max_value = 1000.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
