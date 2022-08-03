@@ -73,7 +73,7 @@ __meta__ = {
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Spaceship"]
 modulate = Color( 0.34902, 0.729412, 0.87451, 0.152941 )
-amount = 120
+amount = 240
 lifetime = 12.0
 local_coords = false
 direction = Vector2( 2, 0 )
@@ -100,12 +100,10 @@ limit_bottom = 128
 script = ExtResource( 10 )
 
 [node name="ui" type="Sprite" parent="UI"]
-visible = false
 position = Vector2( 32, 58 )
 texture = ExtResource( 9 )
 
 [node name="FuelBar" type="ProgressBar" parent="UI"]
-visible = false
 modulate = Color( 83.41, 3.44, 0.05, 1 )
 margin_left = 12.0
 margin_top = 62.0
@@ -118,7 +116,6 @@ percent_visible = false
 script = ExtResource( 5 )
 
 [node name="compassSprite" type="Sprite" parent="UI"]
-visible = false
 position = Vector2( 4, 60 )
 texture = ExtResource( 11 )
 hframes = 16
@@ -129,7 +126,7 @@ visible = false
 position = Vector2( 4, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -138,7 +135,7 @@ visible = false
 position = Vector2( 6, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -147,7 +144,7 @@ visible = false
 position = Vector2( 3, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -156,7 +153,7 @@ visible = false
 position = Vector2( 3, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 3
 speed_scale = 2.5
 playing = true
 
@@ -165,7 +162,7 @@ visible = false
 position = Vector2( 4, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -174,7 +171,7 @@ visible = false
 position = Vector2( 6, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -183,7 +180,7 @@ visible = false
 position = Vector2( 7, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 3
 speed_scale = 2.5
 playing = true
 
@@ -192,6 +189,7 @@ visible = false
 position = Vector2( 7, 60 )
 frames = SubResource( 11 )
 animation = "0"
+frame = 2
 speed_scale = 2.5
 playing = true
 
