@@ -57,7 +57,7 @@ animations = [ {
 extents = Vector2( 1, 1 )
 
 [sub_resource type="CircleShape2D" id=13]
-radius = 2.0
+radius = 3.0
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0074813, 0.112219 )
@@ -154,7 +154,7 @@ visible = false
 position = Vector2( 4, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -163,7 +163,7 @@ visible = false
 position = Vector2( 6, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -172,7 +172,7 @@ visible = false
 position = Vector2( 3, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -181,6 +181,7 @@ visible = false
 position = Vector2( 3, 58 )
 frames = SubResource( 11 )
 animation = "0"
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -189,7 +190,7 @@ visible = false
 position = Vector2( 4, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -198,7 +199,7 @@ visible = false
 position = Vector2( 6, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -207,6 +208,7 @@ visible = false
 position = Vector2( 7, 58 )
 frames = SubResource( 11 )
 animation = "0"
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -215,7 +217,6 @@ visible = false
 position = Vector2( 7, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 5
 speed_scale = 2.5
 playing = true
 
