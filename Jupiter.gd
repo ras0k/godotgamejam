@@ -17,14 +17,20 @@ func _on_Jupiter_body_entered(body):
 		print(relativeSpeed)
 		print(relativeSpeed.length())
 		if relativeSpeed.length() > 3.0:
-			get_tree().reload_current_scene()
-		
+			if player.crashCounter == 0:
+				get_node("/root/Main/Spaceship/ExplosionSprite").frame = 0
+				get_node("/root/Main/Spaceship/ShipSprite").visible = false
+				player.crashCounter += 1
+
 
 func _process(_delta):
 		shipSpeed = player.linear_velocity
 		planetSpeed = get_node("/root/Main/JupiterBody").linear_velocity
 		relativeSpeed = planetSpeed - shipSpeed
-
+		if player.crashCounter > 0 :
+			player.crashCounter += 1
+		if player.crashCounter > 200:
+				get_tree().reload_current_scene()
 
 func _on_Jupiter_body_exited(body):
 	player.landed = false

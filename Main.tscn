@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://stars/red_supergiant.png" type="Texture" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://Jupiter.gd" type="Script" id=17]
 [ext_resource path="res://Main.gd" type="Script" id=18]
 [ext_resource path="res://rainbowBar.png" type="Texture" id=19]
+[ext_resource path="res://ship/explosion.png" type="Texture" id=20]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
@@ -65,6 +66,54 @@ colors = PoolColorArray( 0.109804, 0.635294, 0.819608, 0.262745, 0.333333, 0.709
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 0.5, 0.5 )
 
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 20 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 20 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 20 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 20 )
+region = Rect2( 40, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 20 )
+region = Rect2( 50, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 20 )
+region = Rect2( 60, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 20 )
+region = Rect2( 70, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 20 )
+region = Rect2( 80, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 20 )
+region = Rect2( 90, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"loop": false,
+"name": "New Anim",
+"speed": 12.0
+} ]
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 154.117
 
@@ -105,7 +154,7 @@ visible = false
 position = Vector2( 4, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -114,7 +163,7 @@ visible = false
 position = Vector2( 6, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -123,7 +172,7 @@ visible = false
 position = Vector2( 3, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -132,7 +181,6 @@ visible = false
 position = Vector2( 3, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -141,7 +189,7 @@ visible = false
 position = Vector2( 4, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -150,7 +198,7 @@ visible = false
 position = Vector2( 6, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -159,7 +207,6 @@ visible = false
 position = Vector2( 7, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
 speed_scale = 2.5
 playing = true
 
@@ -168,6 +215,7 @@ visible = false
 position = Vector2( 7, 60 )
 frames = SubResource( 11 )
 animation = "0"
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -265,6 +313,12 @@ limit_left = 0
 limit_top = 0
 limit_right = 128
 limit_bottom = 128
+
+[node name="ExplosionSprite" type="AnimatedSprite" parent="Spaceship"]
+frames = SubResource( 23 )
+animation = "New Anim"
+frame = 9
+playing = true
 
 [node name="Sol" type="Area2D" parent="."]
 position = Vector2( 55, 55 )
