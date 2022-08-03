@@ -1,6 +1,6 @@
 extends ProgressBar
 
-onready var player = get_parent().get_node("spaceship")
+onready var player = get_parent().get_node("Spaceship")
 
 func ready():
 	max_value = player.maxFuel

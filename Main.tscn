@@ -1,14 +1,48 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://stars/sol.png" type="Texture" id=2]
 [ext_resource path="res://background.png" type="Texture" id=3]
-[ext_resource path="res://ship/spaceship.png" type="Texture" id=4]
-[ext_resource path="res://planets/earth.png" type="Texture" id=5]
+[ext_resource path="res://ship/spaceship_2px.png" type="Texture" id=4]
+[ext_resource path="res://FuelBar.gd" type="Script" id=5]
 [ext_resource path="res://planets/Earth.gd" type="Script" id=6]
+[ext_resource path="res://ship/flame.png" type="Texture" id=7]
+[ext_resource path="res://planets/earth.png" type="Texture" id=8]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 1 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 1, 0, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 7 )
+region = Rect2( 2, 0, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=8]
+atlas = ExtResource( 7 )
+region = Rect2( 3, 0, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=9]
+atlas = ExtResource( 7 )
+region = Rect2( 4, 0, 1, 1 )
+
+[sub_resource type="AtlasTexture" id=10]
+atlas = ExtResource( 7 )
+region = Rect2( 5, 0, 1, 1 )
+
+[sub_resource type="SpriteFrames" id=11]
+animations = [ {
+"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 49.0
@@ -18,67 +52,77 @@ extents = Vector2( 1, 1 )
 
 [node name="Main" type="Node2D"]
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="bg" type="Sprite" parent="."]
 position = Vector2( 32, 32 )
 texture = ExtResource( 3 )
 
-[node name="spaceship" type="RigidBody2D" parent="."]
-position = Vector2( 14, 7 )
+[node name="Spaceship" type="RigidBody2D" parent="."]
+position = Vector2( 6, 28 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="ShipSprite" type="Sprite" parent="spaceship"]
+[node name="ShipSprite" type="Sprite" parent="Spaceship"]
 texture = ExtResource( 4 )
-hframes = 4
-frame = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="spaceship"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
 visible = false
 shape = SubResource( 2 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="spaceship"]
-modulate = Color( 0.529412, 0.635294, 0.65098, 0.635294 )
-amount = 5
-lifetime = 2.0
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Spaceship"]
+modulate = Color( 0.537255, 0.831373, 0.87451, 0.635294 )
+amount = 12
+lifetime = 12.0
 local_coords = false
 direction = Vector2( 2, 0 )
 spread = 45.1
 gravity = Vector2( 0, 0 )
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="FlameSprite" type="AnimatedSprite" parent="Spaceship"]
+visible = false
+position = Vector2( 0, 2 )
+frames = SubResource( 11 )
+frame = 4
+speed_scale = 2.5
+playing = true
+
+[node name="Sol" type="Area2D" parent="."]
 position = Vector2( 32, 28 )
 space_override = 3
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
-gravity = 10.0
+gravity = 5.0
 linear_damp = 0.0
 angular_damp = 0.0
 
-[node name="Sprite" type="Sprite" parent="Area2D"]
+[node name="Sprite" type="Sprite" parent="Sol"]
 texture = ExtResource( 2 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
 visible = false
 shape = SubResource( 1 )
 
 [node name="FuelBar" type="ProgressBar" parent="."]
+modulate = Color( 83.41, 3.44, 0.05, 1 )
 margin_left = 18.0
 margin_top = 61.0
 margin_right = 298.0
 margin_bottom = 75.0
 rect_scale = Vector2( 0.1, 0.1 )
 max_value = 1000.0
+value = 500.0
+percent_visible = false
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Earth" type="RigidBody2D" parent="."]
 position = Vector2( 51, 28 )
-mass = 10.0
+mass = 5.0
 script = ExtResource( 6 )
 
 [node name="Sprite" type="Sprite" parent="Earth"]
-texture = ExtResource( 5 )
+position = Vector2( -2, 0 )
+texture = ExtResource( 8 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Earth"]
 visible = false
