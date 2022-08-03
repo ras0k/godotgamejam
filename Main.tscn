@@ -56,14 +56,14 @@ animations = [ {
 extents = Vector2( 1, 1 )
 
 [sub_resource type="CircleShape2D" id=13]
-radius = 3.16228
+radius = 2.0
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0074813, 0.112219 )
 colors = PoolColorArray( 0.109804, 0.635294, 0.819608, 0.262745, 0.333333, 0.709804, 0.815686, 0.117647 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 3, 1 )
+extents = Vector2( 0.5, 0.5 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 154.117
@@ -105,7 +105,7 @@ visible = false
 position = Vector2( 4, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 3
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -114,7 +114,7 @@ visible = false
 position = Vector2( 6, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 3
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -123,7 +123,7 @@ visible = false
 position = Vector2( 3, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 3
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -132,7 +132,7 @@ visible = false
 position = Vector2( 3, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -141,7 +141,7 @@ visible = false
 position = Vector2( 4, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 3
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -150,7 +150,7 @@ visible = false
 position = Vector2( 6, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 3
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -159,7 +159,7 @@ visible = false
 position = Vector2( 7, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -168,7 +168,7 @@ visible = false
 position = Vector2( 7, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 3
 speed_scale = 2.5
 playing = true
 
@@ -216,7 +216,6 @@ __meta__ = {
 texture = ExtResource( 12 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JupiterBody"]
-visible = false
 shape = SubResource( 12 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="JupiterBody"]
@@ -243,9 +242,6 @@ shape = SubResource( 13 )
 position = Vector2( 17, -5 )
 angular_damp = 100.0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Spaceship"]
 amount = 240
@@ -262,7 +258,6 @@ texture = ExtResource( 4 )
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
-visible = false
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="Spaceship"]
@@ -303,3 +298,4 @@ visible = false
 shape = SubResource( 1 )
 
 [connection signal="body_entered" from="JupiterBody/Jupiter" to="JupiterBody/Jupiter" method="_on_Jupiter_body_entered"]
+[connection signal="body_exited" from="JupiterBody/Jupiter" to="JupiterBody/Jupiter" method="_on_Jupiter_body_exited"]

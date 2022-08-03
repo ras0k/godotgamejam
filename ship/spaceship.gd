@@ -8,6 +8,7 @@ export var speed:int = 1
 export var spin_thrust = 6
 var shipAngle:int = 0
 var rotation_dir = 0
+var landed = false
 export var flames_on = false
 onready var compass = get_node("/root/Main/UI/compassSprite")
 
@@ -26,15 +27,9 @@ func _physics_process(delta):
 	else:
 		velocity = Vector2()
 		flames_on = false
-#		$FlameSprite.visible = false
-		
-#	rotation_dir = 0
-#	if Input.is_action_pressed("right") and fuel > 0.0:
-#		rotation_dir += 1
-#		fuel -= 0.3
-#	if Input.is_action_pressed("left") and fuel > 0.0:
-#		rotation_dir -= 1
-#		fuel -= 0.3
+
+		if fuel > maxFuel:
+			fuel = maxFuel
 	
 	if Input.is_action_pressed("left") and fuel > 0.0:
 		turn_ship(1)
@@ -45,6 +40,14 @@ func _physics_process(delta):
 	
 	applied_force = velocity
 	rotation = 0
+	
+	if landed == true:
+		fuel += 0.6
+		$CPUParticles2D.emitting = false
+	if landed == false and fuel < 1:
+		get_tree().reload_current_scene()
+	elif landed == false: 
+		$CPUParticles2D.emitting = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func turn_ship(a):
