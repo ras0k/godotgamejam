@@ -1,13 +1,21 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
-[ext_resource path="res://stars/sol.png" type="Texture" id=2]
-[ext_resource path="res://background.png" type="Texture" id=3]
+[ext_resource path="res://stars/red_supergiant.png" type="Texture" id=2]
+[ext_resource path="res://background_128.png" type="Texture" id=3]
 [ext_resource path="res://ship/spaceship_2px.png" type="Texture" id=4]
 [ext_resource path="res://FuelBar.gd" type="Script" id=5]
-[ext_resource path="res://planets/Earth.gd" type="Script" id=6]
+[ext_resource path="res://planets/earth.png" type="Texture" id=6]
 [ext_resource path="res://ship/flame.png" type="Texture" id=7]
-[ext_resource path="res://planets/earth.png" type="Texture" id=8]
+[ext_resource path="res://Earth.gd" type="Script" id=8]
+[ext_resource path="res://UI.png" type="Texture" id=9]
+[ext_resource path="res://UI.gd" type="Script" id=10]
+[ext_resource path="res://ship/sheep_cropped.png" type="Texture" id=11]
+[ext_resource path="res://planets/jupiter.png" type="Texture" id=12]
+[ext_resource path="res://Jupiter.gd" type="Script" id=13]
+[ext_resource path="res://Sol.gd" type="Script" id=14]
+[ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=15]
+[ext_resource path="res://stars/sol.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 3, 1 )
@@ -40,90 +48,206 @@ region = Rect2( 5, 0, 1, 1 )
 animations = [ {
 "frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
 "loop": true,
-"name": "default",
+"name": "0",
 "speed": 5.0
 } ]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 49.0
-
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 1, 1 )
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 154.117
 
 [node name="Main" type="Node2D"]
 
 [node name="bg" type="Sprite" parent="."]
-position = Vector2( 32, 32 )
+position = Vector2( 64, 64 )
 texture = ExtResource( 3 )
 
 [node name="Spaceship" type="RigidBody2D" parent="."]
-position = Vector2( 6, 28 )
+position = Vector2( 17, -5 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="ShipSprite" type="Sprite" parent="Spaceship"]
-texture = ExtResource( 4 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
-visible = false
-shape = SubResource( 2 )
-
 [node name="CPUParticles2D" type="CPUParticles2D" parent="Spaceship"]
-modulate = Color( 0.537255, 0.831373, 0.87451, 0.635294 )
-amount = 12
+modulate = Color( 0.34902, 0.729412, 0.87451, 0.152941 )
+amount = 120
 lifetime = 12.0
 local_coords = false
 direction = Vector2( 2, 0 )
 spread = 45.1
 gravity = Vector2( 0, 0 )
 
-[node name="FlameSprite" type="AnimatedSprite" parent="Spaceship"]
+[node name="ShipSprite" type="Sprite" parent="Spaceship"]
+modulate = Color( 1, 0.12549, 0.12549, 1 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
 visible = false
-position = Vector2( 0, 2 )
-frames = SubResource( 11 )
-frame = 4
-speed_scale = 2.5
-playing = true
+shape = SubResource( 2 )
 
-[node name="Sol" type="Area2D" parent="."]
-position = Vector2( 32, 28 )
-space_override = 3
-gravity_point = true
-gravity_vec = Vector2( 0, 0 )
-gravity = 5.0
-linear_damp = 0.0
-angular_damp = 0.0
+[node name="Camera2D" type="Camera2D" parent="Spaceship"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 128
+limit_bottom = 128
 
-[node name="Sprite" type="Sprite" parent="Sol"]
-texture = ExtResource( 2 )
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 10 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
+[node name="ui" type="Sprite" parent="UI"]
 visible = false
-shape = SubResource( 1 )
+position = Vector2( 32, 58 )
+texture = ExtResource( 9 )
 
-[node name="FuelBar" type="ProgressBar" parent="."]
+[node name="FuelBar" type="ProgressBar" parent="UI"]
+visible = false
 modulate = Color( 83.41, 3.44, 0.05, 1 )
-margin_left = 18.0
-margin_top = 61.0
-margin_right = 298.0
-margin_bottom = 75.0
+margin_left = 12.0
+margin_top = 62.0
+margin_right = 262.0
+margin_bottom = 72.0
 rect_scale = Vector2( 0.1, 0.1 )
 max_value = 1000.0
 value = 500.0
 percent_visible = false
 script = ExtResource( 5 )
 
+[node name="compassSprite" type="Sprite" parent="UI"]
+visible = false
+position = Vector2( 4, 60 )
+texture = ExtResource( 11 )
+hframes = 16
+frame = 4
+
+[node name="FlameSprite" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 4, 61 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 2
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite2" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 6, 61 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 2
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite3" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 3, 60 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 2
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite4" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 3, 58 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 1
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite5" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 4, 57 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 2
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite6" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 6, 57 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 2
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite7" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 7, 58 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 1
+speed_scale = 2.5
+playing = true
+
+[node name="FlameSprite8" type="AnimatedSprite" parent="UI"]
+visible = false
+position = Vector2( 7, 60 )
+frames = SubResource( 11 )
+animation = "0"
+speed_scale = 2.5
+playing = true
+
 [node name="Earth" type="RigidBody2D" parent="."]
-position = Vector2( 51, 28 )
-mass = 5.0
-script = ExtResource( 6 )
+position = Vector2( 35, 46 )
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="Sprite" type="Sprite" parent="Earth"]
-position = Vector2( -2, 0 )
-texture = ExtResource( 8 )
+texture = ExtResource( 6 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Earth"]
+shape = SubResource( 12 )
+
+[node name="Jupiter" type="RigidBody2D" parent="."]
+position = Vector2( 12, 34 )
+mass = 100.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Jupiter"]
+texture = ExtResource( 12 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Jupiter"]
+shape = SubResource( 12 )
+
+[node name="Sol" type="Area2D" parent="."]
+position = Vector2( 55, 55 )
+space_override = 3
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 5.0
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sol" type="Sprite" parent="Sol"]
+texture = ExtResource( 16 )
+
+[node name="Sol2" type="Sprite" parent="Sol"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.0625, 0.0625 )
+texture = ExtResource( 15 )
+
+[node name="SuperGiant" type="Sprite" parent="Sol"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.0624999, 0.0624999 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
 visible = false
-shape = SubResource( 4 )
+shape = SubResource( 1 )
