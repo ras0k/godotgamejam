@@ -13,6 +13,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	flames_render()
+	speed_meter()
 
 
 func flames_render():
@@ -98,3 +99,6 @@ func flames_render():
 		$FlameSprite6.visible = false
 		$FlameSprite7.visible = false
 		$FlameSprite8.visible = true
+
+func speed_meter():
+	$SpeedMeter.value = 25 * clamp(get_node("/root/Main/JupiterBody/Jupiter").relativeSpeed.length(), 0.0, 4.0)

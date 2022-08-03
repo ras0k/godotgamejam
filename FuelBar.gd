@@ -2,7 +2,7 @@ extends ProgressBar
 
 onready var player = get_node("/root/Main/Spaceship")
 
-func ready():
+func _ready():
 	max_value = player.maxFuel
 
 func _physics_process(delta):

@@ -1,10 +1,10 @@
 extends RigidBody2D
 
 
-var maxFuel:float = 1000.0
-var fuel:float = 800.0
+var maxFuel:float = 2000.0
+var fuel:float = 1600.0
 var velocity = Vector2()
-export var speed:int = 2
+export var speed:int = 1
 export var spin_thrust = 6
 var shipAngle:int = 0
 var rotation_dir = 0
@@ -13,7 +13,7 @@ onready var compass = get_node("/root/Main/UI/compassSprite")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_axis_velocity(Vector2(-6,12))
+	set_axis_velocity(Vector2(-6,4) * 0.8)
 	turn_ship(120)
 	pass # Replace with function body.
 
@@ -44,7 +44,7 @@ func _physics_process(delta):
 		fuel = fuel - 0.25
 	
 	applied_force = velocity
-#	applied_torque = rotation_dir * spin_thrust
+	rotation = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func turn_ship(a):
