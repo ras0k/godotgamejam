@@ -2,7 +2,7 @@ extends RigidBody2D
 
 
 var velocity = Vector2()
-var speed:int = 10
+var speed:int = 5
 var shipAngle:int = 0
 
 # Called when the node enters the scene tree for the first time.
