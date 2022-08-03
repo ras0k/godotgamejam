@@ -7,8 +7,14 @@ onready var c = $compassSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	$FlameSprite.playing = true
+	$FlameSprite2.playing = true
+	$FlameSprite3.playing = true
+	$FlameSprite4.playing = true
+	$FlameSprite5.playing = true
+	$FlameSprite6.playing = true
+	$FlameSprite7.playing = true
+	$FlameSprite8.playing = true
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
