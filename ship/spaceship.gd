@@ -4,8 +4,8 @@ extends RigidBody2D
 var maxFuel:float = 1000.0
 var fuel:float = 500
 var velocity = Vector2()
-export var speed:int = 8
-export var spin_thrust = 10
+export var speed:int = 4
+export var spin_thrust = 6
 var shipAngle:int = 0
 var rotation_dir = 0
 
@@ -16,7 +16,7 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("forward") and fuel > 0.0:
-		velocity = speed * Vector2(cos(deg2rad(-shipAngle)),sin(deg2rad(-shipAngle)))
+		velocity = -speed * transform.y
 		fuel = fuel - 1.0
 		$FlameSprite.visible = true
 	else:
