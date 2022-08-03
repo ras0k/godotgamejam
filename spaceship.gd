@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-var velocity = Vector2.ZERO
+var velocity = Vector2()
 var speed:int = 10
 var shipAngle:int = 0
 
@@ -11,11 +11,14 @@ func _ready():
 
 func _physics_process(delta):
 	if Input.is_action_pressed("forward"):
-		velocity += 0.01 * speed * Vector2(cos(deg2rad(-shipAngle)),sin(deg2rad(-shipAngle)))
+		velocity = speed * Vector2(cos(deg2rad(-shipAngle)),sin(deg2rad(-shipAngle)))
+	else:
+		velocity = Vector2()
 	if Input.is_action_pressed("left"):
 		turn_ship(3)
 	if Input.is_action_pressed("right"):
 		turn_ship(-3)
+	
 	applied_force = velocity
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
