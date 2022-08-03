@@ -2,13 +2,14 @@ extends RigidBody2D
 
 
 var maxFuel:float = 2000.0
-var fuel:float = 1600.0
+var fuel:float = 160.0
 var velocity = Vector2()
 export var speed:int = 1
 export var spin_thrust = 6
 var shipAngle:int = 0
 var rotation_dir = 0
 var landed = false
+var deathCounter = 0
 export var flames_on = false
 onready var compass = get_node("/root/Main/UI/compassSprite")
 
@@ -45,9 +46,12 @@ func _physics_process(delta):
 		fuel += 0.6
 		$CPUParticles2D.emitting = false
 	if landed == false and fuel < 1:
-		get_tree().reload_current_scene()
+		deathCounter += 1
+		if deathCounter > 360:
+			get_tree().reload_current_scene()
 	elif landed == false: 
 		$CPUParticles2D.emitting = true
+		deathCounter = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func turn_ship(a):
