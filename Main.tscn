@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://stars/red_supergiant.png" type="Texture" id=2]
@@ -58,6 +58,11 @@ extents = Vector2( 1, 1 )
 
 [sub_resource type="CircleShape2D" id=13]
 radius = 3.0
+
+[sub_resource type="CircleShape2D" id=34]
+radius = 15.0
+
+[sub_resource type="PhysicsMaterial" id=35]
 
 [sub_resource type="Gradient" id=14]
 offsets = PoolRealArray( 0.0074813, 0.112219 )
@@ -154,7 +159,6 @@ visible = false
 position = Vector2( 4, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -163,7 +167,6 @@ visible = false
 position = Vector2( 6, 61 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -172,7 +175,6 @@ visible = false
 position = Vector2( 3, 60 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -181,7 +183,7 @@ visible = false
 position = Vector2( 3, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -190,7 +192,6 @@ visible = false
 position = Vector2( 4, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -199,7 +200,6 @@ visible = false
 position = Vector2( 6, 57 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 2
 speed_scale = 2.5
 playing = true
 
@@ -208,7 +208,7 @@ visible = false
 position = Vector2( 7, 58 )
 frames = SubResource( 11 )
 animation = "0"
-frame = 1
+frame = 5
 speed_scale = 2.5
 playing = true
 
@@ -217,6 +217,7 @@ visible = false
 position = Vector2( 7, 60 )
 frames = SubResource( 11 )
 animation = "0"
+frame = 4
 speed_scale = 2.5
 playing = true
 
@@ -277,17 +278,24 @@ gravity = Vector2( 0, 0 )
 
 [node name="Jupiter" type="Area2D" parent="JupiterBody"]
 position = Vector2( -12, -34 )
-space_override = 1
-gravity_point = true
-gravity = 0.5
 script = ExtResource( 17 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="JupiterBody/Jupiter"]
 position = Vector2( 12, 34 )
 shape = SubResource( 13 )
 
+[node name="GravityArea" type="Area2D" parent="JupiterBody"]
+space_override = 4
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+linear_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JupiterBody/GravityArea"]
+shape = SubResource( 34 )
+
 [node name="Spaceship" type="RigidBody2D" parent="."]
 position = Vector2( 17, -5 )
+physics_material_override = SubResource( 35 )
 angular_damp = 100.0
 script = ExtResource( 1 )
 
