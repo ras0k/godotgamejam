@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/sol.png-655ac45c9698757d754b3bceaaa91e06.stex"
+path="res://.import/spaceship.png-0e67205704e9f8d69f30b44d30c6fe7e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://sol.png"
-dest_files=[ "res://.import/sol.png-655ac45c9698757d754b3bceaaa91e06.stex" ]
+source_file="res://ship/spaceship.png"
+dest_files=[ "res://.import/spaceship.png-0e67205704e9f8d69f30b44d30c6fe7e.stex" ]
 
 [params]
 
