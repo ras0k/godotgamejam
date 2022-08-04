@@ -14,7 +14,9 @@ func _process(delta):
 
 func _on_Spaceship_turned(degrees: int) -> void:
 	# 0 = up, rotate clockwise to 360
-	# frames 0 to 16 from up clockwise
-	var frame: int = (degrees + 11.25) / (360.0 / 16.0)
+	# frames 0 to 15 from up clockwise
+	var sprite_frame_amount := 16
+	var degree_fraction := 360.0 / float(sprite_frame_amount)
+	var frame: int = (degrees + degree_fraction/2) / degree_fraction
 	printt(degrees, frame)
-	$UI.rotate_compass(frame)
+	$UI.rotate_compass(frame % sprite_frame_amount)
