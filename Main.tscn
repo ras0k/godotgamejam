@@ -60,7 +60,7 @@ extents = Vector2( 1, 1 )
 radius = 3.0
 
 [sub_resource type="CircleShape2D" id=34]
-radius = 15.0
+radius = 16.0
 
 [sub_resource type="PhysicsMaterial" id=35]
 
@@ -215,6 +215,8 @@ texture_progress = ExtResource( 19 )
 
 [node name="Earth" type="RigidBody2D" parent="."]
 position = Vector2( 35, 46 )
+mass = 0.01
+can_sleep = false
 angular_damp = 100.0
 script = ExtResource( 8 )
 __meta__ = {
@@ -238,6 +240,8 @@ gravity = Vector2( 0, 0 )
 
 [node name="JupiterBody" type="RigidBody2D" parent="."]
 position = Vector2( 12, 34 )
+collision_layer = 4
+collision_mask = 4
 mass = 100.0
 angular_damp = 100.0
 script = ExtResource( 13 )
@@ -262,23 +266,36 @@ gravity = Vector2( 0, 0 )
 
 [node name="Jupiter" type="Area2D" parent="JupiterBody"]
 position = Vector2( -12, -34 )
+collision_layer = 8
+collision_mask = 8
+gravity_vec = Vector2( 0, 0 )
+angular_damp = 0.0
 script = ExtResource( 17 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="JupiterBody/Jupiter"]
+visible = false
 position = Vector2( 12, 34 )
 shape = SubResource( 13 )
 
 [node name="GravityArea" type="Area2D" parent="JupiterBody"]
-space_override = 4
+collision_layer = 2
+collision_mask = 2
+space_override = 1
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
-linear_damp = 0.0
+gravity = 2.0
+linear_damp = 0.05
+angular_damp = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="JupiterBody/GravityArea"]
+visible = false
 shape = SubResource( 34 )
 
 [node name="Spaceship" type="RigidBody2D" parent="."]
 position = Vector2( 17, -5 )
+collision_layer = 11
+collision_mask = 11
+mass = 10.0
 physics_material_override = SubResource( 35 )
 angular_damp = 100.0
 script = ExtResource( 1 )
@@ -315,10 +332,13 @@ playing = true
 
 [node name="Sol" type="Area2D" parent="."]
 position = Vector2( 55, 55 )
-space_override = 3
+collision_layer = 5
+collision_mask = 5
+priority = 1.0
+space_override = 1
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
-gravity = 2.0
+gravity = 1.0
 linear_damp = 0.0
 angular_damp = 0.0
 script = ExtResource( 14 )
