@@ -2,10 +2,9 @@ extends CanvasLayer
 
 
 onready var player = get_node("/root/Main/Spaceship")
-onready var c = $compassSprite
+onready var c = $CompassSprite
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	$FlameSprite.playing = true
 	$FlameSprite2.playing = true
@@ -16,10 +15,14 @@ func _ready():
 	$FlameSprite7.playing = true
 	$FlameSprite8.playing = true
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+
 func _process(_delta):
 	flames_render()
 	speed_meter()
+
+
+func rotate_compass(frame: int) -> void:
+	$CompassSprite.frame = frame
 
 
 func flames_render():
