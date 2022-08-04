@@ -1,8 +1,9 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=46 format=2]
 
-[ext_resource path="res://ship/Spaceship.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://stars/red_supergiant.png" type="Texture" id=2]
 [ext_resource path="res://background_128.png" type="Texture" id=3]
+[ext_resource path="res://ship/spaceship_2px.png" type="Texture" id=4]
 [ext_resource path="res://FuelBar.gd" type="Script" id=5]
 [ext_resource path="res://planets/earth.png" type="Texture" id=6]
 [ext_resource path="res://ship/flame.png" type="Texture" id=7]
@@ -18,6 +19,7 @@
 [ext_resource path="res://Jupiter.gd" type="Script" id=17]
 [ext_resource path="res://Main.gd" type="Script" id=18]
 [ext_resource path="res://rainbowBar.png" type="Texture" id=19]
+[ext_resource path="res://ship/explosion.png" type="Texture" id=20]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 7 )
@@ -54,11 +56,68 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 1, 1 )
 
+[sub_resource type="CircleShape2D" id=34]
+radius = 9.0
+
 [sub_resource type="CircleShape2D" id=13]
 radius = 3.0
 
-[sub_resource type="CircleShape2D" id=34]
-radius = 16.0
+[sub_resource type="PhysicsMaterial" id=35]
+
+[sub_resource type="Gradient" id=14]
+offsets = PoolRealArray( 0.0074813, 0.112219 )
+colors = PoolColorArray( 0.109804, 0.635294, 0.819608, 0.262745, 0.333333, 0.709804, 0.815686, 0.117647 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 0.5, 0.5 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 20 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 20 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 20 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 20 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 20 )
+region = Rect2( 40, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 20 )
+region = Rect2( 50, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 20 )
+region = Rect2( 60, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 20 )
+region = Rect2( 70, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=32]
+atlas = ExtResource( 20 )
+region = Rect2( 80, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 20 )
+region = Rect2( 90, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"loop": false,
+"name": "New Anim",
+"speed": 12.0
+} ]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 154.117
@@ -88,14 +147,12 @@ max_value = 1000.0
 value = 99.88
 percent_visible = false
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="CompassSprite" type="Sprite" parent="UI"]
+[node name="compassSprite" type="Sprite" parent="UI"]
 position = Vector2( 4, 60 )
 texture = ExtResource( 11 )
 hframes = 16
+frame = 4
 
 [node name="FlameSprite" type="AnimatedSprite" parent="UI"]
 position = Vector2( 3.5, 61.5 )
@@ -158,7 +215,7 @@ texture_progress = ExtResource( 19 )
 
 [node name="Earth" type="RigidBody2D" parent="."]
 position = Vector2( 35, 46 )
-mass = 0.01
+mass = 100.0
 can_sleep = false
 angular_damp = 100.0
 script = ExtResource( 8 )
@@ -181,11 +238,24 @@ direction = Vector2( 2, 0 )
 spread = 45.1
 gravity = Vector2( 0, 0 )
 
+[node name="GravityArea" type="Area2D" parent="Earth"]
+collision_layer = 2
+collision_mask = 2
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 1.2
+linear_damp = 0.05
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth/GravityArea"]
+shape = SubResource( 34 )
+
 [node name="JupiterBody" type="RigidBody2D" parent="."]
 position = Vector2( 12, 34 )
 collision_layer = 4
 collision_mask = 4
-mass = 100.0
+mass = 200.0
 angular_damp = 100.0
 script = ExtResource( 13 )
 __meta__ = {
@@ -212,6 +282,7 @@ position = Vector2( -12, -34 )
 collision_layer = 8
 collision_mask = 8
 gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
 angular_damp = 0.0
 script = ExtResource( 17 )
 
@@ -234,9 +305,44 @@ angular_damp = 0.0
 visible = false
 shape = SubResource( 34 )
 
-[node name="Spaceship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 15, 15 )
-initial_velocity = Vector2( -4.8, 3.2 )
+[node name="Spaceship" type="RigidBody2D" parent="."]
+position = Vector2( 17, -5 )
+collision_layer = 11
+collision_mask = 11
+mass = 8.0
+physics_material_override = SubResource( 35 )
+angular_damp = 100.0
+script = ExtResource( 1 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Spaceship"]
+amount = 240
+lifetime = 12.0
+local_coords = false
+direction = Vector2( 2, 0 )
+spread = 45.1
+gravity = Vector2( 0, 0 )
+color_ramp = SubResource( 14 )
+
+[node name="ShipSprite" type="Sprite" parent="Spaceship"]
+modulate = Color( 1, 0.12549, 0.12549, 1 )
+texture = ExtResource( 4 )
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spaceship"]
+shape = SubResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="Spaceship"]
+current = true
+limit_left = 0
+limit_top = 0
+limit_right = 128
+limit_bottom = 128
+
+[node name="ExplosionSprite" type="AnimatedSprite" parent="Spaceship"]
+frames = SubResource( 23 )
+animation = "New Anim"
+frame = 9
+playing = true
 
 [node name="Sol" type="Area2D" parent="."]
 position = Vector2( 55, 55 )
@@ -273,4 +379,3 @@ shape = SubResource( 1 )
 
 [connection signal="body_entered" from="JupiterBody/Jupiter" to="JupiterBody/Jupiter" method="_on_Jupiter_body_entered"]
 [connection signal="body_exited" from="JupiterBody/Jupiter" to="JupiterBody/Jupiter" method="_on_Jupiter_body_exited"]
-[connection signal="turned" from="Spaceship" to="." method="_on_Spaceship_turned"]
