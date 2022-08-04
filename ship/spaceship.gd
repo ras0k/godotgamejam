@@ -2,10 +2,12 @@ extends RigidBody2D
 
 
 var maxFuel:float = 2000.0
-var fuel:float = 1200.0
+var fuel:float = 12000.0
 var velocity = Vector2()
-export var speed:int = 8
-export var spin_thrust = 6
+var speed:int = 10
+var boost:float = 1.0
+var max_boost:float = 2.4
+var spin_thrust = 6
 var shipAngle:int = 0
 var rotation_dir = 0
 var landed = false
@@ -23,9 +25,12 @@ func _ready():
 func _physics_process(delta):
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = speed * Vector2(cos(deg2rad(float(shipAngle)/160*360)),-sin(deg2rad(float(shipAngle)/160*360)))
-		fuel = fuel - 0.8
+		fuel -= 0.8
 		flames_on = true
-#		$FlameSprite.visible = true
+		boost = 1.0
+		if Input.is_action_pressed("boost") and fuel > 0.0:
+			boost = max_boost
+			fuel -= max_boost * 0.8
 	else:
 		velocity = Vector2()
 		flames_on = false
@@ -35,22 +40,22 @@ func _physics_process(delta):
 	
 	if Input.is_action_pressed("left") and fuel > 0.0:
 		turn_ship(1)
-		fuel = fuel - 0.25
+		fuel -= 0.25
 	if Input.is_action_pressed("right") and fuel > 0.0:
 		turn_ship(-1)
-		fuel = fuel - 0.25
+		fuel -= 0.25
 	
-	applied_force = velocity
+	applied_force = velocity * boost
 	rotation = 0
 	
-	if landed == true:
+	if landed:
 		fuel += 0.6
 		$CPUParticles2D.emitting = false
-	if landed == false and fuel < 1:
+	if not landed and fuel < 3:
 		deathCounter += 1
-		if deathCounter > 360:
+		if deathCounter > 500:
 			get_tree().reload_current_scene()
-	elif landed == false: 
+	elif not landed: 
 		$CPUParticles2D.emitting = true
 		deathCounter = 0
 	if crashCounter > 0:

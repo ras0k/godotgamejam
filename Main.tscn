@@ -56,11 +56,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 1, 1 )
 
+[sub_resource type="CircleShape2D" id=34]
+radius = 9.0
+
 [sub_resource type="CircleShape2D" id=13]
 radius = 3.0
-
-[sub_resource type="CircleShape2D" id=34]
-radius = 16.0
 
 [sub_resource type="PhysicsMaterial" id=35]
 
@@ -215,7 +215,7 @@ texture_progress = ExtResource( 19 )
 
 [node name="Earth" type="RigidBody2D" parent="."]
 position = Vector2( 35, 46 )
-mass = 0.01
+mass = 100.0
 can_sleep = false
 angular_damp = 100.0
 script = ExtResource( 8 )
@@ -238,11 +238,24 @@ direction = Vector2( 2, 0 )
 spread = 45.1
 gravity = Vector2( 0, 0 )
 
+[node name="GravityArea" type="Area2D" parent="Earth"]
+collision_layer = 2
+collision_mask = 2
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 1.2
+linear_damp = 0.05
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth/GravityArea"]
+shape = SubResource( 34 )
+
 [node name="JupiterBody" type="RigidBody2D" parent="."]
 position = Vector2( 12, 34 )
 collision_layer = 4
 collision_mask = 4
-mass = 100.0
+mass = 200.0
 angular_damp = 100.0
 script = ExtResource( 13 )
 __meta__ = {
@@ -269,6 +282,7 @@ position = Vector2( -12, -34 )
 collision_layer = 8
 collision_mask = 8
 gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
 angular_damp = 0.0
 script = ExtResource( 17 )
 
@@ -295,7 +309,7 @@ shape = SubResource( 34 )
 position = Vector2( 17, -5 )
 collision_layer = 11
 collision_mask = 11
-mass = 10.0
+mass = 8.0
 physics_material_override = SubResource( 35 )
 angular_damp = 100.0
 script = ExtResource( 1 )
