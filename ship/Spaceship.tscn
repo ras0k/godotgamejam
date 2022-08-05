@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=2]
@@ -46,17 +46,13 @@ region = Rect2( 60, 0, 10, 10 )
 atlas = ExtResource( 2 )
 region = Rect2( 70, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=32]
-atlas = ExtResource( 2 )
-region = Rect2( 80, 0, 10, 10 )
-
 [sub_resource type="AtlasTexture" id=33]
 atlas = ExtResource( 2 )
 region = Rect2( 90, 0, 10, 10 )
 
 [sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 32 ), SubResource( 33 ) ],
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 33 ) ],
 "loop": false,
 "name": "New Anim",
 "speed": 12.0
@@ -101,7 +97,7 @@ limit_bottom = 128
 [node name="ExplosionSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 23 )
 animation = "New Anim"
-frame = 9
+frame = 8
 playing = true
 
 [node name="MiningArea" type="Area2D" parent="."]
