@@ -74,7 +74,6 @@ func _physics_process(_delta):
 	
 	if is_mining: 
 		mining()
-		print("ore count : " + str(ore_count))
 
 
 func turn_ship(angle: int):
@@ -92,7 +91,6 @@ func _on_MiningArea_body_entered(body):
 	if "Asteroid" in body.name:
 		is_mining = true
 		mining_targets += 1
-		print("yay!")
 
 
 func _on_MiningArea_body_exited(body):
