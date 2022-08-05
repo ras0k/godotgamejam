@@ -46,8 +46,8 @@ func _physics_process(_delta):
 		velocity = Vector2()
 		flames_on = false
 
-		if fuel > max_fuel:
-			fuel = max_fuel
+	if fuel > max_fuel:
+		fuel = max_fuel
 
 	if Input.is_action_pressed("left") and fuel > 0.0:
 		turn_ship(-2)
@@ -77,6 +77,9 @@ func _physics_process(_delta):
 	if Input.is_action_just_pressed("mining_laser"):
 		laser_toggle = not laser_toggle
 		print(laser_toggle)
+	
+	if fuel < 50:
+		laser_toggle = false
 	
 	if is_mining and laser_toggle: 
 		mining()
@@ -110,4 +113,5 @@ func mining():
 	for body in $MiningArea.get_overlapping_bodies():
 		body.remaining_ore -= mining_rate
 		ore_count += mining_rate
+		fuel -= 0.3
 		
