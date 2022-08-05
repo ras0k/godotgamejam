@@ -1,286 +1,34 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://ship/Spaceship.tscn" type="PackedScene" id=1]
-[ext_resource path="res://stars/red_supergiant.png" type="Texture" id=2]
+[ext_resource path="res://planets/Earth.tscn" type="PackedScene" id=2]
 [ext_resource path="res://background_128.png" type="Texture" id=3]
-[ext_resource path="res://FuelBar.gd" type="Script" id=5]
-[ext_resource path="res://planets/earth.png" type="Texture" id=6]
-[ext_resource path="res://ship/flame.png" type="Texture" id=7]
-[ext_resource path="res://Earth.gd" type="Script" id=8]
-[ext_resource path="res://UI.png" type="Texture" id=9]
-[ext_resource path="res://UI.gd" type="Script" id=10]
-[ext_resource path="res://ship/sheep_cropped.png" type="Texture" id=11]
-[ext_resource path="res://planets/jupiter.png" type="Texture" id=12]
-[ext_resource path="res://JupiterBody.gd" type="Script" id=13]
-[ext_resource path="res://Sol.gd" type="Script" id=14]
-[ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=15]
-[ext_resource path="res://stars/sol.png" type="Texture" id=16]
-[ext_resource path="res://Jupiter.gd" type="Script" id=17]
+[ext_resource path="res://planets/JupiterBody.tscn" type="PackedScene" id=4]
+[ext_resource path="res://stars/Sol.tscn" type="PackedScene" id=5]
+[ext_resource path="res://UI.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Asteroid.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Main.gd" type="Script" id=18]
-[ext_resource path="res://rainbowBar.png" type="Texture" id=19]
-
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 7 )
-region = Rect2( 0, 0, 1, 1 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 7 )
-region = Rect2( 1, 0, 1, 1 )
-
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 7 )
-region = Rect2( 2, 0, 1, 1 )
-
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 7 )
-region = Rect2( 3, 0, 1, 1 )
-
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 7 )
-region = Rect2( 4, 0, 1, 1 )
-
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 7 )
-region = Rect2( 5, 0, 1, 1 )
-
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ SubResource( 5 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ) ],
-"loop": true,
-"name": "0",
-"speed": 5.0
-} ]
-
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 1, 1 )
-
-[sub_resource type="CircleShape2D" id=34]
-radius = 9.0
-
-[sub_resource type="CircleShape2D" id=13]
-radius = 3.0
-
-[sub_resource type="CircleShape2D" id=1]
-radius = 154.117
 
 [node name="Main" type="Node2D"]
 script = ExtResource( 18 )
 
-[node name="bg" type="Sprite" parent="."]
+[node name="UI" parent="." instance=ExtResource( 6 )]
+
+[node name="SolarSystem" type="Node2D" parent="."]
+
+[node name="bg" type="Sprite" parent="SolarSystem"]
 position = Vector2( 64, 64 )
 texture = ExtResource( 3 )
 
+[node name="Sol" parent="SolarSystem" instance=ExtResource( 5 )]
+
+[node name="Earth" parent="SolarSystem" instance=ExtResource( 2 )]
+
+[node name="JupiterBody" parent="SolarSystem" instance=ExtResource( 4 )]
+
+[node name="Asteroid" parent="SolarSystem" instance=ExtResource( 7 )]
+position = Vector2( 18, 17 )
+
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
 
-[node name="UI" type="CanvasLayer" parent="."]
-script = ExtResource( 10 )
-
-[node name="ui" type="Sprite" parent="UI"]
-position = Vector2( 32, 58 )
-texture = ExtResource( 9 )
-
-[node name="FuelBar" type="ProgressBar" parent="UI"]
-modulate = Color( 83.41, 3.44, 0.05, 1 )
-margin_left = 12.0
-margin_top = 62.0
-margin_right = 262.0
-margin_bottom = 72.0
-rect_scale = Vector2( 0.1, 0.1 )
-max_value = 1000.0
-value = 99.88
-percent_visible = false
-script = ExtResource( 5 )
-
-[node name="CompassSprite" type="Sprite" parent="UI"]
-position = Vector2( 4, 60 )
-texture = ExtResource( 11 )
-hframes = 16
-frame = 4
-
-[node name="FlameSprite" type="AnimatedSprite" parent="UI"]
-position = Vector2( 3.5, 61.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite2" type="AnimatedSprite" parent="UI"]
-position = Vector2( 5.5, 61.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite3" type="AnimatedSprite" parent="UI"]
-position = Vector2( 2.5, 60.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite4" type="AnimatedSprite" parent="UI"]
-position = Vector2( 2.5, 58.5 )
-frames = SubResource( 11 )
-animation = "0"
-frame = 5
-speed_scale = 2.5
-
-[node name="FlameSprite5" type="AnimatedSprite" parent="UI"]
-position = Vector2( 3.5, 57.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite6" type="AnimatedSprite" parent="UI"]
-position = Vector2( 5.5, 57.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite7" type="AnimatedSprite" parent="UI"]
-position = Vector2( 6.5, 58.5 )
-frames = SubResource( 11 )
-animation = "0"
-frame = 5
-speed_scale = 2.5
-
-[node name="FlameSprite8" type="AnimatedSprite" parent="UI"]
-position = Vector2( 6.5, 60.5 )
-frames = SubResource( 11 )
-animation = "0"
-frame = 4
-speed_scale = 2.5
-
-[node name="SpeedMeter" type="TextureProgress" parent="UI"]
-margin_left = 38.0
-margin_top = 62.0
-margin_right = 63.0
-margin_bottom = 63.0
-value = 100.0
-texture_progress = ExtResource( 19 )
-
-[node name="Earth" type="RigidBody2D" parent="."]
-position = Vector2( 35, 46 )
-mass = 100.0
-can_sleep = false
-angular_damp = 100.0
-script = ExtResource( 8 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="Earth"]
-texture = ExtResource( 6 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth"]
-shape = SubResource( 12 )
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Earth"]
-modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
-amount = 240
-lifetime = 12.0
-local_coords = false
-direction = Vector2( 2, 0 )
-spread = 45.1
-gravity = Vector2( 0, 0 )
-
-[node name="GravityArea" type="Area2D" parent="Earth"]
-collision_layer = 2
-collision_mask = 2
-space_override = 1
-gravity_point = true
-gravity_vec = Vector2( 0, 0 )
-gravity = 1.2
-linear_damp = 0.05
-angular_damp = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Earth/GravityArea"]
-shape = SubResource( 34 )
-
-[node name="JupiterBody" type="RigidBody2D" parent="."]
-position = Vector2( 12, 34 )
-collision_layer = 4
-collision_mask = 4
-mass = 200.0
-angular_damp = 100.0
-script = ExtResource( 13 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sprite" type="Sprite" parent="JupiterBody"]
-texture = ExtResource( 12 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="JupiterBody"]
-shape = SubResource( 12 )
-
-[node name="CPUParticles2D" type="CPUParticles2D" parent="JupiterBody"]
-modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
-amount = 240
-lifetime = 12.0
-local_coords = false
-direction = Vector2( 2, 0 )
-spread = 45.1
-gravity = Vector2( 0, 0 )
-
-[node name="Jupiter" type="Area2D" parent="JupiterBody"]
-position = Vector2( -12, -34 )
-collision_layer = 8
-collision_mask = 8
-gravity_vec = Vector2( 0, 0 )
-gravity = 0.0
-angular_damp = 0.0
-script = ExtResource( 17 )
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="JupiterBody/Jupiter"]
-visible = false
-position = Vector2( 12, 34 )
-shape = SubResource( 13 )
-
-[node name="GravityArea" type="Area2D" parent="JupiterBody"]
-collision_layer = 2
-collision_mask = 2
-space_override = 1
-gravity_point = true
-gravity_vec = Vector2( 0, 0 )
-gravity = 2.0
-linear_damp = 0.05
-angular_damp = 0.0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="JupiterBody/GravityArea"]
-visible = false
-shape = SubResource( 34 )
-
-[node name="Sol" type="Area2D" parent="."]
-position = Vector2( 55, 55 )
-collision_layer = 5
-collision_mask = 5
-priority = 1.0
-space_override = 1
-gravity_point = true
-gravity_vec = Vector2( 0, 0 )
-gravity = 1.0
-linear_damp = 0.0
-angular_damp = 0.0
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_group_": true
-}
-
-[node name="Sol" type="Sprite" parent="Sol"]
-texture = ExtResource( 16 )
-
-[node name="Sol2" type="Sprite" parent="Sol"]
-modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 0.0625, 0.0625 )
-texture = ExtResource( 15 )
-
-[node name="SuperGiant" type="Sprite" parent="Sol"]
-modulate = Color( 1, 1, 1, 0 )
-scale = Vector2( 0.0624999, 0.0624999 )
-texture = ExtResource( 2 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sol"]
-visible = false
-shape = SubResource( 1 )
-
 [connection signal="turned" from="Spaceship" to="." method="_on_Spaceship_turned"]
-[connection signal="body_entered" from="JupiterBody/Jupiter" to="JupiterBody/Jupiter" method="_on_Jupiter_body_entered"]
-[connection signal="body_exited" from="JupiterBody/Jupiter" to="JupiterBody/Jupiter" method="_on_Jupiter_body_exited"]

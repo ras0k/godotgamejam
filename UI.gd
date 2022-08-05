@@ -110,4 +110,4 @@ func flames_render():
 		$FlameSprite8.visible = true
 
 func speed_meter():
-	$SpeedMeter.value = 25 * clamp(get_node("/root/Main/JupiterBody/Jupiter").relativeSpeed.length(), 0.5, 5.5)
+	$SpeedMeter.value = 25 * clamp(get_node("/root/Main/SolarSystem/JupiterBody/Jupiter").relativeSpeed.length(), 0.5, 5.5)

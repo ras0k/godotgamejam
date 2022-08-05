@@ -1,8 +1,9 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=2]
 [ext_resource path="res://ship/spaceship_2px.png" type="Texture" id=3]
+[ext_resource path="res://ship/MiningArea.gd" type="Script" id=4]
 
 [sub_resource type="PhysicsMaterial" id=35]
 
@@ -61,6 +62,9 @@ animations = [ {
 "speed": 12.0
 } ]
 
+[sub_resource type="CircleShape2D" id=36]
+radius = 13.0
+
 [node name="Spaceship" type="RigidBody2D"]
 position = Vector2( 17, -5 )
 collision_layer = 11
@@ -99,3 +103,14 @@ frames = SubResource( 23 )
 animation = "New Anim"
 frame = 9
 playing = true
+
+[node name="MiningArea" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MiningArea"]
+shape = SubResource( 36 )
+
+[connection signal="body_entered" from="MiningArea" to="." method="_on_MiningArea_body_entered"]
+[connection signal="body_exited" from="MiningArea" to="." method="_on_MiningArea_body_exited"]

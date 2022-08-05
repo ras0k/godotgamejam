@@ -1,0 +1,42 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sol.gd" type="Script" id=1]
+[ext_resource path="res://stars/sol.png" type="Texture" id=2]
+[ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=3]
+[ext_resource path="res://stars/red_supergiant.png" type="Texture" id=4]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 154.117
+
+[node name="Sol" type="Area2D"]
+position = Vector2( 55, 55 )
+collision_layer = 5
+collision_mask = 5
+priority = 1.0
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 1.0
+linear_damp = 0.0
+angular_damp = 0.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sol" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="Sol2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.0625, 0.0625 )
+texture = ExtResource( 3 )
+
+[node name="SuperGiant" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.0624999, 0.0624999 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 1 )
