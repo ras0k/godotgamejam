@@ -15,13 +15,17 @@ func _process(delta):
 	
 	if Input.is_action_just_pressed("reset"):
 		get_tree().reload_current_scene()
-	if Input.is_action_pressed("speeeeed"):
-		Engine.time_scale = 3
-	else:
+	if Input.is_action_just_pressed("1"):
 		Engine.time_scale = 1
+	elif Input.is_action_just_pressed("2"):
+		Engine.time_scale = 2
+	elif Input.is_action_just_pressed("3"):
+		Engine.time_scale = 4
+	elif Input.is_action_just_pressed("4"):
+		Engine.time_scale = 8
 	
 	asteroid_spawn_timer += 1
-	if asteroid_spawn_timer % 180 == 1 and asteroid_spawn_timer < 2800:
+	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 2800:
 		spawn_asteroid_belt(floor(rand_range(1,3)))
 
 

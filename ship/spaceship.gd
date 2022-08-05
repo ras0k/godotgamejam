@@ -19,6 +19,8 @@ var is_mining := false
 var mining_rate := 0.36
 var ore_count := 0.0
 var mining_targets := 0
+var interstellar_fuel := 0.0
+var laser_toggle := false
 
 
 
@@ -72,9 +74,14 @@ func _physics_process(_delta):
 	if crash_counter > 0:
 		$CPUParticles2D.emitting = false
 	
-	if is_mining: 
+	if Input.is_action_just_pressed("mining_laser"):
+		laser_toggle = not laser_toggle
+		print(laser_toggle)
+	
+	if is_mining and laser_toggle: 
 		mining()
-
+	
+	
 
 func turn_ship(angle: int):
 	ship_angle += angle

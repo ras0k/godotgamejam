@@ -17,9 +17,9 @@ func _process(delta):
 		s = true
 	if s == true:
 		supernova()
-	print(abs((position - get_parent().get_parent().get_node("Spaceship").position).length()))
 	if abs((position - get_parent().get_parent().get_node("Spaceship").position).length()) > 99:
-		 get_tree().reload_current_scene()
+		if get_parent().get_parent().get_node("Spaceship").interstellar_fuel < 0.01:
+			get_tree().reload_current_scene()
 	pass
 
 

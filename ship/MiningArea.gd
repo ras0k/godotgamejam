@@ -28,6 +28,6 @@ func mining():
 		asteroid_positions = []
 	
 func _draw():
-	if asteroid_positions.size() > 0:
+	if asteroid_positions.size() > 0 and not get_parent().laser_toggle:
 		for i in asteroid_positions.size():
 			draw_line(Vector2.ZERO, asteroid_positions[i] - global_position, Color(0.2, 1, 0.1, 0.25), 1)
