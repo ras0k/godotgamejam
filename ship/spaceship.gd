@@ -20,7 +20,7 @@ var mining_rate := 0.36
 var ore_count := 0.0
 var mining_targets := 0
 var interstellar_fuel := 0.0
-var laser_toggle := false
+var laser_toggle := true
 
 
 
