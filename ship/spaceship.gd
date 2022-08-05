@@ -76,7 +76,6 @@ func _physics_process(_delta):
 	
 	if Input.is_action_just_pressed("mining_laser"):
 		laser_toggle = not laser_toggle
-		print(laser_toggle)
 	
 	if fuel < 50:
 		laser_toggle = false
