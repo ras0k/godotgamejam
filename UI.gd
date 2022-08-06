@@ -113,7 +113,7 @@ func speed_meter():
 	$CanvasLayer/SpeedMeter.value = 25 * clamp(get_node("/root/Main/SolarSystem/JupiterBody/Jupiter").relativeSpeed.length(), 0.5, 5.5)
 
 func resource_meter():
-	$CanvasLayer/White.value = player.white_resource_amount
-	$CanvasLayer/Blue.value = player.blue_resource_amount
-	$CanvasLayer/Green.value = player.green_resource_amount
-	$CanvasLayer/Red.value = player.red_resource_amount
+	$CanvasLayer/White.value = Global.white_resource_amount
+	$CanvasLayer/Blue.value = Global.blue_resource_amount
+	$CanvasLayer/Green.value = Global.green_resource_amount
+	$CanvasLayer/Red.value = Global.red_resource_amount

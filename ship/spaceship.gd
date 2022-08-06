@@ -1,5 +1,8 @@
 extends RigidBody2D
 
+onready var trade_screen = preload("res://PlanetUI.tscn").instance()
+onready var UI = get_parent().get_node("UI")
+
 export var speed := 8
 export var spin_thrust := 6
 export var initial_velocity := Vector2(-4,8)
@@ -21,11 +24,16 @@ var ore_count := 0.0
 var mining_targets := 0
 var interstellar_fuel := 0.0
 var laser_toggle := true
-var white_resource_amount := 0.0
-var blue_resource_amount := 0.0
-var green_resource_amount := 0.0
-var red_resource_amount := 0
-var black_resource_amount := 0.0
+#var white_resource_amount := 20.0
+#var blue_resource_amount := 20.0
+#var green_resource_amount := 20.0
+#var red_resource_amount := 20.0
+#var black_resource_amount := 0.0
+#var currency := 0
+var current_planet
+var planet_sprite
+var current_import
+var current_export
 
 
 
@@ -33,12 +41,15 @@ signal turned(degrees)
 
 
 func _ready():
+	if not landed:
+		current_planet = null
 	set_axis_velocity(initial_velocity)
 	turn_ship(180)
 	pass # Replace with function body.
 
 
 func _physics_process(_delta):
+	trade()
 	launch()
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
@@ -117,15 +128,15 @@ func _on_MiningArea_body_exited(body):
 func mining():
 	for body in $MiningArea.get_overlapping_bodies():
 		if body.resource_type == "white":
-				white_resource_amount += mining_rate * 0.2
+				Global.white_resource_amount += mining_rate * 0.2
 		elif body.resource_type == "blue":
-				blue_resource_amount += mining_rate * 0.37
+				Global.blue_resource_amount += mining_rate * 0.37
 		elif body.resource_type == "green":
-				green_resource_amount += mining_rate * 0.5
+				Global.green_resource_amount += mining_rate * 0.5
 		elif body.resource_type == "red":
-				red_resource_amount += mining_rate * 0.6
-		elif body.resource_type == "black":
-				black_resource_amount += mining_rate
+				Global.red_resource_amount += mining_rate * 0.6
+#		elif body.resource_type == "black":
+#				black_resource_amount += mining_rate
 		body.remaining_ore -= mining_rate
 #		print("white: " + str(white_resource_amount))
 #		print("blue: " + str(blue_resource_amount))
@@ -135,7 +146,7 @@ func mining():
 		fuel -= 0.3
 
 func launch():
-	if landed == true and Input.is_action_just_pressed("launch"):
+	if landed and Input.is_action_just_pressed("launch"):
 		$LaunchTimer.start(5.0)
 		speed *= 5
 		landed = false
@@ -153,3 +164,11 @@ func _on_LaunchTimer_timeout():
 	set_collision_mask_bit(3, true)
 	set_collision_mask_bit(4, true)
 	print("Launch Ended!")
+
+func trade():
+	if landed and Input.is_action_just_pressed("interact"):
+		current_import = current_planet.import_good
+		current_export = current_planet.export_good
+		self.add_child(trade_screen)
+		get_tree().paused = true
+#		print("trading")
