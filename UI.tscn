@@ -179,3 +179,6 @@ margin_bottom = 71.0
 rect_scale = Vector2( 0.1, 0.1 )
 texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

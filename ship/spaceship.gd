@@ -127,11 +127,11 @@ func mining():
 		elif body.resource_type == "black":
 				black_resource_amount += mining_rate
 		body.remaining_ore -= mining_rate
-		print("white: " + str(white_resource_amount))
-		print("blue: " + str(blue_resource_amount))
-		print("green: " + str(green_resource_amount))
-		print("red: " + str(red_resource_amount))
-		print("black: " + str(black_resource_amount))
+#		print("white: " + str(white_resource_amount))
+#		print("blue: " + str(blue_resource_amount))
+#		print("green: " + str(green_resource_amount))
+#		print("red: " + str(red_resource_amount))
+#		print("black: " + str(black_resource_amount))
 		fuel -= 0.3
 
 func launch():
