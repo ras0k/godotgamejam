@@ -34,6 +34,7 @@ var current_planet
 var planet_sprite
 var current_import
 var current_export
+var trading := false
 
 
 
@@ -170,5 +171,6 @@ func trade():
 		current_import = current_planet.import_good
 		current_export = current_planet.export_good
 		self.add_child(trade_screen)
+		trading = true
 		get_tree().paused = true
 #		print("trading")

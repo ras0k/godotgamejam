@@ -9,14 +9,17 @@ var export_good
 var import_good
 enum goods { WHITE, BLUE, GREEN, RED }
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
+	# semi-randomly chooses export resource for planet - see line 53
 	pick_export()
+	# semi-randomly chooses import resource for the planet - see line 67
 	pick_import()
+	# check to make sure export resource and import resource are not the same
 	if export_good == import_good:
 		pick_export()
-#	pass # Replace with function body.
 
+# a function to detect the relative speed of the player and planet, if the relative speed is less than
+# a certain amount, the player is able to land on the planet. Otherwise they will crash and die.
 func _on_Jupiter_body_entered(body):
 	if body == player:
 		player.landed = true
@@ -33,7 +36,6 @@ func _on_Jupiter_body_entered(body):
 				print("Crashed!")
 		else:
 			print("Landed!")
-
 
 func _process(_delta):
 		shipSpeed = player.linear_velocity

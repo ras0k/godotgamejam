@@ -5,6 +5,8 @@ onready var c = $CanvasLayer/CompassSprite
 
 
 func _ready():
+	$CanvasLayer/PauseMenu.visible = false
+	$CanvasLayer/PauseMenu/Sprite.self_modulate.a = 0.33
 	$CanvasLayer/FlameSprite.playing = true
 	$CanvasLayer/FlameSprite2.playing = true
 	$CanvasLayer/FlameSprite3.playing = true
@@ -16,6 +18,9 @@ func _ready():
 
 
 func _process(_delta):
+	$CanvasLayer/PauseMenu.visible = get_tree().paused
+	if player.trading:
+		$CanvasLayer/PauseMenu.visible = false
 	flames_render()
 	speed_meter()
 	resource_meter()
