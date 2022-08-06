@@ -10,6 +10,7 @@
 [ext_resource path="res://Main.gd" type="Script" id=18]
 
 [node name="Main" type="Node2D"]
+pause_mode = 2
 script = ExtResource( 18 )
 
 [node name="UI" parent="." instance=ExtResource( 6 )]

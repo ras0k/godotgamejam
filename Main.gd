@@ -23,6 +23,8 @@ func _process(delta):
 		Engine.time_scale = 4
 	elif Input.is_action_just_pressed("4"):
 		Engine.time_scale = 8
+	if Input.is_action_just_pressed("pause"):
+		get_tree().paused = not get_tree().paused
 	
 	asteroid_spawn_timer += 1
 	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 2800:
