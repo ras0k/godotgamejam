@@ -1,0 +1,276 @@
+[gd_scene load_steps=23 format=2]
+
+[ext_resource path="res://MainP.gd" type="Script" id=1]
+[ext_resource path="res://planets/PlanetX.gd" type="Script" id=2]
+[ext_resource path="res://start_button_text.png" type="Texture" id=3]
+[ext_resource path="res://Earth.gd" type="Script" id=4]
+[ext_resource path="res://JupiterBody.gd" type="Script" id=5]
+[ext_resource path="res://background_128.png" type="Texture" id=6]
+[ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=7]
+[ext_resource path="res://planets/earth.png" type="Texture" id=8]
+[ext_resource path="res://planets/planets_sheet.png" type="Texture" id=9]
+[ext_resource path="res://stars/sol.png" type="Texture" id=10]
+[ext_resource path="res://stars/red_supergiant.png" type="Texture" id=11]
+[ext_resource path="res://options_button_text.png" type="Texture" id=12]
+[ext_resource path="res://quit_button_text.png" type="Texture" id=13]
+[ext_resource path="res://StartMenu.gd" type="Script" id=14]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 154.117
+
+[sub_resource type="RectangleShape2D" id=12]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="CircleShape2D" id=34]
+radius = 9.0
+
+[sub_resource type="RectangleShape2D" id=35]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="CircleShape2D" id=13]
+radius = 3.0
+
+[sub_resource type="CircleShape2D" id=36]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id=37]
+radius = 2.0
+
+[sub_resource type="CircleShape2D" id=2]
+
+[node name="StartMenu" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -32.0
+margin_top = -32.0
+margin_right = 32.0
+margin_bottom = 32.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Main" type="Node2D" parent="."]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="SolarSystem" type="Node2D" parent="Main"]
+
+[node name="bg" type="Sprite" parent="Main/SolarSystem"]
+position = Vector2( 64, 64 )
+texture = ExtResource( 6 )
+
+[node name="Sol" type="Area2D" parent="Main/SolarSystem"]
+position = Vector2( 55, 55 )
+collision_layer = 8
+collision_mask = 21
+priority = 1.0
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 1.0
+linear_damp = 0.0
+angular_damp = 0.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sol" type="Sprite" parent="Main/SolarSystem/Sol"]
+texture = ExtResource( 10 )
+
+[node name="Sol2" type="Sprite" parent="Main/SolarSystem/Sol"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.0625, 0.0625 )
+texture = ExtResource( 7 )
+
+[node name="SuperGiant" type="Sprite" parent="Main/SolarSystem/Sol"]
+modulate = Color( 1, 1, 1, 0 )
+scale = Vector2( 0.0624999, 0.0624999 )
+texture = ExtResource( 11 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/SolarSystem/Sol"]
+visible = false
+shape = SubResource( 1 )
+
+[node name="Earth" type="RigidBody2D" parent="Main/SolarSystem"]
+position = Vector2( 25, 44 )
+collision_layer = 4
+mass = 100.0
+can_sleep = false
+angular_damp = 100.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Main/SolarSystem/Earth"]
+texture = ExtResource( 8 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/SolarSystem/Earth"]
+shape = SubResource( 12 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Main/SolarSystem/Earth"]
+modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
+amount = 240
+lifetime = 12.0
+local_coords = false
+direction = Vector2( 2, 0 )
+spread = 45.1
+gravity = Vector2( 0, 0 )
+
+[node name="GravityArea" type="Area2D" parent="Main/SolarSystem/Earth"]
+collision_layer = 2
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 1.2
+linear_damp = 0.05
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/SolarSystem/Earth/GravityArea"]
+shape = SubResource( 34 )
+
+[node name="JupiterBody" type="RigidBody2D" parent="Main/SolarSystem"]
+position = Vector2( 1, 33 )
+collision_layer = 4
+mass = 200.0
+angular_damp = 100.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Main/SolarSystem/JupiterBody"]
+texture = ExtResource( 9 )
+hframes = 12
+frame = 11
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/SolarSystem/JupiterBody"]
+shape = SubResource( 35 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Main/SolarSystem/JupiterBody"]
+modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
+amount = 240
+lifetime = 12.0
+local_coords = false
+direction = Vector2( 2, 0 )
+spread = 45.1
+gravity = Vector2( 0, 0 )
+
+[node name="Jupiter" type="Area2D" parent="Main/SolarSystem/JupiterBody"]
+position = Vector2( -12, -34 )
+collision_layer = 4
+gravity_vec = Vector2( 0, 0 )
+gravity = 0.0
+angular_damp = 0.0
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Main/SolarSystem/JupiterBody/Jupiter"]
+visible = false
+position = Vector2( 12, 34 )
+shape = SubResource( 13 )
+
+[node name="GravityArea" type="Area2D" parent="Main/SolarSystem/JupiterBody"]
+collision_layer = 2
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 2.0
+linear_damp = 0.05
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/SolarSystem/JupiterBody/GravityArea"]
+visible = false
+shape = SubResource( 36 )
+
+[node name="Planet X" type="RigidBody2D" parent="Main/SolarSystem"]
+position = Vector2( -35, 18 )
+collision_layer = 4
+mass = 150.0
+can_sleep = false
+angular_damp = 100.0
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Main/SolarSystem/Planet X"]
+texture = ExtResource( 9 )
+hframes = 12
+frame = 11
+
+[node name="Surface" type="CollisionShape2D" parent="Main/SolarSystem/Planet X"]
+shape = SubResource( 37 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="Main/SolarSystem/Planet X"]
+modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
+amount = 240
+lifetime = 12.0
+local_coords = false
+direction = Vector2( 2, 0 )
+spread = 45.1
+gravity = Vector2( 0, 0 )
+
+[node name="Gravity" type="Area2D" parent="Main/SolarSystem/Planet X"]
+collision_layer = 2
+space_override = 1
+gravity_point = true
+gravity_vec = Vector2( 0, 0 )
+gravity = 1.55
+linear_damp = 0.05
+angular_damp = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Main/SolarSystem/Planet X/Gravity"]
+shape = SubResource( 2 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 10.0
+rect_scale = Vector2( 0.25, 0.25 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="VBoxContainer"]
+margin_top = 3.0
+margin_right = 64.0
+margin_bottom = 23.0
+focus_neighbour_left = NodePath("../Quit")
+focus_neighbour_top = NodePath("../Quit")
+flat = true
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/Start"]
+position = Vector2( 36, 9 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 3 )
+
+[node name="Options" type="Button" parent="VBoxContainer"]
+margin_top = 27.0
+margin_right = 64.0
+margin_bottom = 47.0
+flat = true
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/Options"]
+position = Vector2( 52, 9 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 12 )
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+margin_top = 51.0
+margin_right = 64.0
+margin_bottom = 71.0
+focus_neighbour_bottom = NodePath("../Start")
+flat = true
+
+[node name="Sprite" type="Sprite" parent="VBoxContainer/Quit"]
+position = Vector2( 28, 9 )
+scale = Vector2( 4, 4 )
+texture = ExtResource( 13 )
+
+[connection signal="body_entered" from="Main/SolarSystem/JupiterBody/Jupiter" to="Main/SolarSystem/JupiterBody/Jupiter" method="_on_Jupiter_body_entered"]
+[connection signal="body_exited" from="Main/SolarSystem/JupiterBody/Jupiter" to="Main/SolarSystem/JupiterBody/Jupiter" method="_on_Jupiter_body_exited"]
+[connection signal="pressed" from="VBoxContainer/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

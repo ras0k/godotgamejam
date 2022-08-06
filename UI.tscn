@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://resource_bg_blue.png" type="Texture" id=9]
 [ext_resource path="res://resource_bg_red.png" type="Texture" id=10]
 [ext_resource path="res://resource_bg_green.png" type="Texture" id=11]
+[ext_resource path="res://paused.png" type="Texture" id=12]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
@@ -49,6 +50,24 @@ pause_mode = 2
 script = ExtResource( 2 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/PauseMenu"]
+position = Vector2( 35, 32.25 )
+scale = Vector2( 3.69231, 5.3 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 26.0813, 15.4956 )
+
+[node name="Sprite2" type="Sprite" parent="CanvasLayer/PauseMenu"]
+position = Vector2( 33, 13 )
+texture = ExtResource( 12 )
 
 [node name="ui" type="Sprite" parent="CanvasLayer"]
 position = Vector2( 32, 58 )
