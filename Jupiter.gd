@@ -21,6 +21,9 @@ func _on_Jupiter_body_entered(body):
 				get_node("/root/Main/Spaceship/ExplosionSprite").frame = 0
 				get_node("/root/Main/Spaceship/ShipSprite").visible = false
 				player.crash_counter += 1
+				print("Crashed!")
+		else:
+			print("Landed!")
 
 
 func _process(_delta):

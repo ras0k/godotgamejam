@@ -4,7 +4,8 @@ extends RigidBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
-
+var remaining_ore = 0 # temporary(?) solution to error when landed on this body and an asteroid is within player's
+# mining range.
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

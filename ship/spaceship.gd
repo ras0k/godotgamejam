@@ -34,6 +34,7 @@ func _ready():
 
 
 func _physics_process(_delta):
+	launch()
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
 		fuel -= 0.8
@@ -113,4 +114,23 @@ func mining():
 		body.remaining_ore -= mining_rate
 		ore_count += mining_rate
 		fuel -= 0.3
-		
+
+func launch():
+	if landed == true and Input.is_action_just_pressed("launch"):
+		$LaunchTimer.start(5.0)
+		speed *= 5
+		landed = false
+		set_collision_layer_bit(1, false)
+		set_collision_mask_bit(2, false)
+		set_collision_mask_bit(3, false)
+		set_collision_mask_bit(4, false)
+		print("Launch Started!")
+
+
+func _on_LaunchTimer_timeout():
+	speed = 8
+	set_collision_layer_bit(1, true)
+	set_collision_mask_bit(2, true)
+	set_collision_mask_bit(3, true)
+	set_collision_mask_bit(4, true)
+	print("Launch Ended!")

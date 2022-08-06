@@ -10,9 +10,9 @@ var remaining_ore = 0 # temporary(?) solution to error when landed on this body 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_axis_velocity(Vector2(-5,10) * 0.5)
-	$Sprite.frame = int(rand_range(0.0 , 11.99)) 
-	
+	set_axis_velocity(Vector2(13 , 13) * 0.5)
+	$Sprite.frame = int(rand_range(0.0, 11.99)) 
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
