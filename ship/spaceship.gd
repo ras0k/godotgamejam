@@ -21,6 +21,11 @@ var ore_count := 0.0
 var mining_targets := 0
 var interstellar_fuel := 0.0
 var laser_toggle := true
+var white_resource_amount := 0.0
+var blue_resource_amount := 0.0
+var green_resource_amount := 0.0
+var red_resource_amount := 0
+var black_resource_amount := 0.0
 
 
 
@@ -111,8 +116,22 @@ func _on_MiningArea_body_exited(body):
 
 func mining():
 	for body in $MiningArea.get_overlapping_bodies():
+		if body.resource_type == "white":
+				white_resource_amount += mining_rate * 0.2
+		elif body.resource_type == "blue":
+				blue_resource_amount += mining_rate * 0.37
+		elif body.resource_type == "green":
+				green_resource_amount += mining_rate * 0.5
+		elif body.resource_type == "red":
+				red_resource_amount += mining_rate * 0.6
+		elif body.resource_type == "black":
+				black_resource_amount += mining_rate
 		body.remaining_ore -= mining_rate
-		ore_count += mining_rate
+		print("white: " + str(white_resource_amount))
+		print("blue: " + str(blue_resource_amount))
+		print("green: " + str(green_resource_amount))
+		print("red: " + str(red_resource_amount))
+		print("black: " + str(black_resource_amount))
 		fuel -= 0.3
 
 func launch():

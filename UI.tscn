@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -6,6 +6,11 @@
 [ext_resource path="res://UI.png" type="Texture" id=4]
 [ext_resource path="res://ship/flame.png" type="Texture" id=5]
 [ext_resource path="res://rainbowBar.png" type="Texture" id=6]
+[ext_resource path="res://resource_bg.png" type="Texture" id=7]
+[ext_resource path="res://resource_bg_gray.png" type="Texture" id=8]
+[ext_resource path="res://resource_bg_blue.png" type="Texture" id=9]
+[ext_resource path="res://resource_bg_red.png" type="Texture" id=10]
+[ext_resource path="res://resource_bg_green.png" type="Texture" id=11]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
@@ -132,3 +137,45 @@ margin_right = 63.0
 margin_bottom = 63.0
 value = 100.0
 texture_progress = ExtResource( 6 )
+
+[node name="White" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 38.0
+margin_top = 59.0
+margin_right = 288.0
+margin_bottom = 73.0
+rect_scale = Vector2( 0.1, 0.1 )
+hint_tooltip = "White"
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Blue" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 12.0
+margin_top = 59.0
+margin_right = 262.0
+margin_bottom = 73.0
+rect_scale = Vector2( 0.1, 0.1 )
+hint_tooltip = "Blue"
+step = 0.1
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 9 )
+
+[node name="Green" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 12.0
+margin_top = 57.0
+margin_right = 262.0
+margin_bottom = 71.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 11 )
+
+[node name="Red" type="TextureProgress" parent="CanvasLayer"]
+margin_left = 38.0
+margin_top = 57.0
+margin_right = 288.0
+margin_bottom = 71.0
+rect_scale = Vector2( 0.1, 0.1 )
+texture_under = ExtResource( 8 )
+texture_progress = ExtResource( 10 )

@@ -27,7 +27,7 @@ texture = ExtResource( 3 )
 [node name="JupiterBody" parent="SolarSystem" instance=ExtResource( 4 )]
 
 [node name="Planet X" parent="SolarSystem" instance=ExtResource( 7 )]
-position = Vector2( 68, 9 )
+position = Vector2( -23, -17 )
 
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
 
