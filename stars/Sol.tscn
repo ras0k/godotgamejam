@@ -5,6 +5,7 @@
 [ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=3]
 [ext_resource path="res://stars/red_supergiant.png" type="Texture" id=4]
 
+
 [sub_resource type="CircleShape2D" id=1]
 radius = 154.117
 
