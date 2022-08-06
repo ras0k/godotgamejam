@@ -19,6 +19,8 @@ func _ready():
 
 func _process(_delta):
 	$CanvasLayer/PauseMenu.visible = get_tree().paused
+	if player.trading:
+		$CanvasLayer/PauseMenu.visible = false
 	flames_render()
 	speed_meter()
 	resource_meter()

@@ -100,4 +100,5 @@ func sell_goods():
 
 func _on_Exit_button_up():
 	get_tree().paused = false
+	player.trading = false
 	get_parent().remove_child(self)
