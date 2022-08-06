@@ -1,6 +1,6 @@
 extends RigidBody2D
 
-onready var trade_screen = preload("res://PlanetUI.tscn").instance()
+onready var trade_screen = load("res://PlanetUI.tscn").instance()
 onready var UI = get_parent().get_node("UI")
 
 export var speed := 8

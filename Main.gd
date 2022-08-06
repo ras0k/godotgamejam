@@ -14,6 +14,7 @@ func _process(delta):
 	run_time += delta
 	
 	if Input.is_action_just_pressed("reset"):
+		get_tree().paused = false
 		get_tree().reload_current_scene()
 	if Input.is_action_just_pressed("1"):
 		Engine.time_scale = 1

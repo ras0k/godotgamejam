@@ -5,7 +5,7 @@ onready var player = get_node("/root/Main/Spaceship")
 var import_good
 var export_good
 var inventory = 45.0
-var purse = 10
+var purse = 25
 
 
 # Declare member variables here. Examples:
@@ -27,10 +27,10 @@ func _ready():
 func set_import():
 	$BG.modulate.a = 0.4
 	if player.current_import == "blue":
-		$Container/ImportGood.modulate = Color(0, 1, 0)
+		$Container/ImportGood.modulate = Color(0, 0, 1)
 		import_good = "blue"
 	elif player.current_import == "green":
-		$Container/ImportGood.modulate = Color(0, 0, 1)
+		$Container/ImportGood.modulate = Color(0, 1, 0)
 		import_good = "green"
 	elif player.current_import == "red":
 		$Container/ImportGood.modulate = Color(1, 0, 0)
@@ -42,10 +42,10 @@ func set_import():
 
 func set_export():
 	if player.current_export == "blue":
-		$Container/ExportGood.modulate = Color(0, 1, 0)
+		$Container/ExportGood.modulate = Color(0, 0, 1)
 		export_good = "blue"
 	elif player.current_export == "green":
-		$Container/ExportGood.modulate = Color(0, 0, 1)
+		$Container/ExportGood.modulate = Color(0, 1, 0)
 		export_good = "green"
 	elif player.current_export == "red":
 		$Container/ExportGood.modulate = Color(1, 0, 0)
@@ -55,6 +55,13 @@ func set_export():
 		export_good = "white"
 
 func _on_Buy_button_up():
+	buy_goods()
+
+
+func _on_Sell_button_up():
+	sell_goods()
+
+func buy_goods():
 	if export_good == "blue" and Global.currency >= 3 and inventory >= 15:
 		Global.blue_resource_amount += 15
 		Global.currency -= 3
@@ -74,9 +81,6 @@ func _on_Buy_button_up():
 	else:
 		print("Transaction failed!")
 
-
-func _on_Sell_button_up():
-	sell_goods()
 
 func sell_goods():
 	if import_good == "blue" and Global.blue_resource_amount >= 10.0 and purse >= 2:
@@ -106,4 +110,4 @@ func sell_goods():
 
 func _on_Exit_button_up():
 	get_tree().paused = false
-	queue_free()
+	get_parent().remove_child(self)
