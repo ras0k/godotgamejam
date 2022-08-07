@@ -25,7 +25,7 @@ func rotate_compass(frame: int) -> void:
 
 
 func update_speed_meter():
-	$SpeedMeter.value = 25 * clamp(get_node("/root/Main/SolarSystem/JupiterBody/Jupiter").relativeSpeed.length(), 0.5, 5.5)
+	$SpeedMeter.value = 25 * clamp(get_node("/root/Main/SolarSystem/JumpPlanet/LandingArea").relativeSpeed.length(), 0.5, 5.5)
 
 
 func update_resource_meter():

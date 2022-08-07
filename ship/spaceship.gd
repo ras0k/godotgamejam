@@ -30,7 +30,6 @@ var current_export
 var trading := false
 
 
-
 signal turned(degrees)
 
 

@@ -1,15 +1,15 @@
 [gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://planets/PlanetBody.gd" type="Script" id=1]
-[ext_resource path="res://planets/earth.png" type="Texture" id=2]
+[ext_resource path="res://planets/planets_sheet.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 1, 1 )
+extents = Vector2( 1.5, 1.5 )
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 9.0
 
-[node name="Earth" type="RigidBody2D"]
+[node name="TechPlanet" type="RigidBody2D"]
 collision_layer = 4
 mass = 100.0
 can_sleep = false
@@ -21,6 +21,8 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 2 )
+hframes = 12
+frame = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 12 )

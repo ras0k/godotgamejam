@@ -39,7 +39,7 @@ func _on_Jupiter_body_entered(body):
 
 func _process(_delta):
 		shipSpeed = player.linear_velocity
-		planetSpeed = get_node("/root/Main/SolarSystem/JupiterBody").linear_velocity
+		planetSpeed = get_node("/root/Main/SolarSystem/JumpPlanet").linear_velocity
 		relativeSpeed = planetSpeed - shipSpeed
 		if player.crash_counter > 0 :
 			player.crash_counter += 1

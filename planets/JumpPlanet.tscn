@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://planets/PlanetBody.gd" type="Script" id=1]
-[ext_resource path="res://planets/Jupiter.gd" type="Script" id=2]
+[ext_resource path="res://planets/JumpPlanet.gd" type="Script" id=2]
 [ext_resource path="res://planets/planets_sheet.png" type="Texture" id=3]
 
 [sub_resource type="RectangleShape2D" id=12]
@@ -13,7 +13,7 @@ radius = 3.0
 [sub_resource type="CircleShape2D" id=34]
 radius = 9.0
 
-[node name="JupiterBody" type="RigidBody2D"]
+[node name="JumpPlanet" type="RigidBody2D"]
 collision_layer = 4
 mass = 200.0
 angular_damp = 100.0
@@ -25,7 +25,7 @@ __meta__ = {
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 3 )
 hframes = 12
-frame = 11
+frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 12 )
@@ -39,7 +39,7 @@ direction = Vector2( 2, 0 )
 spread = 45.1
 gravity = Vector2( 0, 0 )
 
-[node name="Jupiter" type="Area2D" parent="."]
+[node name="LandingArea" type="Area2D" parent="."]
 position = Vector2( -12, -34 )
 collision_layer = 4
 gravity_vec = Vector2( 0, 0 )
@@ -47,7 +47,7 @@ gravity = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="Jupiter"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="LandingArea"]
 visible = false
 position = Vector2( 12, 34 )
 shape = SubResource( 13 )
@@ -65,5 +65,5 @@ angular_damp = 0.0
 visible = false
 shape = SubResource( 34 )
 
-[connection signal="body_entered" from="Jupiter" to="Jupiter" method="_on_Jupiter_body_entered"]
-[connection signal="body_exited" from="Jupiter" to="Jupiter" method="_on_Jupiter_body_exited"]
+[connection signal="body_entered" from="LandingArea" to="LandingArea" method="_on_Jupiter_body_entered"]
+[connection signal="body_exited" from="LandingArea" to="LandingArea" method="_on_Jupiter_body_exited"]
