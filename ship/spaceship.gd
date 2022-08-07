@@ -7,6 +7,9 @@ export var spin_thrust := 6
 export var initial_velocity := Vector2.ZERO
 
 var flames_on := false
+var space_speed = speed
+var planet_speed = speed / 2
+var orbit_speed = speed * 3
 var max_fuel := 2000.0
 var fuel := 1600.0
 var velocity = Vector2()
@@ -24,10 +27,11 @@ var mining_targets := 0
 var interstellar_fuel := 0.0
 var laser_toggle := true
 var current_planet
+var on_planet := false
 var planet_sprite
 var current_import
 var current_export
-var trading := false
+#var trading := false
 
 
 signal turned(degrees)
@@ -42,8 +46,8 @@ func _ready():
 
 
 func _physics_process(_delta):
-	trade()
-	launch()
+#	trade()
+#	launch()
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
 		fuel -= 0.8
@@ -70,17 +74,15 @@ func _physics_process(_delta):
 	rotation = 0
 
 	if landed == true:
-		fuel += 0.8
+		fuel += 2
+		speed = orbit_speed
 		$CPUParticles2D.emitting = false
 		if Input.is_action_pressed("boost") and fuel > 0.0:
-			fuel += 1.8
-#	if not landed and fuel < 1:
-#		death_counter += 1
-#		if death_counter > 500:
-#			get_tree().reload_current_scene()
+			fuel += 3
 	elif not landed:
 		$CPUParticles2D.emitting = true
 		death_counter = 0
+		speed = space_speed
 	if crash_counter > 0:
 		$CPUParticles2D.emitting = false
 
@@ -139,33 +141,33 @@ func mining():
 #		print("green: " + str(green_resource_amount))
 #		print("red: " + str(red_resource_amount))
 #		print("black: " + str(black_resource_amount))
-		fuel -= 0.3
+#		fuel -= 0.3
+#
+#func launch():
+#	if landed and Input.is_action_just_pressed("launch"):
+#		$LaunchTimer.start(5.0)
+#		speed *= 5
+#		landed = false
+#		set_collision_layer_bit(1, false)
+#		set_collision_mask_bit(2, false)
+#		set_collision_mask_bit(3, false)
+#		set_collision_mask_bit(4, false)
+#		print("Launch Started!")
+#
+#
+#func _on_LaunchTimer_timeout():
+#	speed = 8
+#	set_collision_layer_bit(1, true)
+#	set_collision_mask_bit(2, true)
+#	set_collision_mask_bit(3, true)
+#	set_collision_mask_bit(4, true)
+#	print("Launch Ended!")
 
-func launch():
-	if landed and Input.is_action_just_pressed("launch"):
-		$LaunchTimer.start(5.0)
-		speed *= 5
-		landed = false
-		set_collision_layer_bit(1, false)
-		set_collision_mask_bit(2, false)
-		set_collision_mask_bit(3, false)
-		set_collision_mask_bit(4, false)
-		print("Launch Started!")
-
-
-func _on_LaunchTimer_timeout():
-	speed = 8
-	set_collision_layer_bit(1, true)
-	set_collision_mask_bit(2, true)
-	set_collision_mask_bit(3, true)
-	set_collision_mask_bit(4, true)
-	print("Launch Ended!")
-
-func trade():
-	if landed and Input.is_action_just_pressed("interact"):
-		current_import = current_planet.import_good
-		current_export = current_planet.export_good
-		self.add_child(trade_screen)
-		trading = true
-		get_tree().paused = true
-#		print("trading")
+#func trade():
+#	if landed and Input.is_action_just_pressed("interact"):
+#		current_import = current_planet.import_good
+#		current_export = current_planet.export_good
+#		self.add_child(trade_screen)
+#		trading = true
+#		get_tree().paused = true
+##		print("trading")

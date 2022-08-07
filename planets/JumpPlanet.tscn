@@ -4,11 +4,11 @@
 [ext_resource path="res://planets/JumpPlanet.gd" type="Script" id=2]
 [ext_resource path="res://planets/planets_sheet.png" type="Texture" id=3]
 
-[sub_resource type="RectangleShape2D" id=12]
-extents = Vector2( 1, 1 )
+[sub_resource type="CircleShape2D" id=35]
+radius = 2.0
 
 [sub_resource type="CircleShape2D" id=13]
-radius = 3.0
+radius = 4.0
 
 [sub_resource type="CircleShape2D" id=34]
 radius = 9.0
@@ -28,7 +28,7 @@ hframes = 12
 frame = 9
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 12 )
+shape = SubResource( 35 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
@@ -47,6 +47,7 @@ gravity = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
 
+
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LandingArea"]
 visible = false
 position = Vector2( 12, 34 )
@@ -62,7 +63,6 @@ linear_damp = 0.05
 angular_damp = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]
-visible = false
 shape = SubResource( 34 )
 
 [connection signal="body_entered" from="LandingArea" to="LandingArea" method="_on_Jupiter_body_entered"]
