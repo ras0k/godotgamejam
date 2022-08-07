@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://UI.png" type="Texture" id=4]
 [ext_resource path="res://ship/flame.png" type="Texture" id=5]
 [ext_resource path="res://rainbowBar.png" type="Texture" id=6]
+[ext_resource path="res://ship/explosion.png" type="Texture" id=7]
 [ext_resource path="res://paused.png" type="Texture" id=12]
 [ext_resource path="res://Compass.gd" type="Script" id=13]
 [ext_resource path="res://Inventory.gd" type="Script" id=14]
@@ -47,6 +48,50 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 7 )
+region = Rect2( 0, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 7 )
+region = Rect2( 10, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 7 )
+region = Rect2( 20, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 7 )
+region = Rect2( 30, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 7 )
+region = Rect2( 40, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 7 )
+region = Rect2( 50, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 7 )
+region = Rect2( 60, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=31]
+atlas = ExtResource( 7 )
+region = Rect2( 70, 0, 10, 10 )
+
+[sub_resource type="AtlasTexture" id=33]
+atlas = ExtResource( 7 )
+region = Rect2( 90, 0, 10, 10 )
+
+[sub_resource type="SpriteFrames" id=34]
+animations = [ {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 33 ) ],
+"loop": false,
+"name": "New Anim",
+"speed": 12.0
+} ]
+
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.45098, 0.415686, 0.466667, 1 )
 
@@ -80,9 +125,6 @@ max_value = 1000.0
 value = 99.88
 percent_visible = false
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="SpeedMeter" type="TextureProgress" parent="."]
 margin_left = 38.0
@@ -169,6 +211,14 @@ frames = SubResource( 11 )
 animation = "0"
 frame = 4
 speed_scale = 2.5
+
+[node name="ExplosionSprite" type="AnimatedSprite" parent="Compass"]
+position = Vector2( 4, 5 )
+scale = Vector2( 0.6, 0.6 )
+frames = SubResource( 34 )
+animation = "New Anim"
+frame = 8
+playing = true
 
 [node name="Inventory" type="Control" parent="."]
 margin_left = 11.0

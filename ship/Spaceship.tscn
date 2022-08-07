@@ -52,7 +52,7 @@ region = Rect2( 90, 0, 10, 10 )
 
 [sub_resource type="SpriteFrames" id=23]
 animations = [ {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 33 ) ],
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 33 ), null ],
 "loop": false,
 "name": "New Anim",
 "speed": 12.0
@@ -78,7 +78,7 @@ gravity = Vector2( 0, 0 )
 color_ramp = SubResource( 14 )
 
 [node name="ShipSprite" type="Sprite" parent="."]
-modulate = Color( 1, 0.12549, 0.12549, 1 )
+modulate = Color( 0.903458, 0.923634, 1, 1 )
 scale = Vector2( 1, 2 )
 texture = ExtResource( 3 )
 vframes = 2
@@ -95,10 +95,11 @@ limit_right = 128
 limit_bottom = 128
 
 [node name="ExplosionSprite" type="AnimatedSprite" parent="."]
+visible = false
 scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 23 )
 animation = "New Anim"
-frame = 8
+frame = 9
 playing = true
 
 [node name="MiningArea" type="Area2D" parent="."]

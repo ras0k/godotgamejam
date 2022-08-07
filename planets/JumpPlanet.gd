@@ -31,7 +31,11 @@ func _on_Jupiter_body_entered(body):
 		if relativeSpeed.length() > 5.0:
 			if player.crash_counter == 0:
 				get_node("/root/Main/Spaceship/ExplosionSprite").frame = 0
+				get_node("/root/Main/Spaceship/ExplosionSprite").visible = true
+				get_node("/root/Main/CanvasLayer/UI/Compass/ExplosionSprite").frame = 0
+				get_node("/root/Main/CanvasLayer/UI/Compass/ExplosionSprite").visible = true
 				get_node("/root/Main/Spaceship/ShipSprite").visible = false
+				get_node("/root/Main/CanvasLayer/UI/Compass/Ship").visible = false
 				player.crash_counter += 1
 				print("Crashed!")
 		else:
