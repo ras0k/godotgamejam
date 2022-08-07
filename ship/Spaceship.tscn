@@ -2,7 +2,7 @@
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=2]
-[ext_resource path="res://ship/spaceship_2px.png" type="Texture" id=3]
+[ext_resource path="res://ship/ship.png" type="Texture" id=3]
 [ext_resource path="res://ship/MiningArea.gd" type="Script" id=4]
 
 [sub_resource type="PhysicsMaterial" id=35]
@@ -79,10 +79,12 @@ color_ramp = SubResource( 14 )
 
 [node name="ShipSprite" type="Sprite" parent="."]
 modulate = Color( 1, 0.12549, 0.12549, 1 )
+scale = Vector2( 1, 2 )
 texture = ExtResource( 3 )
 vframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
@@ -93,12 +95,14 @@ limit_right = 128
 limit_bottom = 128
 
 [node name="ExplosionSprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 0.5, 0.5 )
 frames = SubResource( 23 )
 animation = "New Anim"
 frame = 8
 playing = true
 
 [node name="MiningArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 0
 collision_mask = 16
 script = ExtResource( 4 )
@@ -106,9 +110,5 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiningArea"]
 shape = SubResource( 36 )
 
-[node name="LaunchTimer" type="Timer" parent="."]
-one_shot = true
-
 [connection signal="body_entered" from="MiningArea" to="." method="_on_MiningArea_body_entered"]
 [connection signal="body_exited" from="MiningArea" to="." method="_on_MiningArea_body_exited"]
-[connection signal="timeout" from="LaunchTimer" to="." method="_on_LaunchTimer_timeout"]

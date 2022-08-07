@@ -9,8 +9,8 @@ func _ready():
 
 func _process(_delta):
 	$PauseMenu.visible = get_tree().paused
-	if player.trading:
-		$PauseMenu.visible = false
+#	if player.trading:
+#		$PauseMenu.visible = false
 	if player.flames_on:
 		compass.flames_on()
 	else:
