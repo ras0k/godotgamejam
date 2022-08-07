@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Earth.gd" type="Script" id=1]
+[ext_resource path="res://planets/PlanetBody.gd" type="Script" id=1]
 [ext_resource path="res://planets/earth.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=12]
@@ -10,7 +10,6 @@ extents = Vector2( 1, 1 )
 radius = 9.0
 
 [node name="Earth" type="RigidBody2D"]
-position = Vector2( 35, 46 )
 collision_layer = 4
 mass = 100.0
 can_sleep = false

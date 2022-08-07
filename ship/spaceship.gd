@@ -1,12 +1,12 @@
 extends RigidBody2D
 
-onready var trade_screen = load("res://PlanetUI.tscn").instance()
+onready var trade_screen = load("res://planets/PlanetUI.tscn").instance()
 
 export var speed := 8
 export var spin_thrust := 6
-export var initial_velocity := Vector2(-4,8)
-export var flames_on := false
+export var initial_velocity := Vector2.ZERO
 
+var flames_on := false
 var max_fuel := 2000.0
 var fuel := 1600.0
 var velocity = Vector2()
@@ -23,12 +23,6 @@ var ore_count := 0.0
 var mining_targets := 0
 var interstellar_fuel := 0.0
 var laser_toggle := true
-#var white_resource_amount := 20.0
-#var blue_resource_amount := 20.0
-#var green_resource_amount := 20.0
-#var red_resource_amount := 20.0
-#var black_resource_amount := 0.0
-#var currency := 0
 var current_planet
 var planet_sprite
 var current_import
@@ -44,7 +38,7 @@ func _ready():
 	if not landed:
 		current_planet = null
 	set_axis_velocity(initial_velocity)
-	turn_ship(180)
+	turn_ship(0)
 	pass # Replace with function body.
 
 

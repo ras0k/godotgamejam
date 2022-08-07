@@ -1,16 +1,14 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Sol.gd" type="Script" id=1]
+[ext_resource path="res://stars/Sol.gd" type="Script" id=1]
 [ext_resource path="res://stars/sol.png" type="Texture" id=2]
 [ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=3]
 [ext_resource path="res://stars/red_supergiant.png" type="Texture" id=4]
-
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 154.117
 
 [node name="Sol" type="Area2D"]
-position = Vector2( 55, 55 )
 collision_layer = 8
 collision_mask = 21
 priority = 1.0

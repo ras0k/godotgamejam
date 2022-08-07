@@ -1,10 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://MainP.gd" type="Script" id=1]
-[ext_resource path="res://planets/PlanetX.gd" type="Script" id=2]
 [ext_resource path="res://start_button_text.png" type="Texture" id=3]
-[ext_resource path="res://Earth.gd" type="Script" id=4]
-[ext_resource path="res://JupiterBody.gd" type="Script" id=5]
+[ext_resource path="res://planets/Earth.gd" type="Script" id=4]
+[ext_resource path="res://PlanetBody.gd" type="Script" id=5]
 [ext_resource path="res://background_128.png" type="Texture" id=6]
 [ext_resource path="res://stars/red_supergiant_yelllow.png" type="Texture" id=7]
 [ext_resource path="res://planets/earth.png" type="Texture" id=8]
@@ -190,7 +189,7 @@ collision_layer = 4
 mass = 150.0
 can_sleep = false
 angular_damp = 100.0
-script = ExtResource( 2 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_group_": true
 }

@@ -62,7 +62,6 @@ animations = [ {
 radius = 13.0
 
 [node name="Spaceship" type="RigidBody2D"]
-position = Vector2( 17, -5 )
 collision_mask = 30
 mass = 10.0
 physics_material_override = SubResource( 35 )

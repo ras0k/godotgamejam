@@ -1,9 +1,8 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://JupiterBody.gd" type="Script" id=1]
-[ext_resource path="res://Jupiter.gd" type="Script" id=2]
+[ext_resource path="res://planets/PlanetBody.gd" type="Script" id=1]
+[ext_resource path="res://planets/Jupiter.gd" type="Script" id=2]
 [ext_resource path="res://planets/planets_sheet.png" type="Texture" id=3]
-
 
 [sub_resource type="RectangleShape2D" id=12]
 extents = Vector2( 1, 1 )
@@ -15,7 +14,6 @@ radius = 3.0
 radius = 9.0
 
 [node name="JupiterBody" type="RigidBody2D"]
-position = Vector2( 12, 34 )
 collision_layer = 4
 mass = 200.0
 angular_damp = 100.0

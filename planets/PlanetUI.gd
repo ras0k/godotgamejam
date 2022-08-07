@@ -28,7 +28,7 @@ func set_import():
 	else:
 		$Container/ImportGood.modulate = Color(1, 1, 1)
 		import_good = "white"
-	
+
 
 func set_export():
 	if player.current_export == "blue":
@@ -95,7 +95,7 @@ func sell_goods():
 		print(Global.currency)
 	else:
 		print("Transaction Failed!")
-	
+
 
 
 func _on_Exit_button_up():
