@@ -6,12 +6,14 @@
 [ext_resource path="res://UI.png" type="Texture" id=4]
 [ext_resource path="res://ship/flame.png" type="Texture" id=5]
 [ext_resource path="res://rainbowBar.png" type="Texture" id=6]
-[ext_resource path="res://resource_bg.png" type="Texture" id=7]
-[ext_resource path="res://resource_bg_gray.png" type="Texture" id=8]
-[ext_resource path="res://resource_bg_blue.png" type="Texture" id=9]
-[ext_resource path="res://resource_bg_red.png" type="Texture" id=10]
-[ext_resource path="res://resource_bg_green.png" type="Texture" id=11]
 [ext_resource path="res://paused.png" type="Texture" id=12]
+[ext_resource path="res://Compass.gd" type="Script" id=13]
+[ext_resource path="res://Inventory.gd" type="Script" id=14]
+
+[sub_resource type="StyleBoxFlat" id=12]
+bg_color = Color( 1, 0.701961, 0, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
@@ -45,161 +47,237 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="UI" type="Node2D"]
+[sub_resource type="StyleBoxFlat" id=14]
+bg_color = Color( 0.45098, 0.415686, 0.466667, 1 )
+
+[node name="UI" type="Control"]
 pause_mode = 2
-script = ExtResource( 2 )
-
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
-
-[node name="PauseMenu" type="Control" parent="CanvasLayer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/PauseMenu"]
-position = Vector2( 35, 32.25 )
-scale = Vector2( 3.69231, 5.3 )
-texture = ExtResource( 8 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 26.0813, 15.4956 )
-
-[node name="Sprite2" type="Sprite" parent="CanvasLayer/PauseMenu"]
-position = Vector2( 33.5, 13.25 )
-scale = Vector2( 1, 0.9 )
-texture = ExtResource( 12 )
-
-[node name="ui" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 32, 58 )
+[node name="TextureRect" type="TextureRect" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -12.0
 texture = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="FuelBar" type="ProgressBar" parent="CanvasLayer"]
-modulate = Color( 83.41, 3.44, 0.05, 1 )
+[node name="FuelBar" type="ProgressBar" parent="."]
 margin_left = 12.0
 margin_top = 62.0
-margin_right = 262.0
-margin_bottom = 72.0
-rect_scale = Vector2( 0.1, 0.1 )
+margin_right = 37.0
+margin_bottom = 63.0
+custom_styles/fg = SubResource( 12 )
+custom_styles/bg = SubResource( 13 )
 max_value = 1000.0
 value = 99.88
 percent_visible = false
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CompassSprite" type="Sprite" parent="CanvasLayer"]
-position = Vector2( 4, 60 )
-texture = ExtResource( 3 )
-hframes = 16
-frame = 4
-
-[node name="FlameSprite" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 3.5, 61.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite2" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 5.5, 61.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite3" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 2.5, 60.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite4" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 2.5, 58.5 )
-frames = SubResource( 11 )
-animation = "0"
-frame = 5
-speed_scale = 2.5
-
-[node name="FlameSprite5" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 3.5, 57.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite6" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 5.5, 57.5 )
-frames = SubResource( 11 )
-animation = "0"
-speed_scale = 2.5
-
-[node name="FlameSprite7" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 6.5, 58.5 )
-frames = SubResource( 11 )
-animation = "0"
-frame = 5
-speed_scale = 2.5
-
-[node name="FlameSprite8" type="AnimatedSprite" parent="CanvasLayer"]
-visible = false
-position = Vector2( 6.5, 60.5 )
-frames = SubResource( 11 )
-animation = "0"
-frame = 4
-speed_scale = 2.5
-
-[node name="SpeedMeter" type="TextureProgress" parent="CanvasLayer"]
+[node name="SpeedMeter" type="TextureProgress" parent="."]
 margin_left = 38.0
 margin_top = 62.0
 margin_right = 63.0
 margin_bottom = 63.0
 value = 100.0
 texture_progress = ExtResource( 6 )
-
-[node name="White" type="TextureProgress" parent="CanvasLayer"]
-margin_left = 38.0
-margin_top = 59.0
-margin_right = 288.0
-margin_bottom = 73.0
-rect_scale = Vector2( 0.1, 0.1 )
-hint_tooltip = "White"
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Blue" type="TextureProgress" parent="CanvasLayer"]
-margin_left = 12.0
-margin_top = 59.0
-margin_right = 262.0
-margin_bottom = 73.0
-rect_scale = Vector2( 0.1, 0.1 )
-hint_tooltip = "Blue"
-step = 0.1
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 9 )
+[node name="Compass" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_top = -9.0
+margin_right = 9.0
+script = ExtResource( 13 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Green" type="TextureProgress" parent="CanvasLayer"]
-margin_left = 12.0
-margin_top = 57.0
-margin_right = 262.0
-margin_bottom = 71.0
-rect_scale = Vector2( 0.1, 0.1 )
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 11 )
+[node name="Ship" type="Sprite" parent="Compass"]
+position = Vector2( 4, 5 )
+texture = ExtResource( 3 )
+hframes = 16
+frame = 4
 
-[node name="Red" type="TextureProgress" parent="CanvasLayer"]
-margin_left = 38.0
-margin_top = 57.0
-margin_right = 288.0
-margin_bottom = 71.0
-rect_scale = Vector2( 0.1, 0.1 )
-texture_under = ExtResource( 8 )
-texture_progress = ExtResource( 10 )
+[node name="Flame1" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 3.5, 6.5 )
+frames = SubResource( 11 )
+animation = "0"
+speed_scale = 2.5
+
+[node name="Flame2" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 5.5, 6.5 )
+frames = SubResource( 11 )
+animation = "0"
+speed_scale = 2.5
+
+[node name="Flame3" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 2.5, 5.5 )
+frames = SubResource( 11 )
+animation = "0"
+speed_scale = 2.5
+
+[node name="Flame4" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 2.5, 3.5 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 5
+speed_scale = 2.5
+
+[node name="Flame5" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 3.5, 2.5 )
+frames = SubResource( 11 )
+animation = "0"
+speed_scale = 2.5
+
+[node name="Flame6" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 5.5, 2.5 )
+frames = SubResource( 11 )
+animation = "0"
+speed_scale = 2.5
+
+[node name="Flame7" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 6.5, 3.5 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 5
+speed_scale = 2.5
+
+[node name="Flame8" type="AnimatedSprite" parent="Compass"]
+visible = false
+position = Vector2( 6.5, 5.5 )
+frames = SubResource( 11 )
+animation = "0"
+frame = 4
+speed_scale = 2.5
+
+[node name="Inventory" type="Control" parent="."]
+margin_left = 11.0
+margin_top = 58.0
+margin_right = 64.0
+margin_bottom = 61.0
+script = ExtResource( 14 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="ProgressBar" parent="Inventory"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_styles/fg = SubResource( 14 )
+custom_styles/bg = SubResource( 13 )
+max_value = 53.0
+step = 1.0
+value = 50.0
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ResourceBar" type="HBoxContainer" parent="Inventory"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -52.0
+margin_top = -2.0
+margin_right = -1.0
+margin_bottom = -1.0
+custom_constants/separation = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resource" type="ColorRect" parent="Inventory/ResourceBar"]
+margin_right = 1.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 1, 1 )
+color = Color( 0.133333, 0.12549, 0.203922, 1 )
+
+[node name="Resource2" type="ColorRect" parent="Inventory/ResourceBar"]
+margin_left = 2.0
+margin_right = 3.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 1, 1 )
+color = Color( 0.792157, 0.827451, 0.92549, 0.168627 )
+
+[node name="Resource3" type="ColorRect" parent="Inventory/ResourceBar"]
+margin_left = 4.0
+margin_right = 5.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 1, 1 )
+
+[node name="Resource4" type="ColorRect" parent="Inventory/ResourceBar"]
+margin_left = 6.0
+margin_right = 7.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 1, 1 )
+
+[node name="Resource5" type="ColorRect" parent="Inventory/ResourceBar"]
+margin_left = 8.0
+margin_right = 9.0
+margin_bottom = 1.0
+rect_min_size = Vector2( 1, 1 )
+color = Color( 0.952941, 0.027451, 0.027451, 1 )
+
+[node name="MiningProgress" type="ProgressBar" parent="."]
+margin_left = 10.0
+margin_top = 63.0
+margin_right = 14.0
+margin_bottom = 64.0
+rect_rotation = -90.0
+custom_styles/fg = SubResource( 12 )
+custom_styles/bg = SubResource( 13 )
+max_value = 10.0
+step = 1.0
+value = 6.0
+percent_visible = false
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PauseMenu" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="PauseMenu"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.227451, 0.227451, 0.227451, 0.529412 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
+anchor_right = 1.0
+margin_top = 13.0
+margin_bottom = 18.0
+texture = ExtResource( 12 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }

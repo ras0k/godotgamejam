@@ -13,7 +13,9 @@
 pause_mode = 2
 script = ExtResource( 18 )
 
-[node name="UI" parent="." instance=ExtResource( 6 )]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UI" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="SolarSystem" type="Node2D" parent="."]
 

@@ -1,7 +1,6 @@
 extends RigidBody2D
 
 onready var trade_screen = load("res://PlanetUI.tscn").instance()
-onready var UI = get_parent().get_node("UI")
 
 export var speed := 8
 export var spin_thrust := 6
@@ -91,17 +90,17 @@ func _physics_process(_delta):
 		death_counter = 0
 	if crash_counter > 0:
 		$CPUParticles2D.emitting = false
-	
+
 	if Input.is_action_just_pressed("mining_laser"):
 		laser_toggle = not laser_toggle
-	
+
 	if fuel < 50:
 		laser_toggle = false
-	
-	if is_mining and laser_toggle: 
+
+	if is_mining and laser_toggle:
 		mining()
-	
-	
+
+
 
 func turn_ship(angle: int):
 	ship_angle += angle
@@ -127,6 +126,9 @@ func _on_MiningArea_body_exited(body):
 			is_mining = false
 
 func mining():
+	return
+
+
 	for body in $MiningArea.get_overlapping_bodies():
 		if body.resource_type == "white":
 				Global.white_resource_amount += mining_rate * 0.2

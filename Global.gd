@@ -1,9 +1,10 @@
 extends Node
 
-# autoload (singleton) which stores player inventory
-
-var white_resource_amount := 20.0
-var blue_resource_amount := 20.0
-var green_resource_amount := 20.0
-var red_resource_amount := 20.0
-var currency := 0
+enum resource_types { EMPTY, CURRENCY, UPGRADE_MATERIAL, LIFEFORM, JUMPFUEL }
+var resource_colors = [
+	Color('#222034'),
+	Color.gold,
+	Color.lightcyan,
+	Color.green,
+	Color.orangered,
+]
