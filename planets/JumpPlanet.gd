@@ -28,7 +28,7 @@ func _on_Jupiter_body_entered(body):
 		print(planetSpeed)
 		print(relativeSpeed)
 		print(relativeSpeed.length())
-		if relativeSpeed.length() > 5.0:
+		if relativeSpeed.length() > 4.0:
 			if player.crash_counter == 0:
 				get_node("/root/Main/Spaceship/ExplosionSprite").frame = 0
 				get_node("/root/Main/Spaceship/ShipSprite").visible = false
