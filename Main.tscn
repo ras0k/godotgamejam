@@ -9,14 +9,20 @@
 pause_mode = 2
 script = ExtResource( 18 )
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+pause_mode = 2
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+pause_mode = 2
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="SolarSystem" parent="." instance=ExtResource( 2 )]
+pause_mode = 1
 
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
+pause_mode = 1
 position = Vector2( 86, 111 )
-linear_velocity = Vector2( 4, -6 )
+linear_velocity = Vector2( 5, -6.5 )
 
 [connection signal="turned" from="Spaceship" to="." method="_on_Spaceship_turned"]

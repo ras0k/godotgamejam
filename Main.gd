@@ -6,10 +6,13 @@ var asteroid := preload("res://Asteroid.tscn")
 var asteroid_spawn_timer := 0
 
 var run_time := 0.0
+var invulnerable := true
 
 var max_inventory_capacity := 5
 var current_inventory := []
 
+var pause_state = "running"
+var prev_pause_state
 
 func _ready() -> void:
 	Engine.time_scale = 1
@@ -31,8 +34,16 @@ func _process(delta: float) -> void:
 		Engine.time_scale = 4
 	elif Input.is_action_just_pressed("4"):
 		Engine.time_scale = 8
+	
 	if Input.is_action_just_pressed("pause"):
-		get_tree().paused = not get_tree().paused
+		if pause_state != "paused":
+			prev_pause_state = pause_state
+			pause_state = "paused"
+		elif pause_state == "paused":
+			pause_state = prev_pause_state
+			prev_pause_state = "paused"
+		print(pause_state)
+		check_pause()
 
 	asteroid_spawn_timer += 1
 	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 2800:
@@ -82,4 +93,18 @@ func sort_reverse(a: int, b: int) -> bool:
 	return a > b # smaller numbers at the end
 
 
-
+func check_pause():
+	if pause_state == "running":
+		get_tree().paused = false
+	elif pause_state == "paused":
+		get_tree().paused = true
+		print("prev_pause_state : " + prev_pause_state)
+		if prev_pause_state == "on_planet":
+			get_node("CanvasLayer2").pause_mode = PAUSE_MODE_STOP
+			print("no more process")
+	elif pause_state == "on_planet":
+		get_tree().paused = true
+		print("prev_pause_state : " + prev_pause_state)
+		if prev_pause_state == "paused":
+			get_node("CanvasLayer2").pause_mode = PAUSE_MODE_PROCESS
+			print("yes process")

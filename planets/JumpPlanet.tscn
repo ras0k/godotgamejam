@@ -11,7 +11,7 @@ radius = 2.0
 radius = 4.0
 
 [sub_resource type="CircleShape2D" id=34]
-radius = 9.0
+radius = 14.0357
 
 [node name="JumpPlanet" type="RigidBody2D"]
 collision_layer = 4
@@ -57,8 +57,8 @@ collision_layer = 2
 space_override = 1
 gravity_point = true
 gravity_vec = Vector2( 0, 0 )
-gravity = 2.0
-linear_damp = 0.05
+gravity = 2.5
+linear_damp = 0.0
 angular_damp = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GravityArea"]

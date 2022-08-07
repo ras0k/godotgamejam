@@ -48,45 +48,45 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="AtlasTexture" id=24]
+[sub_resource type="AtlasTexture" id=38]
 atlas = ExtResource( 7 )
 region = Rect2( 0, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=25]
+[sub_resource type="AtlasTexture" id=39]
 atlas = ExtResource( 7 )
 region = Rect2( 10, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=26]
+[sub_resource type="AtlasTexture" id=40]
 atlas = ExtResource( 7 )
 region = Rect2( 20, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=27]
+[sub_resource type="AtlasTexture" id=41]
 atlas = ExtResource( 7 )
 region = Rect2( 30, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=28]
+[sub_resource type="AtlasTexture" id=42]
 atlas = ExtResource( 7 )
 region = Rect2( 40, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=29]
+[sub_resource type="AtlasTexture" id=43]
 atlas = ExtResource( 7 )
 region = Rect2( 50, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=30]
+[sub_resource type="AtlasTexture" id=44]
 atlas = ExtResource( 7 )
 region = Rect2( 60, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=31]
+[sub_resource type="AtlasTexture" id=45]
 atlas = ExtResource( 7 )
 region = Rect2( 70, 0, 10, 10 )
 
-[sub_resource type="AtlasTexture" id=33]
+[sub_resource type="AtlasTexture" id=46]
 atlas = ExtResource( 7 )
 region = Rect2( 90, 0, 10, 10 )
 
 [sub_resource type="SpriteFrames" id=34]
 animations = [ {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 33 ) ],
+"frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": false,
 "name": "New Anim",
 "speed": 12.0
@@ -100,9 +100,6 @@ pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
@@ -143,9 +140,6 @@ anchor_bottom = 1.0
 margin_top = -9.0
 margin_right = 9.0
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Ship" type="Sprite" parent="Compass"]
 position = Vector2( 4, 5 )

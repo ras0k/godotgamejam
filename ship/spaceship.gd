@@ -1,9 +1,11 @@
 extends RigidBody2D
 
 onready var trade_screen = load("res://planets/PlanetUI.tscn").instance()
+onready var planet_scene = load("res://PlanetScene.tscn").instance()
+onready var player_scene = load("res://ship/Spaceship.tscn").instance()
+onready var main = get_parent()
 
 export var speed := 8
-export var spin_thrust := 6
 
 var flames_on := false
 var space_speed = speed
@@ -70,13 +72,25 @@ func _physics_process(_delta):
 
 	applied_force = velocity * boost
 	rotation = 0
-
+	
 	if landed == true:
 		fuel += 2
 		speed = orbit_speed
 		$CPUParticles2D.emitting = false
 		if Input.is_action_pressed("boost") and fuel > 0.0:
 			fuel += 3
+		if Input.is_action_just_pressed("ui_select"):
+			if on_planet:
+				on_planet = false
+				get_parent().get_child(0).remove_child(planet_scene)
+			elif not on_planet:
+				on_planet = true
+				main.pause_state = "on_planet"
+				print("you are going on the planet")
+				print(main.pause_state)
+				get_parent().get_child(0).add_child(planet_scene)
+
+
 	elif not landed:
 		$CPUParticles2D.emitting = true
 		death_counter = 0
