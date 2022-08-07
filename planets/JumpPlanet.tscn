@@ -47,7 +47,6 @@ gravity = 0.0
 angular_damp = 0.0
 script = ExtResource( 2 )
 
-
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="LandingArea"]
 visible = false
 position = Vector2( 12, 34 )
