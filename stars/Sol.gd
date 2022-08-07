@@ -3,7 +3,7 @@ extends Area2D
 
 # Declare member variables here. Examples:
 var a = 0.1
-var supernova = true
+var supernova = false
 
 
 # Called when the node enters the scene tree for the first time.
@@ -17,7 +17,7 @@ func _process(delta):
 #		supernova = true
 	if supernova:
 		supernova()
-	if abs((position - get_parent().get_parent().get_node("Spaceship").position).length()) > 99:
+	if abs((position - get_parent().get_parent().get_node("Spaceship").position).length()) > 299:
 		if get_parent().get_parent().get_node("Spaceship").interstellar_fuel < 0.01:
 			get_tree().reload_current_scene()
 	pass

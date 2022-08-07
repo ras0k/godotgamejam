@@ -4,7 +4,6 @@ onready var trade_screen = load("res://planets/PlanetUI.tscn").instance()
 
 export var speed := 8
 export var spin_thrust := 6
-export var initial_velocity := Vector2.ZERO
 
 var flames_on := false
 var space_speed = speed
@@ -40,7 +39,6 @@ signal turned(degrees)
 func _ready():
 	if not landed:
 		current_planet = null
-	set_axis_velocity(initial_velocity)
 	turn_ship(0)
 	pass # Replace with function body.
 

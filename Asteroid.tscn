@@ -10,7 +10,7 @@ radius = 1.0
 position = Vector2( 40, 120 )
 collision_layer = 16
 mass = 10.0
-linear_velocity = Vector2( 12, 3 )
+linear_velocity = Vector2( 14, -2 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_group_": true

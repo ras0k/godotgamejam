@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://ship/Spaceship.tscn" type="PackedScene" id=1]
 [ext_resource path="res://SolarSystem.tscn" type="PackedScene" id=2]
+[ext_resource path="res://AsteroidField.tscn" type="PackedScene" id=3]
 [ext_resource path="res://UI.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Main.gd" type="Script" id=18]
 
@@ -15,8 +16,11 @@ script = ExtResource( 18 )
 
 [node name="SolarSystem" parent="." instance=ExtResource( 2 )]
 
+[node name="AsteroidField" parent="." instance=ExtResource( 3 )]
+position = Vector2( 75, 111 )
+
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 111, 114 )
-initial_velocity = Vector2( 4, -5 )
+position = Vector2( 86, 111 )
+linear_velocity = Vector2( 4, -6 )
 
 [connection signal="turned" from="Spaceship" to="." method="_on_Spaceship_turned"]

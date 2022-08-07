@@ -12,9 +12,10 @@ func _process(delta):
 
 func mining():
 	for body in get_overlapping_bodies():
-		asteroid_positions.append(body.position)
+		asteroid_positions.append(body.global_position)
 	if get_overlapping_bodies().size() == 0:
 		asteroid_positions = []
+	print(asteroid_positions)
 	
 func _draw():
 	if asteroid_positions.size() > 0 and not get_parent().laser_toggle:
