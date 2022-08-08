@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SolarSystem.gd" type="Script" id=1]
+[ext_resource path="res://newbg256.png" type="Texture" id=2]
 [ext_resource path="res://stars/Sol.tscn" type="PackedScene" id=3]
 [ext_resource path="res://planets/JumpPlanet.tscn" type="PackedScene" id=4]
-[ext_resource path="res://background_256.png" type="Texture" id=5]
 [ext_resource path="res://planets/TechPlanet.tscn" type="PackedScene" id=7]
 
 [node name="SolarSystem" type="Node2D"]
@@ -12,7 +12,7 @@ script = ExtResource( 1 )
 
 [node name="bg" type="Sprite" parent="."]
 modulate = Color( 0.47451, 0.466667, 0.466667, 1 )
-texture = ExtResource( 5 )
+texture = ExtResource( 2 )
 
 [node name="Sol" parent="." instance=ExtResource( 3 )]
 position = Vector2( 5, 0 )
