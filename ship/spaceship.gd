@@ -13,6 +13,8 @@ var planet_speed = speed / 2
 var orbit_speed = speed * 3
 var max_fuel := 2000.0
 var fuel := 1600.0
+var fuel_multiplier := 1.0
+var planet_fuel_multiplier := 0.42
 var velocity = Vector2()
 var ship_angle := 0
 var rotation_dir := 0
@@ -51,12 +53,12 @@ func _physics_process(_delta):
 #	launch()
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
-		fuel -= 0.8
+		fuel -= fuel_multiplier * 0.8
 		flames_on = true
 		boost = 1.0
 		if Input.is_action_pressed("boost") and fuel > 0.0:
 			boost = max_boost
-			fuel -= max_boost * 0.8
+			fuel -= max_boost * 0.8 * fuel_multiplier
 	else:
 		velocity = Vector2()
 		flames_on = false
@@ -66,32 +68,35 @@ func _physics_process(_delta):
 
 	if Input.is_action_pressed("left") and fuel > 0.0:
 		turn_ship(-2)
-		fuel -= 0.25
+		fuel -= fuel_multiplier * 0.25
 	if Input.is_action_pressed("right") and fuel > 0.0:
 		turn_ship(2)
-		fuel -= 0.25
+		fuel -= fuel_multiplier * 0.25
 
 	applied_force = velocity * boost
 	rotation = 0
 	
 	if landed == true:
-		fuel += 2
+#		fuel += 2
 		speed = orbit_speed
 		$CPUParticles2D.emitting = false
-		if Input.is_action_pressed("boost") and fuel > 0.0:
-			fuel += 3
+#		if Input.is_action_pressed("boost") and fuel > 0.0:
+#			fuel += 3
 		if Input.is_action_just_pressed("ui_select"):
 			if on_planet:
 				on_planet = false
-				main.pause_state = "running"
-				print("you are leaving the planet")
+#				fuel_multiplier = 1.0
+#				main.pause_state = "running"
 				emit_signal("landed_on_planet", false)
-				get_parent().get_child(0).remove_child(planet_scene)
+			
+				print("you are leaving the planet")
+#				get_parent().get_child(0).remove_child(planet_scene)
 			elif not on_planet:
 				on_planet = true
-				get_parent().get_child(0).add_child(planet_scene)
-				main.pause_state = "on_planet"
+				fuel_multiplier = planet_fuel_multiplier
 				emit_signal("landed_on_planet", true)
+#				get_parent().get_child(0).add_child(planet_scene)
+				main.pause_state = "on_planet"
 				print("you are going on the planet")
 				print(main.pause_state)
 
@@ -158,7 +163,7 @@ func mining():
 #		print("green: " + str(green_resource_amount))
 #		print("red: " + str(red_resource_amount))
 #		print("black: " + str(black_resource_amount))
-#		fuel -= 0.3
+#		fuel -= fuel_multiplier * 0.3
 #
 #func launch():
 #	if landed and Input.is_action_just_pressed("launch"):

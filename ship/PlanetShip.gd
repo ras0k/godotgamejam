@@ -90,12 +90,12 @@ func _physics_process(_delta):
 
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = planet_speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
-		fuel -= 0.8
+#		fuel -= 0.8
 		flames_on = true
 		boost = 1.0
 		if Input.is_action_pressed("boost") and fuel > 0.0:
 			boost = max_boost
-			fuel -= max_boost * 0.8
+#			fuel -= max_boost * 0.8
 	else:
 		velocity = Vector2()
 		flames_on = false
@@ -105,10 +105,10 @@ func _physics_process(_delta):
 
 	if Input.is_action_pressed("left") and fuel > 0.0:
 		turn_ship(-2)
-		fuel -= 0.25
+#		fuel -= 0.25
 	if Input.is_action_pressed("right") and fuel > 0.0:
 		turn_ship(2)
-		fuel -= 0.25
+#		fuel -= 0.25
 
 	applied_force = velocity * boost
 	rotation = 0

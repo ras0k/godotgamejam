@@ -1,6 +1,8 @@
 extends Node2D
 
 onready var inventory_ui = $CanvasLayer/UI/Inventory
+onready var planet_scene = load("res://PlanetScene.tscn").instance()
+onready var player = $Spaceship
 
 var asteroid := preload("res://Asteroid.tscn")
 var asteroid_spawn_timer := 0
@@ -29,6 +31,19 @@ func _process(delta: float) -> void:
 	
 	if pause_state == "on_planet":
 		planet_compass()
+		print(str($CanvasLayer2/PlanetScene/PlanetShip.position.x) + ", " + str($CanvasLayer2/PlanetScene/PlanetShip.position.y))
+		if $CanvasLayer2/PlanetScene/PlanetShip.position.x < -64 or $CanvasLayer2/PlanetScene/PlanetShip.position.x > 128 or $CanvasLayer2/PlanetScene/PlanetShip.position.y < -5 or $CanvasLayer2/PlanetScene/PlanetShip.position.y > 64:
+			pause_state = "running"
+			player.fuel_multiplier = 1.0
+			$CanvasLayer2.remove_child(planet_scene)
+			get_node("Spaceship").mode = RigidBody2D.MODE_RIGID
+			get_node("Spaceship").linear_velocity = stored_ship_velocity
+			for child in get_node("SolarSystem").get_children():
+				if child is RigidBody2D:
+					child.linear_velocity = stored_solar_velocities.pop_front()
+					child.mode = RigidBody2D.MODE_RIGID
+			check_pause()
+	
 	
 	if Input.is_action_just_pressed("reset"):
 		get_tree().paused = false
@@ -131,6 +146,7 @@ func _on_Spaceship_landed_on_planet(landed):
 			if child is RigidBody2D:
 				stored_solar_velocities.append(child.linear_velocity)
 				child.mode = RigidBody2D.MODE_STATIC
+		$CanvasLayer2.add_child(planet_scene)
 	else:
 		get_node("Spaceship").mode = RigidBody2D.MODE_RIGID
 		get_node("Spaceship").linear_velocity = stored_ship_velocity
@@ -138,6 +154,9 @@ func _on_Spaceship_landed_on_planet(landed):
 			if child is RigidBody2D:
 				child.linear_velocity = stored_solar_velocities.pop_front()
 				child.mode = RigidBody2D.MODE_RIGID
+		$CanvasLayer2.remove_child(planet_scene)
+		player.fuel_multiplier = 1.0
+		pause_state = "running"
 
 func planet_compass():
 	$CanvasLayer/UI/Compass/Ship.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
