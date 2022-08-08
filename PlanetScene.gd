@@ -15,3 +15,22 @@ func _process(delta):
 	counter += 1
 	if counter % 30 == 0 and counter < 280:
 		$planet_bg.position.y -= 1
+	
+	if $PlanetShip.position.y > 24:
+		$PlanetShip/CPUParticles2D.damping = 5 + ($PlanetShip.position.y - 24) * 2
+	else: 
+		$PlanetShip/CPUParticles2D.damping = 5
+
+
+func _on_PlanetShip_body_entered(body):
+	print("now touching with : " + str(body))
+	if body is RigidBody2D:
+		main.touching_ground = true
+	pass # Replace with function body.
+
+
+func _on_PlanetShip_body_exited(body):
+	print("now departing from : " + str(body))
+	if body is RigidBody2D:
+		main.touching_ground = false
+	pass # Replace with function body.

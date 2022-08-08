@@ -17,6 +17,7 @@ var pause_state = "running"
 var prev_pause_state = "running"
 var stored_ship_velocity := Vector2.ZERO
 var stored_solar_velocities := []
+var touching_ground := false
 
 func _ready() -> void:
 	Engine.time_scale = 1
@@ -31,10 +32,11 @@ func _process(delta: float) -> void:
 	
 	if pause_state == "on_planet":
 		planet_compass()
-		print(str($CanvasLayer2/PlanetScene/PlanetShip.position.x) + ", " + str($CanvasLayer2/PlanetScene/PlanetShip.position.y))
+#		print(str($CanvasLayer2/PlanetScene/PlanetShip.position.x) + ", " + str($CanvasLayer2/PlanetScene/PlanetShip.position.y))
 		if $CanvasLayer2/PlanetScene/PlanetShip.position.x < -64 or $CanvasLayer2/PlanetScene/PlanetShip.position.x > 128 or $CanvasLayer2/PlanetScene/PlanetShip.position.y < -5 or $CanvasLayer2/PlanetScene/PlanetShip.position.y > 64:
 			pause_state = "running"
 			player.fuel_multiplier = 1.0
+			player.on_planet = false
 			$CanvasLayer2.remove_child(planet_scene)
 			get_node("Spaceship").mode = RigidBody2D.MODE_RIGID
 			get_node("Spaceship").linear_velocity = stored_ship_velocity
@@ -148,6 +150,8 @@ func _on_Spaceship_landed_on_planet(landed):
 				stored_solar_velocities.append(child.linear_velocity)
 				child.mode = RigidBody2D.MODE_STATIC
 		$CanvasLayer2.add_child(planet_scene)
+		$CanvasLayer2/PlanetScene/PlanetShip.position = Vector2(24,-5)
+		$CanvasLayer2/PlanetScene/PlanetShip.linear_velocity.y = 12
 	else:
 		get_node("Spaceship").mode = RigidBody2D.MODE_RIGID
 		get_node("Spaceship").linear_velocity = stored_ship_velocity
@@ -161,5 +165,7 @@ func _on_Spaceship_landed_on_planet(landed):
 
 func planet_compass():
 	$CanvasLayer/UI/Compass.visible = false
+	if touching_ground:
+		$CanvasLayer/UI/Compass.frame = 0
 #	$CanvasLayer/UI/Compass/Ship.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
 #	$CanvasLayer/UI/Compass.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame

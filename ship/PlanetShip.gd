@@ -1,6 +1,7 @@
 extends RigidBody2D
 
 onready var player = find_node("Spaceship")
+onready var main = get_parent().get_parent().get_parent()
 
 signal turned(degrees)
 
@@ -86,8 +87,13 @@ func _physics_process(_delta):
 #	trade()
 #	launch()
 
-	$Ship.frame = int(((ship_angle % 360) + 8) / (360.0/16.0)) % 16
-
+	if main.touching_ground:
+		$Ship.frame = 0
+		$CPUParticles2D.emitting = false
+	else: 
+		$Ship.frame = int(((ship_angle % 360) + 8) / (360.0/16.0)) % 16
+		$CPUParticles2D.emitting = true
+	
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = planet_speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
 #		fuel -= 0.8
