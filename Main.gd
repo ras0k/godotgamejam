@@ -82,11 +82,9 @@ func _process(delta: float) -> void:
 
 	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 200:
 		$Music.volume_db += 1
-		print($Music.volume_db)
 
 	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 600:
 		$Music.volume_db += 1
-		print($Music.volume_db)
 
 
 func _on_Spaceship_turned(degrees: int) -> void:
@@ -137,7 +135,6 @@ func sort_reverse(a: int, b: int) -> bool:
 func _on_Spaceship_mining(mined_resource_fraction: float, resource_type: int):
 	if mined_resource_fraction >= 100:
 		add_resource(resource_type)
-	print(mined_resource_fraction)
 	ui.update_mining_progress(mined_resource_fraction, resource_type)
 
 
