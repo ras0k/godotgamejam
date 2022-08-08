@@ -42,6 +42,7 @@ func _process(delta: float) -> void:
 				if child is RigidBody2D:
 					child.linear_velocity = stored_solar_velocities.pop_front()
 					child.mode = RigidBody2D.MODE_RIGID
+			$CanvasLayer/UI/Compass.visible = true
 			check_pause()
 	
 	
@@ -159,5 +160,6 @@ func _on_Spaceship_landed_on_planet(landed):
 		pause_state = "running"
 
 func planet_compass():
-	$CanvasLayer/UI/Compass/Ship.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
-	$CanvasLayer/UI/Compass.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
+	$CanvasLayer/UI/Compass.visible = false
+#	$CanvasLayer/UI/Compass/Ship.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
+#	$CanvasLayer/UI/Compass.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
