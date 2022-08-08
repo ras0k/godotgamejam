@@ -56,12 +56,18 @@ func _physics_process(_delta):
 		fuel -= fuel_multiplier * 0.8
 		flames_on = true
 		boost = 1.0
+		$Thrusters.volume_db = -8
+		$Thrusters.pitch_scale = 0.8
+		$Thrusters.stream_paused = false
 		if Input.is_action_pressed("boost") and fuel > 0.0:
 			boost = max_boost
 			fuel -= max_boost * 0.8 * fuel_multiplier
+			$Thrusters.volume_db = -2
+			$Thrusters.pitch_scale = 0.9
 	else:
 		velocity = Vector2()
 		flames_on = false
+		$Thrusters.stream_paused = true
 
 	if fuel > max_fuel:
 		fuel = max_fuel

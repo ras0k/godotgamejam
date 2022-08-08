@@ -1,9 +1,10 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=2]
 [ext_resource path="res://ship/ship.png" type="Texture" id=3]
 [ext_resource path="res://ship/MiningArea.gd" type="Script" id=4]
+[ext_resource path="res://audio/Rocket_Thrusters-SoundBible.com-1432176431.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=35]
 
@@ -111,6 +112,14 @@ script = ExtResource( 4 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiningArea"]
 visible = false
 shape = SubResource( 36 )
+
+[node name="Thrusters" type="AudioStreamPlayer" parent="."]
+pause_mode = 1
+stream = ExtResource( 5 )
+volume_db = -8.0
+pitch_scale = 0.8
+autoplay = true
+stream_paused = true
 
 [connection signal="body_entered" from="MiningArea" to="." method="_on_MiningArea_body_entered"]
 [connection signal="body_exited" from="MiningArea" to="." method="_on_MiningArea_body_exited"]

@@ -24,11 +24,16 @@ func _ready() -> void:
 	for slot in max_inventory_capacity:
 		add_resource(Global.resource_types.EMPTY)
 	
+	$Music.playing = true
+	$Music.volume_db = -40
+	
+		
 	check_pause()
 
 
 func _process(delta: float) -> void:
 	run_time += delta
+	print($Spaceship/Thrusters.stream_paused)
 	
 	if pause_state == "on_planet":
 		planet_compass()
@@ -76,7 +81,14 @@ func _process(delta: float) -> void:
 		
 	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 2800:
 		spawn_asteroid_belt(floor(rand_range(1,3)))
-
+		
+	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 200:
+		$Music.volume_db += 1
+		print($Music.volume_db)
+	
+	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 600:
+		$Music.volume_db += 1
+		print($Music.volume_db)
 
 func _on_Spaceship_turned(degrees: int) -> void:
 	# 0 = up, rotate clockwise to 360
