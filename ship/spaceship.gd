@@ -81,7 +81,7 @@ func _physics_process(_delta):
 
 	applied_force = velocity * boost
 	rotation = 0
-	
+
 	if landed == true:
 #		fuel += 2
 		speed = orbit_speed
@@ -94,7 +94,7 @@ func _physics_process(_delta):
 #				fuel_multiplier = 1.0
 #				main.pause_state = "running"
 #				emit_signal("landed_on_planet", false)
-			
+
 				print("you are leaving the planet")
 #				get_parent().get_child(0).remove_child(planet_scene)
 			elif not on_planet:
@@ -199,3 +199,8 @@ func mining():
 #		trading = true
 #		get_tree().paused = true
 ##		print("trading")
+
+
+func _on_Thrusters_finished() -> void:
+	var sound: AudioStreamPlayer = $Thrusters
+	sound.play()
