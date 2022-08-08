@@ -84,10 +84,10 @@ func _physics_process(_delta):
 #			fuel += 3
 		if Input.is_action_just_pressed("ui_select"):
 			if on_planet:
-				on_planet = false
+#				on_planet = false
 #				fuel_multiplier = 1.0
 #				main.pause_state = "running"
-				emit_signal("landed_on_planet", false)
+#				emit_signal("landed_on_planet", false)
 			
 				print("you are leaving the planet")
 #				get_parent().get_child(0).remove_child(planet_scene)
