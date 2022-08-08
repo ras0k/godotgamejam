@@ -36,6 +36,7 @@ var current_export
 
 
 signal turned(degrees)
+signal landed_on_planet(landed)
 
 
 func _ready():
@@ -82,13 +83,17 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed("ui_select"):
 			if on_planet:
 				on_planet = false
+				main.pause_state = "running"
+				print("you are leaving the planet")
+				emit_signal("landed_on_planet", false)
 				get_parent().get_child(0).remove_child(planet_scene)
 			elif not on_planet:
 				on_planet = true
+				get_parent().get_child(0).add_child(planet_scene)
 				main.pause_state = "on_planet"
+				emit_signal("landed_on_planet", true)
 				print("you are going on the planet")
 				print(main.pause_state)
-				get_parent().get_child(0).add_child(planet_scene)
 
 
 	elif not landed:

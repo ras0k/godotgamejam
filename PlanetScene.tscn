@@ -37,8 +37,6 @@ shape = SubResource( 1 )
 
 [node name="PlanetShip" parent="." instance=ExtResource( 4 )]
 position = Vector2( 24, 4 )
-collision_layer = 128
-collision_mask = 128
 mass = 0.1
 
 [node name="Ground" type="RigidBody2D" parent="."]
@@ -47,7 +45,7 @@ collision_mask = 128
 mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
-position = Vector2( 35, 59 )
+position = Vector2( 32, 56 )
 shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

@@ -2,6 +2,8 @@ extends RigidBody2D
 
 onready var player = find_node("Spaceship")
 
+signal turned(degrees)
+
 var frame := 0 
 onready var flame1 = $Flame1
 onready var flame2 = $Flame2
@@ -117,6 +119,6 @@ func turn_ship(angle: int):
 	ship_angle += angle
 	if ship_angle < 0:
 		ship_angle += 360
-
+	
 
 
