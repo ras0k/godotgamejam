@@ -10,20 +10,17 @@
 pause_mode = 2
 script = ExtResource( 18 )
 
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-pause_mode = 2
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
 
 [node name="UI" parent="CanvasLayer" instance=ExtResource( 6 )]
 
 [node name="SolarSystem" parent="." instance=ExtResource( 2 )]
-script = null
 
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 40, 90 )
+position = Vector2( 59, 103 )
 linear_velocity = Vector2( 5, -6.5 )
+initial_velocity = Vector2( 10, -5 )
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 1
@@ -32,4 +29,6 @@ volume_db = -18.667
 pitch_scale = 0.9
 
 [connection signal="landed_on_planet" from="Spaceship" to="." method="_on_Spaceship_landed_on_planet"]
+[connection signal="mining" from="Spaceship" to="." method="_on_Spaceship_mining"]
 [connection signal="turned" from="Spaceship" to="." method="_on_Spaceship_turned"]
+[connection signal="finished" from="Music" to="." method="_on_Music_finished"]

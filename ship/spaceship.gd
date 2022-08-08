@@ -5,14 +5,15 @@ onready var planet_scene = load("res://PlanetScene.tscn").instance()
 onready var player_scene = load("res://ship/Spaceship.tscn").instance()
 onready var main = get_parent()
 
-export var speed := 8
+export var speed := 10
+export var initial_velocity := Vector2.ZERO
 
 var flames_on := false
 var space_speed = speed
 var planet_speed = speed / 2
 var orbit_speed = speed * 3
-var max_fuel := 2000.0
-var fuel := 1600.0
+var max_fuel := 4000.0
+var fuel := 3600.0
 var fuel_multiplier := 1.0
 var planet_fuel_multiplier := 0.42
 var velocity = Vector2()
@@ -23,12 +24,9 @@ var death_counter := 0
 var crash_counter := 0
 var boost := 1.0
 var max_boost := 2.4
-var is_mining := false
 var mining_rate := 0.36
-var ore_count := 0.0
-var mining_targets := 0
 var interstellar_fuel := 0.0
-var laser_toggle := true
+var mining_enabled := true
 var current_planet
 var on_planet := false
 var planet_sprite
@@ -36,16 +34,21 @@ var current_import
 var current_export
 #var trading := false
 
+var target_asteroid = null
+var mined_resource_fraction := 0.0 setget set_mined_resource_fraction
+var currently_mined_resource_type := 0
 
+signal mining(mined_resource_fraction)
 signal turned(degrees)
 signal landed_on_planet(landed)
 
 
 func _ready():
+	$Laser.set_as_toplevel(true)
+	linear_velocity = initial_velocity
 	if not landed:
 		current_planet = null
 	turn_ship(0)
-	pass # Replace with function body.
 
 
 func _physics_process(_delta):
@@ -104,8 +107,6 @@ func _physics_process(_delta):
 #				get_parent().get_child(0).add_child(planet_scene)
 				main.pause_state = "on_planet"
 				print("you are going on the planet")
-				print(main.pause_state)
-
 
 	elif not landed:
 		$CPUParticles2D.emitting = true
@@ -115,14 +116,22 @@ func _physics_process(_delta):
 		$CPUParticles2D.emitting = false
 
 	if Input.is_action_just_pressed("mining_laser"):
-		laser_toggle = not laser_toggle
+		mining_enabled = not mining_enabled
 
-	if fuel < 50:
-		laser_toggle = false
+	target_asteroid = get_closest_asteroid()
 
-	if is_mining and laser_toggle:
-		mining()
+	$Laser.points = []
+	if target_asteroid and mining_enabled:
+		$Laser.add_point(global_position)
+		$Laser.add_point(target_asteroid.global_position)
+		mine_resources()
+	elif mined_resource_fraction <= 20 and mined_resource_fraction > 0:
+		self.mined_resource_fraction -= 0.1
 
+
+func set_mined_resource_fraction(fraction: float):
+	mined_resource_fraction = fraction
+	emit_signal('mining', mined_resource_fraction, currently_mined_resource_type)
 
 
 func turn_ship(angle: int):
@@ -135,42 +144,28 @@ func turn_ship(angle: int):
 		emit_signal('turned', 360 + ship_angle)
 
 
-
-func _on_MiningArea_body_entered(body):
-	if "Asteroid" in body.name:
-		is_mining = true
-		mining_targets += 1
-
-
-func _on_MiningArea_body_exited(body):
-	if "Asteroid" in body.name:
-		mining_targets -= 1
-		if mining_targets < 1:
-			is_mining = false
-
-func mining():
-	return
-
-
+func get_closest_asteroid():
+	if $MiningArea.get_overlapping_bodies().empty():
+		return null
+	var closest = null
+	var smallest_distance := 1000
 	for body in $MiningArea.get_overlapping_bodies():
-		if body.resource_type == "white":
-				Global.white_resource_amount += mining_rate * 0.2
-		elif body.resource_type == "blue":
-				Global.blue_resource_amount += mining_rate * 0.37
-		elif body.resource_type == "green":
-				Global.green_resource_amount += mining_rate * 0.5
-		elif body.resource_type == "red":
-				Global.red_resource_amount += mining_rate * 0.6
-#		elif body.resource_type == "black":
-#				black_resource_amount += mining_rate
-		body.remaining_ore -= mining_rate
-#		print("white: " + str(white_resource_amount))
-#		print("blue: " + str(blue_resource_amount))
-#		print("green: " + str(green_resource_amount))
-#		print("red: " + str(red_resource_amount))
-#		print("black: " + str(black_resource_amount))
-#		fuel -= fuel_multiplier * 0.3
-#
+		var asteroid: RigidBody2D = body
+		if asteroid.global_position.distance_to(global_position) < smallest_distance:
+			closest = asteroid
+	return closest
+
+
+func mine_resources():
+	if not target_asteroid.resource_type == currently_mined_resource_type:
+		self.mined_resource_fraction = 0
+		currently_mined_resource_type = target_asteroid.resource_type
+	target_asteroid.remaining_ore -= mining_rate
+	self.mined_resource_fraction += mining_rate
+	if mined_resource_fraction >= 100:
+		self.mined_resource_fraction = 0
+
+
 #func launch():
 #	if landed and Input.is_action_just_pressed("launch"):
 #		$LaunchTimer.start(5.0)

@@ -4,19 +4,11 @@ extends Control
 onready var background: ProgressBar = $Background
 onready var resource_bar: HBoxContainer = $ResourceBar
 
-var inventory_capacity := 0
+var capacity := 0
 
 
 func _ready() -> void:
 	pass
-
-
-func update_inventory_ui(inventory: Array) -> void:
-	if inventory.size() > inventory_capacity:
-		background.value = 1 + inventory.size() * 2
-	clear()
-	for resource_type in inventory:
-		add_resource(resource_type)
 
 
 func clear() -> void:

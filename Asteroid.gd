@@ -1,31 +1,29 @@
 extends RigidBody2D
 
-var remaining_ore := rand_range(40.0, 240.0)
 var rng = RandomNumberGenerator.new()
-var resource_type
+var remaining_ore: float = rng.randf_range(40.0, 240.0)
+var resource_type: int = Global.resource_types.CURRENCY
+
 
 func _ready():
-	# semi-randomly generates the resource mineable from the body - see line 27
+	$Sprite.frame = int(rng.randi_range(0, 4))
 	pick_resource_type()
-	$Sprite.frame = int(rand_range(0.0,8.0))
-	angular_velocity = rand_range(-1.0,2.0)
-	position += Vector2 (rand_range(-20.0,20.0),rand_range(-20.0,20.0))
+	modulate = Global.resource_colors[resource_type]
 
 
 func _process(delta):
+	remaining_ore -= 0.1
 	if remaining_ore <= 0:
-		get_parent().remove_child(self)
+		$Explosion.show()
+		$Explosion.playing = true
+
 
 func pick_resource_type():
 	rng.randomize()
-	var resource_picker = rand_range(0.0, 2.5)
-	if resource_picker < 0.8:
-		resource_type = "white"
-	elif resource_picker < 1.3:
-		resource_type = "blue"
-	elif resource_picker < 2.0 :
-		resource_type = "green"
-	elif resource_picker < 2.5 :
-		resource_type = "red"
-	else:
-		resource_type = "black"
+	if rng.randi_range(1, 5) == 1:
+		resource_type = Global.resource_types.UPGRADE_MATERIAL
+
+
+func _on_Explosion_animation_finished() -> void:
+	get_parent().remove_child(self)
+	queue_free()

@@ -1,11 +1,9 @@
 extends Node2D
 
-onready var inventory_ui = $CanvasLayer/UI/Inventory
+onready var ui = $CanvasLayer/UI
 onready var planet_scene = load("res://PlanetScene.tscn").instance()
 onready var player = $Spaceship
 
-var asteroid := preload("res://Asteroid.tscn")
-var asteroid_spawn_timer := 0
 
 var run_time := 0.0
 var invulnerable := true
@@ -19,22 +17,23 @@ var stored_ship_velocity := Vector2.ZERO
 var stored_solar_velocities := []
 var touching_ground := false
 
+var asteroid_spawn_timer := 0
+
+
 func _ready() -> void:
 	Engine.time_scale = 1
 	for slot in max_inventory_capacity:
 		add_resource(Global.resource_types.EMPTY)
-	
+
 	$Music.playing = true
 	$Music.volume_db = -40
-	
-		
+
 	check_pause()
 
 
 func _process(delta: float) -> void:
 	run_time += delta
-	print($Spaceship/Thrusters.stream_paused)
-	
+
 	if pause_state == "on_planet":
 		planet_compass()
 #		print(str($CanvasLayer2/PlanetScene/PlanetShip.position.x) + ", " + str($CanvasLayer2/PlanetScene/PlanetShip.position.y))
@@ -51,8 +50,8 @@ func _process(delta: float) -> void:
 					child.mode = RigidBody2D.MODE_RIGID
 			$CanvasLayer/UI/Compass.visible = true
 			check_pause()
-	
-	
+
+
 	if Input.is_action_just_pressed("reset"):
 		get_tree().paused = false
 		get_tree().reload_current_scene()
@@ -64,7 +63,7 @@ func _process(delta: float) -> void:
 		Engine.time_scale = 4
 	elif Input.is_action_just_pressed("4"):
 		Engine.time_scale = 8
-	
+
 	if Input.is_action_just_pressed("pause"):
 		if pause_state != "paused":
 			prev_pause_state = pause_state
@@ -72,23 +71,23 @@ func _process(delta: float) -> void:
 		else:
 			pause_state = prev_pause_state
 			prev_pause_state = "paused"
-		print(pause_state)
 		check_pause()
-	
-	
+
+
 	if pause_state == "running":
 		asteroid_spawn_timer += 1
-		
+
 	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 2800:
 		spawn_asteroid_belt(floor(rand_range(1,3)))
-		
+
 	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 200:
 		$Music.volume_db += 1
 		print($Music.volume_db)
-	
+
 	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 600:
 		$Music.volume_db += 1
 		print($Music.volume_db)
+
 
 func _on_Spaceship_turned(degrees: int) -> void:
 	# 0 = up, rotate clockwise to 360
@@ -100,12 +99,13 @@ func _on_Spaceship_turned(degrees: int) -> void:
 	var frame: int = (degrees + degree_fraction/2) / degree_fraction
 	$CanvasLayer/UI.rotate_compass(frame % sprite_frame_amount)
 
+
 func spawn_asteroid_belt(asteroid_count: int) -> void:
 	for index in asteroid_count:
-		$SolarSystem.add_child(asteroid.instance())
+		$SolarSystem.spawn_asteroid()
 
 
-func is_inventory_ui_full() -> bool:
+func is_inventory_full() -> bool:
 	return current_inventory.size() >= max_inventory_capacity
 
 
@@ -116,22 +116,29 @@ func add_resource(type: int) -> void:
 		else:
 			return # no free empty slot, don't do anything
 
-	if not is_inventory_ui_full():
+	if not is_inventory_full():
 		current_inventory.append(type)
 	current_inventory.sort_custom(self, 'sort_reverse')
-	inventory_ui.update_inventory_ui(current_inventory)
+	ui.update_inventory(current_inventory)
 
 
 func remove_resource(type: int) -> void:
 	current_inventory.erase(type)
-	if not is_inventory_ui_full():
+	if not is_inventory_full():
 		current_inventory.append(Global.resource_types.EMPTY)
 	current_inventory.sort_custom(self, 'sort_reverse')
-	inventory_ui.update_inventory_ui(current_inventory)
+	ui.update_inventory(current_inventory)
 
 
 func sort_reverse(a: int, b: int) -> bool:
 	return a > b # smaller numbers at the end
+
+
+func _on_Spaceship_mining(mined_resource_fraction: float, resource_type: int):
+	if mined_resource_fraction >= 100:
+		add_resource(resource_type)
+	print(mined_resource_fraction)
+	ui.update_mining_progress(mined_resource_fraction, resource_type)
 
 
 func check_pause():
@@ -147,10 +154,8 @@ func check_pause():
 		print("prev_pause_state : " + prev_pause_state)
 		get_tree().paused = false
 #		get_node("CanvasLayer2").pause_mode = Node.PAUSE_MODE_PROCESS
-		
 		print("yes process")
 #		get_tree().paused = true
-	print(pause_state)
 
 
 func _on_Spaceship_landed_on_planet(landed):
@@ -175,9 +180,16 @@ func _on_Spaceship_landed_on_planet(landed):
 		player.fuel_multiplier = 1.0
 		pause_state = "running"
 
+
 func planet_compass():
 	$CanvasLayer/UI/Compass.visible = false
 	if touching_ground:
 		$CanvasLayer/UI/Compass.frame = 0
 #	$CanvasLayer/UI/Compass/Ship.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
 #	$CanvasLayer/UI/Compass.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
+
+
+func _on_Music_finished() -> void:
+	$Music.playing = true
+
+

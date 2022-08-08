@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -95,11 +95,23 @@ animations = [ {
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.45098, 0.415686, 0.466667, 1 )
 
+[sub_resource type="StyleBoxFlat" id=48]
+bg_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="StyleBoxFlat" id=47]
+bg_color = Color( 0.45098, 0.415686, 0.466667, 1 )
+expand_margin_left = 1.0
+expand_margin_right = 1.0
+expand_margin_top = 1.0
+
 [node name="UI" type="Control"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TextureRect" type="TextureRect" parent="."]
 anchor_top = 1.0
@@ -215,10 +227,12 @@ frame = 8
 playing = true
 
 [node name="Inventory" type="Control" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
 margin_left = 11.0
-margin_top = 58.0
+margin_top = -6.0
 margin_right = 64.0
-margin_bottom = 61.0
+margin_bottom = -3.0
 script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -238,14 +252,12 @@ __meta__ = {
 }
 
 [node name="ResourceBar" type="HBoxContainer" parent="Inventory"]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -52.0
-margin_top = -2.0
-margin_right = -1.0
-margin_bottom = -1.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 1.0
+margin_top = -0.5
+margin_right = 52.0
+margin_bottom = 0.5
 custom_constants/separation = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -284,18 +296,17 @@ rect_min_size = Vector2( 1, 1 )
 color = Color( 0.952941, 0.027451, 0.027451, 1 )
 
 [node name="MiningProgress" type="ProgressBar" parent="."]
-margin_left = 10.0
-margin_top = 63.0
-margin_right = 14.0
-margin_bottom = 64.0
-rect_rotation = -90.0
-custom_styles/fg = SubResource( 12 )
-custom_styles/bg = SubResource( 13 )
-max_value = 10.0
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 12.0
+margin_top = -7.0
+margin_right = 21.0
+margin_bottom = -6.0
+custom_styles/fg = SubResource( 48 )
+custom_styles/bg = SubResource( 47 )
 step = 1.0
-value = 6.0
 percent_visible = false
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

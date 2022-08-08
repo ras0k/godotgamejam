@@ -1,9 +1,8 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=2]
 [ext_resource path="res://ship/ship.png" type="Texture" id=3]
-[ext_resource path="res://ship/MiningArea.gd" type="Script" id=4]
 [ext_resource path="res://audio/Thrusters_trimmed.wav" type="AudioStream" id=5]
 
 [sub_resource type="PhysicsMaterial" id=35]
@@ -71,7 +70,6 @@ angular_damp = 100.0
 script = ExtResource( 1 )
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-visible = false
 amount = 240
 lifetime = 12.0
 local_coords = false
@@ -108,7 +106,6 @@ playing = true
 [node name="MiningArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 16
-script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="MiningArea"]
 visible = false
@@ -122,6 +119,8 @@ pitch_scale = 0.8
 autoplay = true
 stream_paused = true
 
-[connection signal="body_entered" from="MiningArea" to="." method="_on_MiningArea_body_entered"]
-[connection signal="body_exited" from="MiningArea" to="." method="_on_MiningArea_body_exited"]
+[node name="Laser" type="Line2D" parent="."]
+width = 1.0
+default_color = Color( 0.533333, 0.952941, 0.4, 0.337255 )
+
 [connection signal="finished" from="Thrusters" to="." method="_on_Thrusters_finished"]
