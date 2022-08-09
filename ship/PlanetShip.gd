@@ -1,6 +1,5 @@
 extends RigidBody2D
-
-onready var player = find_node("Spaceship")
+onready var player = get_node("/root/Main/Spaceship")
 onready var main = get_parent().get_parent().get_parent()
 
 signal turned(degrees)
@@ -21,7 +20,7 @@ var flames_on := false
 var speed = 8
 var space_speed = speed
 var planet_speed = speed / 8
-export var kill_speed : float = 0.05
+export var kill_force : float = 42.0
 var max_fuel := 2000.0
 var fuel := 1600.0
 var velocity = Vector2()
@@ -34,6 +33,17 @@ var interstellar_fuel := 0.0
 var current_planet
 var on_planet := false
 
+var collision_force : Vector2 = Vector2.ZERO
+var previous_linear_velocity : Vector2 = Vector2.ZERO
+
+func _integrate_forces(state : Physics2DDirectBodyState)->void:
+	collision_force = Vector2.ZERO
+
+	if state.get_contact_count() > 0:
+		var dv : Vector2 = state.linear_velocity - previous_linear_velocity
+		collision_force = dv / (state.inverse_mass * state.step) - state.total_gravity
+
+	previous_linear_velocity = state.linear_velocity
 
 func _ready() -> void:
 	flame1.playing = true
@@ -91,20 +101,27 @@ func _physics_process(_delta):
 #	trade()
 #	launch()
 
+	
+	
+	if Input.is_action_pressed("forward") and player.fuel > 0.0:
+		$CPUParticles2D.emitting = true
+	else: $CPUParticles2D.emitting = false
+
 	if main.touching_ground:
 		$Ship.frame = 0
 		$CPUParticles2D.emitting = false
 		
-		if linear_velocity.length() > kill_speed :
+		if collision_force.y < -kill_force :
 		#if true :
 			$Ship.visible = false
 			$ExplosionSprite.visible = true
 			$ExplosionSprite.play("Explode")
 			
+			print(collision_force.y)
+			
 			
 	else: 
 		$Ship.frame = int(((ship_angle % 360) + 8) / (360.0/16.0)) % 16
-		$CPUParticles2D.emitting = true
 	
 	if Input.is_action_pressed("forward") and fuel > 0.0:
 		velocity = planet_speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))

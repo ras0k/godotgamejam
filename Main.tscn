@@ -10,6 +10,8 @@
 pause_mode = 2
 script = ExtResource( 18 )
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 pause_mode = 2
 
@@ -18,7 +20,7 @@ pause_mode = 2
 [node name="SolarSystem" parent="." instance=ExtResource( 2 )]
 
 [node name="Spaceship" parent="." instance=ExtResource( 1 )]
-position = Vector2( 59, 103 )
+position = Vector2( 38, 90 )
 linear_velocity = Vector2( 5, -6.5 )
 initial_velocity = Vector2( 10, -5 )
 
@@ -27,8 +29,6 @@ pause_mode = 1
 stream = ExtResource( 3 )
 volume_db = -18.667
 pitch_scale = 0.9
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
 
 [connection signal="landed_on_planet" from="Spaceship" to="." method="_on_Spaceship_landed_on_planet"]
 [connection signal="mining" from="Spaceship" to="." method="_on_Spaceship_mining"]
