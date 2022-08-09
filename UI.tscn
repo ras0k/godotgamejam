@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -103,6 +103,54 @@ bg_color = Color( 0.45098, 0.415686, 0.466667, 1 )
 expand_margin_left = 1.0
 expand_margin_right = 1.0
 expand_margin_top = 1.0
+
+[sub_resource type="AtlasTexture" id=49]
+atlas = ExtResource( 12 )
+region = Rect2( 0, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=50]
+atlas = ExtResource( 12 )
+region = Rect2( 35, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=51]
+atlas = ExtResource( 12 )
+region = Rect2( 70, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=52]
+atlas = ExtResource( 12 )
+region = Rect2( 105, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=53]
+atlas = ExtResource( 12 )
+region = Rect2( 140, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=54]
+atlas = ExtResource( 12 )
+region = Rect2( 175, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=55]
+atlas = ExtResource( 12 )
+region = Rect2( 210, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=56]
+atlas = ExtResource( 12 )
+region = Rect2( 245, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=57]
+atlas = ExtResource( 12 )
+region = Rect2( 280, 0, 35, 7 )
+
+[sub_resource type="AtlasTexture" id=58]
+atlas = ExtResource( 12 )
+region = Rect2( 315, 0, 35, 7 )
+
+[sub_resource type="SpriteFrames" id=59]
+animations = [ {
+"frames": [ SubResource( 49 ), SubResource( 50 ), SubResource( 51 ), SubResource( 52 ), SubResource( 53 ), SubResource( 54 ), SubResource( 55 ), SubResource( 56 ), SubResource( 57 ), SubResource( 58 ), SubResource( 49 ), SubResource( 49 ), SubResource( 49 ), SubResource( 49 ), SubResource( 49 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
 
 [node name="UI" type="Control"]
 pause_mode = 2
@@ -263,38 +311,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Resource" type="ColorRect" parent="Inventory/ResourceBar"]
-margin_right = 1.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 1, 1 )
-color = Color( 0.133333, 0.12549, 0.203922, 1 )
-
-[node name="Resource2" type="ColorRect" parent="Inventory/ResourceBar"]
-margin_left = 2.0
-margin_right = 3.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 1, 1 )
-color = Color( 0.792157, 0.827451, 0.92549, 0.168627 )
-
-[node name="Resource3" type="ColorRect" parent="Inventory/ResourceBar"]
-margin_left = 4.0
-margin_right = 5.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 1, 1 )
-
-[node name="Resource4" type="ColorRect" parent="Inventory/ResourceBar"]
-margin_left = 6.0
-margin_right = 7.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 1, 1 )
-
-[node name="Resource5" type="ColorRect" parent="Inventory/ResourceBar"]
-margin_left = 8.0
-margin_right = 9.0
-margin_bottom = 1.0
-rect_min_size = Vector2( 1, 1 )
-color = Color( 0.952941, 0.027451, 0.027451, 1 )
-
 [node name="MiningProgress" type="ProgressBar" parent="."]
 visible = false
 anchor_top = 1.0
@@ -327,12 +343,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="PauseMenu"]
-anchor_right = 1.0
-margin_top = 13.0
-margin_bottom = 18.0
-texture = ExtResource( 12 )
-stretch_mode = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="AnimatedSprite" type="AnimatedSprite" parent="PauseMenu"]
+position = Vector2( 32, 16 )
+frames = SubResource( 59 )
+frame = 5
+playing = true
