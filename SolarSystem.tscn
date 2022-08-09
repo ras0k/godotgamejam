@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SolarSystem.gd" type="Script" id=1]
-[ext_resource path="res://newbg256.png" type="Texture" id=2]
+[ext_resource path="res://solar_system_background.png" type="Texture" id=2]
 [ext_resource path="res://stars/Sol.tscn" type="PackedScene" id=3]
 [ext_resource path="res://planets/JumpPlanet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://planets/TechPlanet.tscn" type="PackedScene" id=7]
