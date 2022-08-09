@@ -50,7 +50,7 @@ region = Rect2( 90, 0, 10, 10 )
 animations = [ {
 "frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ), SubResource( 31 ), SubResource( 33 ), null ],
 "loop": false,
-"name": "New Anim",
+"name": "Explode",
 "speed": 12.0
 } ]
 
@@ -126,7 +126,7 @@ region = Rect2( 90, 0, 10, 10 )
 animations = [ {
 "frames": [ SubResource( 38 ), SubResource( 39 ), SubResource( 40 ), SubResource( 41 ), SubResource( 42 ), SubResource( 43 ), SubResource( 44 ), SubResource( 45 ), SubResource( 46 ) ],
 "loop": false,
-"name": "New Anim",
+"name": "Explode",
 "speed": 12.0
 } ]
 
@@ -144,11 +144,9 @@ shape = SubResource( 2 )
 
 [node name="ExplosionSprite" type="AnimatedSprite" parent="."]
 visible = false
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( 5, 4 )
 frames = SubResource( 23 )
-animation = "New Anim"
-frame = 9
-playing = true
+animation = "Explode"
 
 [node name="Ship" type="Sprite" parent="."]
 position = Vector2( 4, 5 )
@@ -218,7 +216,7 @@ speed_scale = 2.5
 position = Vector2( 4, 5 )
 scale = Vector2( 0.6, 0.6 )
 frames = SubResource( 47 )
-animation = "New Anim"
+animation = "Explode"
 frame = 8
 playing = true
 
@@ -233,3 +231,5 @@ damping = 5.0
 color = Color( 1, 0, 0, 1 )
 hue_variation = 0.2
 hue_variation_random = 0.3
+
+[connection signal="animation_finished" from="ExplosionSprite" to="." method="_on_ExplosionSprite_animation_finished"]

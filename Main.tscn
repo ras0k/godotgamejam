@@ -28,6 +28,8 @@ stream = ExtResource( 3 )
 volume_db = -18.667
 pitch_scale = 0.9
 
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
 [connection signal="landed_on_planet" from="Spaceship" to="." method="_on_Spaceship_landed_on_planet"]
 [connection signal="mining" from="Spaceship" to="." method="_on_Spaceship_mining"]
 [connection signal="turned" from="Spaceship" to="." method="_on_Spaceship_turned"]

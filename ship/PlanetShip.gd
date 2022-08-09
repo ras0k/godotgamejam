@@ -15,11 +15,13 @@ onready var flame6 = $Flame6
 onready var flame7 = $Flame7
 onready var flame8 = $Flame8
 
+
 var flames_on := false
 #var speed = player.speed
 var speed = 8
 var space_speed = speed
 var planet_speed = speed / 8
+export var kill_speed : float = 0.05
 var max_fuel := 2000.0
 var fuel := 1600.0
 var velocity = Vector2()
@@ -42,6 +44,8 @@ func _ready() -> void:
 	flame6.playing = true
 	flame7.playing = true
 	flame8.playing = true
+	
+	#$ExplosionSprite.playing = false
 
 
 func flames_off() -> void:
@@ -90,6 +94,14 @@ func _physics_process(_delta):
 	if main.touching_ground:
 		$Ship.frame = 0
 		$CPUParticles2D.emitting = false
+		
+		if linear_velocity.length() > kill_speed :
+		#if true :
+			$Ship.visible = false
+			$ExplosionSprite.visible = true
+			$ExplosionSprite.play("Explode")
+			
+			
 	else: 
 		$Ship.frame = int(((ship_angle % 360) + 8) / (360.0/16.0)) % 16
 		$CPUParticles2D.emitting = true
@@ -120,11 +132,12 @@ func _physics_process(_delta):
 	rotation = 0
 
 
-
 func turn_ship(angle: int):
 	ship_angle += angle
 	if ship_angle < 0:
 		ship_angle += 360
 	
 
-
+func _on_ExplosionSprite_animation_finished():
+	get_tree().reload_current_scene()
+	pass # Replace with function body.
