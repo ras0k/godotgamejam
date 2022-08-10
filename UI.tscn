@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ship/flame.png" type="Texture" id=5]
 [ext_resource path="res://rainbowBar.png" type="Texture" id=6]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=7]
+[ext_resource path="res://resource_bg.png" type="Texture" id=8]
 [ext_resource path="res://paused.png" type="Texture" id=12]
 [ext_resource path="res://Compass.gd" type="Script" id=13]
 [ext_resource path="res://Inventory.gd" type="Script" id=14]
@@ -14,7 +15,8 @@
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 1, 0.701961, 0, 1 )
 
-[sub_resource type="StyleBoxEmpty" id=13]
+[sub_resource type="StyleBoxFlat" id=60]
+bg_color = Color( 0.133333, 0.12549, 0.203922, 1 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 5 )
@@ -94,6 +96,8 @@ animations = [ {
 
 [sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0.45098, 0.415686, 0.466667, 1 )
+
+[sub_resource type="StyleBoxEmpty" id=13]
 
 [sub_resource type="StyleBoxFlat" id=48]
 bg_color = Color( 1, 1, 1, 1 )
@@ -177,19 +181,25 @@ margin_top = 62.0
 margin_right = 37.0
 margin_bottom = 63.0
 custom_styles/fg = SubResource( 12 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/bg = SubResource( 60 )
 max_value = 1000.0
 value = 99.88
 percent_visible = false
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SpeedMeter" type="TextureProgress" parent="."]
 margin_left = 38.0
 margin_top = 62.0
 margin_right = 63.0
 margin_bottom = 63.0
-value = 100.0
+value = 70.0
+texture_under = ExtResource( 8 )
 texture_progress = ExtResource( 6 )
+tint_under = Color( 0.133333, 0.12549, 0.203922, 1 )
+nine_patch_stretch = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -312,7 +322,6 @@ __meta__ = {
 }
 
 [node name="MiningProgress" type="ProgressBar" parent="."]
-visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 12.0
@@ -346,7 +355,7 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="PauseMenu"]
 position = Vector2( 32, 16 )
 frames = SubResource( 59 )
-frame = 7
+frame = 18
 speed_scale = 0.5
 playing = true
 offset = Vector2( 0.5, 0.5 )

@@ -55,7 +55,7 @@ func _ready():
 func _physics_process(_delta):
 #	trade()
 #	launch()
-	
+
 	if Input.is_action_pressed("forward") and fuel > 0.0 and Engine.time_scale == 1:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
 		fuel -= fuel_multiplier * 0.8
@@ -152,11 +152,12 @@ func get_closest_asteroid():
 	var closest = null
 	var smallest_distance := 1000
 	for asteroid in $MiningArea.get_overlapping_bodies():
-		if asteroid.global_position.distance_to(global_position) < smallest_distance:
-			if closest == null:
-				closest = asteroid
-			elif asteroid.global_position.distance_to(global_position) < closest.global_position.distance_to(global_position):
-				closest = asteroid
+		if asteroid.resource_type == Global.resource_types.EMPTY:
+			continue
+		var distance = asteroid.global_position.distance_to(global_position)
+		if distance < smallest_distance:
+			closest = asteroid
+			smallest_distance = distance
 	return closest
 
 
