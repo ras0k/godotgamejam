@@ -200,7 +200,7 @@ func mine_resources():
 #		get_tree().paused = true
 ##		print("trading")
 
-
-func _on_Thrusters_finished() -> void:
-	var sound: AudioStreamPlayer = $Thrusters
-	sound.play()
+#
+#func _on_Thrusters_finished() -> void:
+#	var sound: AudioStreamPlayer = $Thrusters
+#	sound.play()
