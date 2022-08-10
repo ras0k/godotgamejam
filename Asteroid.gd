@@ -29,10 +29,10 @@ func _process(delta):
 
 func pick_resource_type():
 	rng.randomize()
-	match rng.randi_range(1, 10):
-		1:
+	match rng.randi_range(1, 15):
+		1, 2:
 			resource_type = Global.resource_types.UPGRADE_MATERIAL
-		2, 3, 4:
+		3, 4, 5, 6, 7, 8:
 			resource_type = Global.resource_types.CURRENCY
 		_:
 			resource_type = Global.resource_types.EMPTY
