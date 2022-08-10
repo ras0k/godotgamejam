@@ -29,6 +29,7 @@ pause_mode = 1
 stream = ExtResource( 3 )
 volume_db = -18.667
 pitch_scale = 0.9
+autoplay = true
 
 [connection signal="landed_on_planet" from="Spaceship" to="." method="_on_Spaceship_landed_on_planet"]
 [connection signal="mining" from="Spaceship" to="." method="_on_Spaceship_mining"]
