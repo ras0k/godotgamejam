@@ -10,6 +10,7 @@ export var initial_velocity := Vector2.ZERO
 
 var flames_on := false
 var space_speed = speed
+# warning-ignore:integer_division
 var planet_speed = speed / 2
 var orbit_speed = speed * 3
 var max_fuel := 4000.0
