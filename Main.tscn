@@ -27,7 +27,7 @@ initial_velocity = Vector2( 10, -5 )
 [node name="Music" type="AudioStreamPlayer" parent="."]
 pause_mode = 1
 stream = ExtResource( 3 )
-volume_db = -3.187
+volume_db = -18.0
 pitch_scale = 0.85
 autoplay = true
 
