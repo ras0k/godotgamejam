@@ -33,7 +33,7 @@ shape = SubResource( 35 )
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 modulate = Color( 0.52549, 0.537255, 0.541176, 0.0784314 )
 amount = 240
-lifetime = 12.0
+lifetime = 18.0
 local_coords = false
 direction = Vector2( 2, 0 )
 spread = 45.1
