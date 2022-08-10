@@ -54,7 +54,8 @@ func _ready():
 func _physics_process(_delta):
 #	trade()
 #	launch()
-	if Input.is_action_pressed("forward") and fuel > 0.0:
+	
+	if Input.is_action_pressed("forward") and fuel > 0.0 and Engine.time_scale == 1:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
 		fuel -= fuel_multiplier * 0.8
 		flames_on = true
@@ -121,7 +122,7 @@ func _physics_process(_delta):
 	target_asteroid = get_closest_asteroid()
 
 	$Laser.points = []
-	if target_asteroid and mining_enabled:
+	if target_asteroid and mining_enabled and fuel > 100:
 		$Laser.add_point(global_position)
 		$Laser.add_point(target_asteroid.global_position)
 		mine_resources()
