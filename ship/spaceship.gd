@@ -149,10 +149,12 @@ func get_closest_asteroid():
 		return null
 	var closest = null
 	var smallest_distance := 1000
-	for body in $MiningArea.get_overlapping_bodies():
-		var asteroid: RigidBody2D = body
+	for asteroid in $MiningArea.get_overlapping_bodies():
 		if asteroid.global_position.distance_to(global_position) < smallest_distance:
-			closest = asteroid
+			if closest == null:
+				closest = asteroid
+			elif asteroid.global_position.distance_to(global_position) < closest.global_position.distance_to(global_position):
+				closest = asteroid
 	return closest
 
 

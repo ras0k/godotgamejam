@@ -18,7 +18,7 @@ func _process(delta):
 		$Explosion.playing = true
 
 
-func pick_resource_type(+987:
+func pick_resource_type():
 	rng.randomize()
 	if rng.randi_range(1, 5) == 1:
 		resource_type = Global.resource_types.UPGRADE_MATERIAL
