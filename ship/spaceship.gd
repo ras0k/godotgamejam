@@ -163,8 +163,12 @@ func get_closest_asteroid():
 
 func mine_resources():
 	if not target_asteroid.resource_type == currently_mined_resource_type:
-		self.mined_resource_fraction = 0
 		currently_mined_resource_type = target_asteroid.resource_type
+		if currently_mined_resource_type == 1:
+			self.mined_resource_fraction = get_parent().get_node("CanvasLayer/UI/MiningProgress").value
+		elif currently_mined_resource_type == 2:
+			self.mined_resource_fraction = get_parent().get_node("CanvasLayer/UI/BlueMiningProgress").value
+		
 	target_asteroid.remaining_ore -= mining_rate
 	self.mined_resource_fraction += mining_rate
 	if mined_resource_fraction >= 100:

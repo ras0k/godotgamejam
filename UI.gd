@@ -32,10 +32,23 @@ func update_speed_meter():
 func update_mining_progress(value: float, resource_type: int):
 	if is_zero_approx($MiningProgress.value):
 		$MiningProgress.visible = false
+		$BlueMiningProgress.get_stylebox('bg').expand_margin_bottom = 1
 	else:
 		$MiningProgress.visible = true
-	$MiningProgress.value = value
-	$MiningProgress.get_stylebox('fg').bg_color = Global.resource_colors[resource_type]
+		$BlueMiningProgress.get_stylebox('bg').expand_margin_bottom = 0
+	if is_zero_approx($BlueMiningProgress.value):
+		$BlueMiningProgress.visible = false
+	else:
+		$BlueMiningProgress.visible = true
+	
+	if resource_type == 1:
+		$MiningProgress.value = value
+		$MiningProgress.get_stylebox('fg').bg_color = Global.resource_colors[1]
+	elif resource_type == 2:
+		$BlueMiningProgress.value = value
+		$BlueMiningProgress.get_stylebox('fg').bg_color = Global.resource_colors[2]
+	
+
 
 
 func update_inventory(inventory: Array):
