@@ -12,13 +12,13 @@ func _ready():
 
 
 func _process(delta):
-	remaining_ore -= 0.1
+#	remaining_ore -= 0.1
 	if remaining_ore <= 0:
 		$Explosion.show()
 		$Explosion.playing = true
 
 
-func pick_resource_type():
+func pick_resource_type(+987:
 	rng.randomize()
 	if rng.randi_range(1, 5) == 1:
 		resource_type = Global.resource_types.UPGRADE_MATERIAL
