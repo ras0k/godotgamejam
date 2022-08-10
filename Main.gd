@@ -28,6 +28,8 @@ func _ready() -> void:
 	$Music.playing = true
 	$Music.volume_db = -40
 
+	spawn_asteroid_belt(80)
+
 	check_pause()
 
 
@@ -77,8 +79,8 @@ func _process(delta: float) -> void:
 	if pause_state == "running":
 		asteroid_spawn_timer += 1
 
-	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 2800:
-		spawn_asteroid_belt(floor(rand_range(1,3)))
+#	if asteroid_spawn_timer % 160 == 1 and asteroid_spawn_timer < 280:
+#		spawn_asteroid_belt(20)
 
 	if asteroid_spawn_timer % 20 == 1 and asteroid_spawn_timer < 200:
 		$Music.volume_db += 1

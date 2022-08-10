@@ -90,10 +90,10 @@ shape = SubResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-limit_left = -128
-limit_top = -128
-limit_right = 128
-limit_bottom = 128
+limit_left = -184
+limit_top = -184
+limit_right = 184
+limit_bottom = 184
 
 [node name="ExplosionSprite" type="AnimatedSprite" parent="."]
 visible = false

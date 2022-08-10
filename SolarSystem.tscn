@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://SolarSystem.gd" type="Script" id=1]
-[ext_resource path="res://solar_system_background.png" type="Texture" id=2]
+[ext_resource path="res://background_368.png" type="Texture" id=2]
 [ext_resource path="res://stars/Sol.tscn" type="PackedScene" id=3]
 [ext_resource path="res://planets/JumpPlanet.tscn" type="PackedScene" id=4]
 [ext_resource path="res://planets/TechPlanet.tscn" type="PackedScene" id=7]
@@ -18,9 +18,9 @@ texture = ExtResource( 2 )
 position = Vector2( 5, 0 )
 
 [node name="TechPlanet" parent="." instance=ExtResource( 7 )]
-position = Vector2( -10, 42 )
-linear_velocity = Vector2( 8, 2 )
+position = Vector2( -22, 37 )
+linear_velocity = Vector2( 6, 3 )
 
 [node name="JumpPlanet" parent="." instance=ExtResource( 4 )]
-position = Vector2( 36, 90 )
-linear_velocity = Vector2( 10, -3 )
+position = Vector2( 40, 87 )
+linear_velocity = Vector2( 10, -3.5 )
