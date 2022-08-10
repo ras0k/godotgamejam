@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 var rng = RandomNumberGenerator.new()
-var remaining_ore: float = rng.randf_range(40.0, 240.0)
+var remaining_ore: float = 10.0
 var resource_type: int = Global.resource_types.CURRENCY
 
 
@@ -13,6 +13,11 @@ func _ready():
 	modulate = Global.resource_colors[resource_type]
 	if resource_type == Global.resource_types.EMPTY:
 		modulate = Color.gray
+	elif resource_type == Global.resource_types.CURRENCY:
+		remaining_ore = rng.randf_range(40,240)
+	elif resource_type == Global.resource_types.UPGRADE_MATERIAL:
+		remaining_ore = rng.randf_range(40,120)
+		
 
 
 func _process(delta):

@@ -169,38 +169,3 @@ func mine_resources():
 	self.mined_resource_fraction += mining_rate
 	if mined_resource_fraction >= 100:
 		self.mined_resource_fraction = 0
-
-
-#func launch():
-#	if landed and Input.is_action_just_pressed("launch"):
-#		$LaunchTimer.start(5.0)
-#		speed *= 5
-#		landed = false
-#		set_collision_layer_bit(1, false)
-#		set_collision_mask_bit(2, false)
-#		set_collision_mask_bit(3, false)
-#		set_collision_mask_bit(4, false)
-#		print("Launch Started!")
-#
-#
-#func _on_LaunchTimer_timeout():
-#	speed = 8
-#	set_collision_layer_bit(1, true)
-#	set_collision_mask_bit(2, true)
-#	set_collision_mask_bit(3, true)
-#	set_collision_mask_bit(4, true)
-#	print("Launch Ended!")
-
-#func trade():
-#	if landed and Input.is_action_just_pressed("interact"):
-#		current_import = current_planet.import_good
-#		current_export = current_planet.export_good
-#		self.add_child(trade_screen)
-#		trading = true
-#		get_tree().paused = true
-##		print("trading")
-
-#
-#func _on_Thrusters_finished() -> void:
-#	var sound: AudioStreamPlayer = $Thrusters
-#	sound.play()

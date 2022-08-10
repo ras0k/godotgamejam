@@ -2,7 +2,7 @@ extends Node2D
 
 onready var sun = $Sol
 var asteroid := preload("res://Asteroid.tscn")
-var inner_spawn_radius = 120
+var inner_spawn_radius = 125
 var outer_spawn_radius = 150
 
 var rng := RandomNumberGenerator.new()
