@@ -3,9 +3,10 @@ extends Control
 onready var player = get_node("/root/Main/Spaceship")
 onready var main = get_node("/root/Main")
 onready var compass = $Compass
-
+onready var flames = $Compass.get_children()
 
 func _ready():
+	flames.remove(0)
 	pass
 
 
@@ -16,7 +17,13 @@ func _process(_delta):
 		compass.flames_on()
 	else:
 		compass.flames_off()
-
+		
+	if Input.is_action_just_pressed("boost") :
+		for flame in flames :
+			flame.modulate = Color.aqua
+	if Input.is_action_just_released("boost") :
+		for flame in flames :
+			flame.modulate = Color.white
 	handle_pause()
 	update_speed_meter()
 
