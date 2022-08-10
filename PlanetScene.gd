@@ -2,6 +2,7 @@ extends Node2D
 
 onready var player = get_node("../Spaceship")
 onready var main = get_node("/root/Main")
+onready var ui = get_node("/root/Main/CanvasLayer/UI")
 
 var counter := 0
 
@@ -26,11 +27,15 @@ func _on_PlanetShip_body_entered(body):
 	print("now touching with : " + str(body))
 	if body is RigidBody2D:
 		main.touching_ground = true
+		ui.show_upgrades(true)
 	pass # Replace with function body.
 
 
 func _on_PlanetShip_body_exited(body):
 	print("now departing from : " + str(body))
+	
 	if body is RigidBody2D:
 		main.touching_ground = false
+		ui.show_upgrades(false)
+		
 	pass # Replace with function body.
