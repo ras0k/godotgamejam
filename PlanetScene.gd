@@ -27,7 +27,7 @@ func _on_PlanetShip_body_entered(body):
 	print("now touching with : " + str(body))
 	if body is RigidBody2D:
 		main.touching_ground = true
-		ui.show_upgrades(true)
+		
 	pass # Replace with function body.
 
 
@@ -36,6 +36,22 @@ func _on_PlanetShip_body_exited(body):
 	
 	if body is RigidBody2D:
 		main.touching_ground = false
-		ui.show_upgrades(false)
-		
-	pass # Replace with function body.
+
+#basic menu toggle
+func _on_alien_toggled(button_pressed):
+	$planet_bg/Control/alien_panel.visible = button_pressed
+	if button_pressed :
+		$planet_bg/Control/hangar.pressed = false
+		$planet_bg/Control/fuel.pressed = false
+
+func _on_fuel_toggled(button_pressed):
+	$planet_bg/Control/fuel_panel.visible = button_pressed
+	if button_pressed :
+		$planet_bg/Control/alien.pressed = false
+		$planet_bg/Control/hangar.pressed = false
+
+func _on_hangar_toggled(button_pressed):
+	$planet_bg/Control/hangar_panel.visible = button_pressed
+	if button_pressed :
+		$planet_bg/Control/fuel.pressed = false
+		$planet_bg/Control/alien.pressed = false
