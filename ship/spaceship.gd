@@ -173,3 +173,9 @@ func mine_resources():
 	self.mined_resource_fraction += mining_rate
 	if mined_resource_fraction >= 100:
 		self.mined_resource_fraction = 0
+
+func refill(amount) :
+	var final = min(fuel + amount , max_fuel)
+	fuel = final
+	print("filled to "+str(fuel))
+	

@@ -1,6 +1,6 @@
 extends Node2D
 
-onready var player = get_node("../Spaceship")
+onready var player = get_node("/root/Main/Spaceship")
 onready var main = get_node("/root/Main")
 onready var ui = get_node("/root/Main/CanvasLayer/UI")
 
@@ -54,3 +54,10 @@ func _on_fuel_area_body_entered(body):
 func _on_fuel_area_body_exited(body):
 	$planet_bg/Control/fuel_panel.visible = false
 
+
+
+func _on_FuelButton_pressed(fuel_amount):
+	if(player) :
+		player.refill(fuel_amount)
+	else :
+		print("can't find the ship")
