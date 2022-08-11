@@ -1,14 +1,23 @@
 extends RigidBody2D
 
 var rng = RandomNumberGenerator.new()
-var remaining_ore: float = rng.randf_range(40.0, 240.0)
+var remaining_ore: float = 10.0
 var resource_type: int = Global.resource_types.CURRENCY
 
 
 func _ready():
-	$Sprite.frame = int(rng.randi_range(0, 4))
+	rng.randomize()
+	$Sprite.frame = rng.randi_range(0, 4)
+	$Sprite.rotation_degrees = rng.randi_range(0, 3) * 90
 	pick_resource_type()
 	modulate = Global.resource_colors[resource_type]
+	if resource_type == Global.resource_types.EMPTY:
+		modulate = Color.gray
+	elif resource_type == Global.resource_types.CURRENCY:
+		remaining_ore = rng.randf_range(40,240)
+	elif resource_type == Global.resource_types.UPGRADE_MATERIAL:
+		remaining_ore = rng.randf_range(40,120)
+		
 
 
 func _process(delta):
@@ -20,8 +29,13 @@ func _process(delta):
 
 func pick_resource_type():
 	rng.randomize()
-	if rng.randi_range(1, 5) == 1:
-		resource_type = Global.resource_types.UPGRADE_MATERIAL
+	match rng.randi_range(1, 15):
+		1, 2:
+			resource_type = Global.resource_types.UPGRADE_MATERIAL
+		3, 4, 5, 6, 7, 8:
+			resource_type = Global.resource_types.CURRENCY
+		_:
+			resource_type = Global.resource_types.EMPTY
 
 
 func _on_Explosion_animation_finished() -> void:

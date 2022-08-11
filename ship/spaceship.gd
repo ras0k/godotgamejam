@@ -55,7 +55,7 @@ func _ready():
 func _physics_process(_delta):
 #	trade()
 #	launch()
-	
+
 	if Input.is_action_pressed("forward") and fuel > 0.0 and Engine.time_scale == 1:
 		velocity = speed * Vector2(-cos(deg2rad(ship_angle + 90)), -sin(deg2rad(ship_angle + 90)))
 		fuel -= fuel_multiplier * 0.8
@@ -152,54 +152,24 @@ func get_closest_asteroid():
 	var closest = null
 	var smallest_distance := 1000
 	for asteroid in $MiningArea.get_overlapping_bodies():
-		if asteroid.global_position.distance_to(global_position) < smallest_distance:
-			if closest == null:
-				closest = asteroid
-			elif asteroid.global_position.distance_to(global_position) < closest.global_position.distance_to(global_position):
-				closest = asteroid
+		if asteroid.resource_type == Global.resource_types.EMPTY:
+			continue
+		var distance = asteroid.global_position.distance_to(global_position)
+		if distance < smallest_distance:
+			closest = asteroid
+			smallest_distance = distance
 	return closest
 
 
 func mine_resources():
 	if not target_asteroid.resource_type == currently_mined_resource_type:
-		self.mined_resource_fraction = 0
 		currently_mined_resource_type = target_asteroid.resource_type
+		if currently_mined_resource_type == 1:
+			self.mined_resource_fraction = get_parent().get_node("CanvasLayer/UI/MiningProgress").value
+		elif currently_mined_resource_type == 2:
+			self.mined_resource_fraction = get_parent().get_node("CanvasLayer/UI/BlueMiningProgress").value
+		
 	target_asteroid.remaining_ore -= mining_rate
 	self.mined_resource_fraction += mining_rate
 	if mined_resource_fraction >= 100:
 		self.mined_resource_fraction = 0
-
-
-#func launch():
-#	if landed and Input.is_action_just_pressed("launch"):
-#		$LaunchTimer.start(5.0)
-#		speed *= 5
-#		landed = false
-#		set_collision_layer_bit(1, false)
-#		set_collision_mask_bit(2, false)
-#		set_collision_mask_bit(3, false)
-#		set_collision_mask_bit(4, false)
-#		print("Launch Started!")
-#
-#
-#func _on_LaunchTimer_timeout():
-#	speed = 8
-#	set_collision_layer_bit(1, true)
-#	set_collision_mask_bit(2, true)
-#	set_collision_mask_bit(3, true)
-#	set_collision_mask_bit(4, true)
-#	print("Launch Ended!")
-
-#func trade():
-#	if landed and Input.is_action_just_pressed("interact"):
-#		current_import = current_planet.import_good
-#		current_export = current_planet.export_good
-#		self.add_child(trade_screen)
-#		trading = true
-#		get_tree().paused = true
-##		print("trading")
-
-
-func _on_Thrusters_finished() -> void:
-	var sound: AudioStreamPlayer = $Thrusters
-	sound.play()

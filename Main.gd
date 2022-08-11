@@ -3,6 +3,7 @@ extends Node2D
 onready var ui = $CanvasLayer/UI
 onready var planet_scene = load("res://PlanetScene.tscn").instance()
 onready var player = $Spaceship
+onready var ressource_bar = $CanvasLayer/UI/Inventory/ResourceBar
 
 
 var run_time := 0.0
@@ -31,7 +32,7 @@ func _ready() -> void:
 	spawn_asteroid_belt(80)
 
 	check_pause()
-
+	
 
 func _process(delta: float) -> void:
 	run_time += delta
@@ -75,7 +76,19 @@ func _process(delta: float) -> void:
 			prev_pause_state = "paused"
 		check_pause()
 
-
+	if Input.is_action_just_pressed("jettison"):
+			var type = 0
+			for child in ressource_bar.get_children():
+				if not "EMPTY" in child.name:
+					if "CURRENCY" in child.name:
+						type = 1
+					elif "UPGRADE" in child.name:
+						type = 2
+					else:
+						type = 3
+			if type > 0:
+				remove_resource(type)
+			
 	if pause_state == "running":
 		asteroid_spawn_timer += 1
 
@@ -187,8 +200,5 @@ func planet_compass():
 #	$CanvasLayer/UI/Compass/Ship.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
 #	$CanvasLayer/UI/Compass.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
 
-
-func _on_Music_finished() -> void:
-	$Music.playing = true
 
 

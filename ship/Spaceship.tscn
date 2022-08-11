@@ -3,7 +3,7 @@
 [ext_resource path="res://ship/spaceship.gd" type="Script" id=1]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=2]
 [ext_resource path="res://ship/ship.png" type="Texture" id=3]
-[ext_resource path="res://audio/Thrusters_trimmed.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/Thrusters_trimmed_fixed.tres" type="AudioStream" id=4]
 
 [sub_resource type="PhysicsMaterial" id=35]
 
@@ -113,7 +113,7 @@ shape = SubResource( 36 )
 
 [node name="Thrusters" type="AudioStreamPlayer" parent="."]
 pause_mode = 1
-stream = ExtResource( 5 )
+stream = ExtResource( 4 )
 volume_db = -8.0
 pitch_scale = 0.8
 autoplay = true
