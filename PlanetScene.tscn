@@ -1,12 +1,19 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://background.png" type="Texture" id=1]
 [ext_resource path="res://planets/Planet10.png" type="Texture" id=2]
 [ext_resource path="res://PlanetScene.gd" type="Script" id=3]
 [ext_resource path="res://ship/PlanetShip.tscn" type="PackedScene" id=4]
-[ext_resource path="res://stars/red_dwarf.png" type="Texture" id=5]
-[ext_resource path="res://stars/brown_dwarf.png" type="Texture" id=7]
-[ext_resource path="res://stars/neutron_star.png" type="Texture" id=8]
+[ext_resource path="res://ship/ship.png" type="Texture" id=5]
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 2.56, 1.90061 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 1, 0.701961, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+bg_color = Color( 0.133333, 0.12549, 0.203922, 1 )
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 142.127
@@ -38,17 +45,20 @@ rect_pivot_offset = Vector2( 3.36, 7.86441 )
 mouse_filter = 2
 mouse_default_cursor_shape = 3
 
-[node name="alien" type="TextureButton" parent="planet_bg/Control"]
-anchor_right = 0.945
-anchor_bottom = 0.767
-margin_left = 17.12
-margin_top = 16.0
-margin_right = -1.615
-margin_bottom = 1.93561
-toggle_mode = true
-texture_normal = ExtResource( 5 )
-texture_pressed = ExtResource( 8 )
-expand = true
+[node name="alien_area" type="Area2D" parent="planet_bg/Control"]
+position = Vector2( 12, 16 )
+scale = Vector2( 1, 0.998789 )
+collision_layer = 128
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="planet_bg/Control/alien_area"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="planet_bg/Control/alien_area"]
+position = Vector2( 1.49012e-06, -1.13249e-06 )
+scale = Vector2( 4.48, 3.25818 )
+texture = ExtResource( 5 )
 
 [node name="alien_panel" type="Panel" parent="planet_bg/Control"]
 visible = false
@@ -61,39 +71,67 @@ margin_right = 7.879
 margin_bottom = 5.0
 rect_pivot_offset = Vector2( -4.48, 2.01695 )
 
-[node name="fuel" type="TextureButton" parent="planet_bg/Control"]
-anchor_right = 0.945
-anchor_bottom = 0.767
-margin_left = 10.72
-margin_top = 15.4576
-margin_right = -8.015
-margin_bottom = 1.39324
-toggle_mode = true
-texture_normal = ExtResource( 7 )
-texture_pressed = ExtResource( 8 )
-expand = true
+[node name="fuel_area" type="Area2D" parent="planet_bg/Control"]
+position = Vector2( 5.6, 17.0847 )
+scale = Vector2( 1, 0.998789 )
+collision_layer = 128
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="planet_bg/Control/fuel_area"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="planet_bg/Control/fuel_area"]
+position = Vector2( 1.49012e-06, -1.13249e-06 )
+scale = Vector2( 4.48, 3.25818 )
+texture = ExtResource( 5 )
 
 [node name="fuel_panel" type="Panel" parent="planet_bg/Control"]
 visible = false
-self_modulate = Color( 0.945098, 0.843137, 0, 1 )
+self_modulate = Color( 1, 0, 0, 1 )
 anchor_left = 0.527
 anchor_right = 0.527
-margin_left = -7.81
-margin_top = -10.0
-margin_right = 8.19
+margin_left = -8.121
+margin_top = -5.0
+margin_right = 7.879
+margin_bottom = 5.0
 rect_pivot_offset = Vector2( -4.48, 2.01695 )
 
-[node name="hangar" type="TextureButton" parent="planet_bg/Control"]
-anchor_right = 0.945
-anchor_bottom = 0.767
-margin_left = 4.0
-margin_top = 16.0
-margin_right = -14.735
-margin_bottom = 1.93561
-toggle_mode = true
-texture_normal = ExtResource( 8 )
-texture_pressed = ExtResource( 8 )
-expand = true
+[node name="FuelBar" type="ProgressBar" parent="planet_bg/Control/fuel_panel"]
+anchor_left = 0.24
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 2.01695
+margin_right = -0.159998
+margin_bottom = -6.98305
+custom_styles/fg = SubResource( 4 )
+custom_styles/bg = SubResource( 5 )
+max_value = 1000.0
+value = 99.88
+percent_visible = false
+
+[node name="TextureButton" type="TextureButton" parent="planet_bg/Control/fuel_panel"]
+anchor_right = 0.25
+anchor_bottom = 1.0
+margin_left = 1.0
+margin_top = 1.0
+margin_right = -1.0
+margin_bottom = -7.0
+
+[node name="hangar_area" type="Area2D" parent="planet_bg/Control"]
+position = Vector2( 18.72, 16.5424 )
+scale = Vector2( 1, 0.998789 )
+collision_layer = 128
+collision_mask = 128
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="planet_bg/Control/hangar_area"]
+shape = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="planet_bg/Control/hangar_area"]
+position = Vector2( 1.49012e-06, -1.13249e-06 )
+scale = Vector2( 4.48, 3.25818 )
+texture = ExtResource( 5 )
 
 [node name="hangar_panel" type="Panel" parent="planet_bg/Control"]
 visible = false
@@ -138,8 +176,11 @@ shape = SubResource( 2 )
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 32, 32 )
 
-[connection signal="toggled" from="planet_bg/Control/alien" to="." method="_on_alien_toggled"]
-[connection signal="toggled" from="planet_bg/Control/fuel" to="." method="_on_fuel_toggled"]
-[connection signal="toggled" from="planet_bg/Control/hangar" to="." method="_on_hangar_toggled"]
+[connection signal="body_entered" from="planet_bg/Control/alien_area" to="." method="_on_alien_area_body_entered"]
+[connection signal="body_exited" from="planet_bg/Control/alien_area" to="." method="_on_alien_area_body_exited"]
+[connection signal="body_entered" from="planet_bg/Control/fuel_area" to="." method="_on_fuel_area_body_entered"]
+[connection signal="body_exited" from="planet_bg/Control/fuel_area" to="." method="_on_fuel_area_body_exited"]
+[connection signal="body_entered" from="planet_bg/Control/hangar_area" to="." method="_on_hangar_area_body_entered"]
+[connection signal="body_exited" from="planet_bg/Control/hangar_area" to="." method="_on_hangar_area_body_exited"]
 [connection signal="body_entered" from="PlanetShip" to="." method="_on_PlanetShip_body_entered"]
 [connection signal="body_exited" from="PlanetShip" to="." method="_on_PlanetShip_body_exited"]

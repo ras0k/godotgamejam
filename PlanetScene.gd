@@ -4,6 +4,7 @@ onready var player = get_node("../Spaceship")
 onready var main = get_node("/root/Main")
 onready var ui = get_node("/root/Main/CanvasLayer/UI")
 
+
 var counter := 0
 
 # Called when the node enters the scene tree for the first time.
@@ -27,31 +28,29 @@ func _on_PlanetShip_body_entered(body):
 	print("now touching with : " + str(body))
 	if body is RigidBody2D:
 		main.touching_ground = true
-		
 	pass # Replace with function body.
 
 
 func _on_PlanetShip_body_exited(body):
 	print("now departing from : " + str(body))
-	
 	if body is RigidBody2D:
 		main.touching_ground = false
 
-#basic menu toggle
-func _on_alien_toggled(button_pressed):
-	$planet_bg/Control/alien_panel.visible = button_pressed
-	if button_pressed :
-		$planet_bg/Control/hangar.pressed = false
-		$planet_bg/Control/fuel.pressed = false
+func _on_alien_area_body_entered(body):
+	print(str(body.name) +" in alien area")
+	$planet_bg/Control/alien_panel.visible = true
+func _on_alien_area_body_exited(body):
+	$planet_bg/Control/alien_panel.visible = false
 
-func _on_fuel_toggled(button_pressed):
-	$planet_bg/Control/fuel_panel.visible = button_pressed
-	if button_pressed :
-		$planet_bg/Control/alien.pressed = false
-		$planet_bg/Control/hangar.pressed = false
+func _on_hangar_area_body_entered(body):
+	print(str(body.name)+ " in hangar")
+	$planet_bg/Control/hangar_panel.visible = true
+func _on_hangar_area_body_exited(body):
+	$planet_bg/Control/hangar_panel.visible = false
 
-func _on_hangar_toggled(button_pressed):
-	$planet_bg/Control/hangar_panel.visible = button_pressed
-	if button_pressed :
-		$planet_bg/Control/fuel.pressed = false
-		$planet_bg/Control/alien.pressed = false
+func _on_fuel_area_body_entered(body):
+	print(str(body.name)+ " in fuel area")
+	$planet_bg/Control/fuel_panel.visible = true
+func _on_fuel_area_body_exited(body):
+	$planet_bg/Control/fuel_panel.visible = false
+

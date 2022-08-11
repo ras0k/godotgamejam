@@ -65,13 +65,6 @@ func update_inventory(inventory: Array):
 	for resource_type in inventory:
 		$Inventory.add_resource(resource_type)
 
-func show_upgrades(show: bool) :
-	
-	$Upgrades.visible = show 
-	
-		
-	
-
 func handle_pause():
 	if main.pause_state == "running":
 		$PauseMenu.visible = false
