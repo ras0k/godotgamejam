@@ -68,3 +68,7 @@ func handle_pause():
 		$PauseMenu.visible = false
 
 
+
+func _on_Restart_pressed():
+	get_tree().change_scene("res://StartMenu.tscn")
+	pass # Replace with function body.

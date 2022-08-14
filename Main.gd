@@ -201,4 +201,13 @@ func planet_compass():
 #	$CanvasLayer/UI/Compass.frame = $CanvasLayer2/PlanetScene/PlanetShip/Ship.frame
 
 
+func victory () :
+	$CanvasLayer/UI/VictoryScreen.visible = true 
+	#get_tree().change_scene("res://StartMenu.tscn")
 
+func defeat() :
+	$CanvasLayer/UI/DefeatScreen.visible = true ;
+	yield(get_tree().create_timer(1.0), "timeout")
+	
+	get_tree().change_scene("res://StartMenu.tscn")
+	

@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://FuelBar.gd" type="Script" id=1]
 [ext_resource path="res://UI.gd" type="Script" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://rainbowBar.png" type="Texture" id=6]
 [ext_resource path="res://ship/explosion.png" type="Texture" id=7]
 [ext_resource path="res://resource_bg.png" type="Texture" id=8]
+[ext_resource path="res://quit_button_text.png" type="Texture" id=9]
 [ext_resource path="res://paused.png" type="Texture" id=12]
 [ext_resource path="res://Compass.gd" type="Script" id=13]
 [ext_resource path="res://Inventory.gd" type="Script" id=14]
@@ -385,3 +386,62 @@ frame = 6
 speed_scale = 0.5
 playing = true
 offset = Vector2( 0.5, 0.5 )
+
+[node name="DefeatScreen" type="Control" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = -24.0
+margin_bottom = -24.0
+rect_pivot_offset = Vector2( -66, 18 )
+
+[node name="ColorRect" type="ColorRect" parent="DefeatScreen"]
+anchor_right = 1.6
+anchor_bottom = 1.6
+color = Color( 0.227451, 0.227451, 0.227451, 0.529412 )
+
+[node name="Label" type="Label" parent="DefeatScreen"]
+anchor_right = 1.6
+anchor_bottom = 1.6
+margin_left = 14.0
+margin_top = 23.0
+margin_right = 20.0
+margin_bottom = -27.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Game over"
+align = 1
+valign = 1
+
+[node name="VictoryScreen" type="Control" parent="."]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="VictoryScreen"]
+anchor_right = 1.6
+anchor_bottom = 1.6
+color = Color( 0.227451, 0.227451, 0.227451, 0.529412 )
+
+[node name="Label" type="Label" parent="VictoryScreen"]
+anchor_right = 1.6
+anchor_bottom = 1.6
+margin_left = 14.0
+margin_top = 23.0
+margin_right = 20.0
+margin_bottom = -27.0
+rect_scale = Vector2( 0.5, 0.5 )
+text = "Victory !"
+align = 1
+valign = 1
+
+[node name="Restart" type="TextureButton" parent="VictoryScreen"]
+anchor_left = 0.808
+anchor_right = 0.808
+anchor_bottom = 1.569
+margin_left = -8.32
+margin_top = 40.0
+margin_right = 6.68
+margin_bottom = -16.76
+texture_normal = ExtResource( 9 )
+
+[connection signal="pressed" from="VictoryScreen/Restart" to="." method="_on_Restart_pressed"]

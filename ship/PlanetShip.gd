@@ -1,6 +1,6 @@
 extends RigidBody2D
 onready var player = get_node("/root/Main/Spaceship")
-onready var main = get_parent().get_parent().get_parent()
+onready var main = get_node("/root/Main")
 
 signal turned(degrees)
 
@@ -156,5 +156,5 @@ func turn_ship(angle: int):
 	
 
 func _on_ExplosionSprite_animation_finished():
-	get_tree().reload_current_scene()
+	main.defeat() 
 	pass # Replace with function body.
